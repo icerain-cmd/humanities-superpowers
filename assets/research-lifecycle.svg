@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+<title id="title">Humanities research lifecycle</title><desc id="desc">A circular research lifecycle showing inquiry, evidence, interpretation, argument, review, revision, and return.</desc>
+<rect width="1200" height="640" rx="28" fill="#111827"/>
+<text x="60" y="72" fill="#fff" font-size="34" font-family="Arial, sans-serif" font-weight="700">Research is iterative, not linear</text>
+<text x="60" y="108" fill="#aeb9cf" font-size="18" font-family="Arial, sans-serif">Quality gates can send the project backward when evidence or reasoning is incomplete.</text>
+<circle cx="600" cy="365" r="200" fill="none" stroke="#33445f" stroke-width="38"/>
+<g fill="#17233a" stroke="#6ea8fe" stroke-width="2" font-family="Arial, sans-serif" text-anchor="middle">
+<rect x="520" y="140" width="160" height="68" rx="16"/><rect x="790" y="245" width="160" height="68" rx="16"/><rect x="790" y="430" width="160" height="68" rx="16"/><rect x="520" y="535" width="160" height="68" rx="16"/><rect x="250" y="430" width="160" height="68" rx="16"/><rect x="250" y="245" width="160" height="68" rx="16"/>
+</g>
+<g fill="#fff" font-family="Arial, sans-serif" font-size="18" text-anchor="middle"><text x="600" y="181">Inquiry</text><text x="870" y="286">Evidence</text><text x="870" y="471">Interpretation</text><text x="600" y="576">Argument</text><text x="330" y="471">Review</text><text x="330" y="286">Revision</text></g>
+<g fill="#aeb9cf" font-family="Arial, sans-serif" font-size="16" text-anchor="middle"><text x="600" y="337">Submission is not the end</text><text x="600" y="365">of inquiry. Review and new evidence</text><text x="600" y="393">can reopen every earlier decision.</text></g>
+<g fill="#6ea8fe"><path d="M728 182l30 8-21 22z"/><path d="M920 346l12 28-30-4z"/><path d="M742 543l-5 30-25-18z"/><path d="M458 548l-30-4 17-25z"/><path d="M278 382l-11-29 30 5z"/><path d="M456 190l5-30 25 18z"/></g>
+</svg>

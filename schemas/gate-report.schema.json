@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/gate-report.schema.json",
+  "title": "Humanities Superpowers Gate Report",
+  "type": "object",
+  "required": ["gate", "status", "evidence_checked", "blocking_issues", "non_blocking_risks", "researcher_decisions_required", "required_next_action", "next_skill"],
+  "properties": {
+    "gate": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "enum": ["PASS", "CONDITIONAL PASS", "FAIL"]},
+    "evidence_checked": {"type": "array", "items": {"type": "string"}},
+    "blocking_issues": {"type": "array", "items": {"type": "string"}},
+    "non_blocking_risks": {"type": "array", "items": {"type": "string"}},
+    "researcher_decisions_required": {"type": "array", "items": {"type": "string"}},
+    "required_next_action": {"type": "string"},
+    "next_skill": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

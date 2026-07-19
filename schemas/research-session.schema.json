@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/research-session.schema.json",
+  "title": "Humanities Superpowers Research Session",
+  "type": "object",
+  "required": [
+    "session_id",
+    "updated_at",
+    "requested_outcome",
+    "current_state",
+    "routing_decision",
+    "completed_skills",
+    "blocking_issues",
+    "researcher_decisions_required",
+    "next_valid_action"
+  ],
+  "properties": {
+    "session_id": {"type": "string", "minLength": 1},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "requested_outcome": {"type": "string", "minLength": 1},
+    "current_state": {
+      "enum": ["IDEA", "QUESTION", "SCOPE", "SOURCES", "INTERPRETATION", "ARGUMENT", "STRUCTURE", "REVIEW", "REVISION", "SUBMISSION", "BLOCKED", "UNKNOWN"]
+    },
+    "routing_decision": {
+      "enum": ["PROCEED", "PAUSE", "ROLLBACK", "RESEARCHER_DECISION_REQUIRED", "STOP"]
+    },
+    "active_artifacts": {"type": "array", "items": {"type": "object"}},
+    "completed_skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["skill", "gate_status"],
+        "properties": {
+          "skill": {"type": "string"},
+          "gate_status": {"enum": ["PASS", "CONDITIONAL PASS", "FAIL"]},
+          "evidence_checked": {"type": "array", "items": {"type": "string"}},
+          "output_artifact": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "conditions_carried_forward": {"type": "array", "items": {"type": "object"}},
+    "blocking_issues": {"type": "array", "items": {"type": "string"}},
+    "non_blocking_risks": {"type": "array", "items": {"type": "string"}},
+    "researcher_decisions_required": {"type": "array", "items": {"type": "string"}},
+    "deferred_tasks": {"type": "array", "items": {"type": "string"}},
+    "rollback_history": {"type": "array", "items": {"type": "object"}},
+    "completion_claim_restrictions": {"type": "array", "items": {"type": "string"}},
+    "next_valid_action": {
+      "type": "object",
+      "required": ["skill", "required_input", "expected_output", "controlling_gate"],
+      "properties": {
+        "skill": {"type": "string"},
+        "required_input": {"type": "array", "items": {"type": "string"}},
+        "expected_output": {"type": "string"},
+        "controlling_gate": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,48 @@
+specification_version: 1.0.0
+migration_policy:
+  phase_3a_minimum_level: 1
+  phase_3b_core_target_level: 2
+  phase_3b_router_target_level: 3
+skills:
+  - skill: formulating-research-question
+    current_level: 2
+    target_level: 2
+  - skill: scoping-argument-boundary
+    current_level: 2
+    target_level: 2
+  - skill: mapping-concept-lineage
+    current_level: 2
+    target_level: 2
+  - skill: conducting-literature-dialogue
+    current_level: 2
+    target_level: 2
+  - skill: planning-humanities-argument
+    current_level: 2
+    target_level: 2
+  - skill: performing-close-reading
+    current_level: 2
+    target_level: 2
+  - skill: structuring-humanities-argument
+    current_level: 2
+    target_level: 2
+  - skill: stress-testing-argument
+    current_level: 2
+    target_level: 2
+  - skill: auditing-citations
+    current_level: 2
+    target_level: 2
+  - skill: checking-terminology-consistency
+    current_level: 2
+    target_level: 2
+  - skill: reviewing-manuscript
+    current_level: 2
+    target_level: 2
+  - skill: responding-to-peer-review
+    current_level: 2
+    target_level: 2
+  - skill: verifying-before-submission
+    current_level: 2
+    target_level: 2
+  - skill: using-humanities-superpowers
+    current_level: 3
+    target_level: 3

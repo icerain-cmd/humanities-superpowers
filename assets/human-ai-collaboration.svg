@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+<title id="title">Human and AI responsibilities</title><desc id="desc">A diagram separating researcher judgment, AI assistance, and shared work.</desc>
+<rect width="1200" height="620" rx="28" fill="#f7f8fb"/>
+<text x="60" y="70" fill="#172033" font-size="34" font-family="Arial, sans-serif" font-weight="700">Human–AI collaboration</text>
+<text x="60" y="105" fill="#596579" font-size="18" font-family="Arial, sans-serif">Automation ends where scholarly responsibility begins.</text>
+<rect x="55" y="155" width="340" height="370" rx="24" fill="#e9f1ff" stroke="#3976d8" stroke-width="2"/>
+<rect x="430" y="155" width="340" height="370" rx="24" fill="#f2ecff" stroke="#7a55c7" stroke-width="2"/>
+<rect x="805" y="155" width="340" height="370" rx="24" fill="#eaf8f0" stroke="#31865b" stroke-width="2"/>
+<g font-family="Arial, sans-serif"><text x="225" y="205" fill="#245aa8" font-size="25" font-weight="700" text-anchor="middle">Researcher decides</text><text x="600" y="205" fill="#633dad" font-size="25" font-weight="700" text-anchor="middle">Shared work</text><text x="975" y="205" fill="#236b47" font-size="25" font-weight="700" text-anchor="middle">AI assists</text></g>
+<g fill="#253047" font-size="18" font-family="Arial, sans-serif">
+<text x="90" y="260">• Research significance</text><text x="90" y="300">• Interpretive judgment</text><text x="90" y="340">• Source verification</text><text x="90" y="380">• Ethical boundaries</text><text x="90" y="420">• Concept approval</text><text x="90" y="460">• Final authorship</text>
+<text x="465" y="260">• Argument revision</text><text x="465" y="300">• Counterargument testing</text><text x="465" y="340">• Literature clustering</text><text x="465" y="380">• Terminology refinement</text><text x="465" y="420">• Manuscript restructuring</text><text x="465" y="460">• Reviewer response</text>
+<text x="840" y="260">• Alternative formulations</text><text x="840" y="300">• Structural comparison</text><text x="840" y="340">• Missing-warrant detection</text><text x="840" y="380">• Consistency checks</text><text x="840" y="420">• Audit tables</text><text x="840" y="460">• Placeholder detection</text>
+</g>
+<text x="600" y="575" fill="#465268" font-size="19" font-family="Arial, sans-serif" text-anchor="middle">Support scholarly judgment. Never replace it.</text>
+</svg>

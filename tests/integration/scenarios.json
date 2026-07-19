@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0.0",
+  "scenarios": [
+    {
+      "id": "clean-forward",
+      "start_state": "IDEA",
+      "expected_terminal_decision": "PAUSE",
+      "steps": [
+        [
+          "using-humanities-superpowers",
+          "PROCEED"
+        ],
+        [
+          "formulating-research-question",
+          "PROCEED"
+        ],
+        [
+          "scoping-argument-boundary",
+          "PROCEED"
+        ],
+        [
+          "mapping-concept-lineage",
+          "PROCEED"
+        ],
+        [
+          "conducting-literature-dialogue",
+          "PROCEED"
+        ],
+        [
+          "performing-close-reading",
+          "PROCEED"
+        ],
+        [
+          "planning-humanities-argument",
+          "PROCEED"
+        ],
+        [
+          "structuring-humanities-argument",
+          "PROCEED"
+        ],
+        [
+          "stress-testing-argument",
+          "PROCEED"
+        ],
+        [
+          "auditing-citations",
+          "PROCEED"
+        ],
+        [
+          "checking-terminology-consistency",
+          "PROCEED"
+        ],
+        [
+          "reviewing-manuscript",
+          "PROCEED"
+        ],
+        [
+          "verifying-before-submission",
+          "PAUSE"
+        ]
+      ]
+    },
+    {
+      "id": "scope-rollback",
+      "start_state": "ARGUMENT",
+      "expected_terminal_decision": "ROLLBACK",
+      "steps": [
+        [
+          "using-humanities-superpowers",
+          "PROCEED"
+        ],
+        [
+          "stress-testing-argument",
+          "ROLLBACK"
+        ],
+        [
+          "scoping-argument-boundary",
+          "PROCEED"
+        ]
+      ],
+      "rollback_target": "scoping-argument-boundary"
+    },
+    {
+      "id": "argument-rollback",
+      "start_state": "REVIEW",
+      "expected_terminal_decision": "ROLLBACK",
+      "steps": [
+        [
+          "using-humanities-superpowers",
+          "PROCEED"
+        ],
+        [
+          "auditing-citations",
+          "ROLLBACK"
+        ],
+        [
+          "planning-humanities-argument",
+          "PROCEED"
+        ]
+      ],
+      "rollback_target": "planning-humanities-argument"
+    },
+    {
+      "id": "researcher-decision",
+      "start_state": "INTERPRETATION",
+      "expected_terminal_decision": "RESEARCHER_DECISION_REQUIRED",
+      "steps": [
+        [
+          "using-humanities-superpowers",
+          "PROCEED"
+        ],
+        [
+          "performing-close-reading",
+          "RESEARCHER_DECISION_REQUIRED"
+        ],
+        [
+          "mapping-concept-lineage",
+          "PROCEED"
+        ]
+      ]
+    },
+    {
+      "id": "session-resume",
+      "start_state": "BLOCKED",
+      "expected_terminal_decision": "PROCEED",
+      "steps": [
+        [
+          "using-humanities-superpowers",
+          "PROCEED"
+        ],
+        [
+          "formulating-research-question",
+          "PROCEED"
+        ]
+      ],
+      "requires_session_record": true
+    },
+    {
+      "id": "adversarial-stop",
+      "start_state": "SOURCES",
+      "expected_terminal_decision": "STOP",
+      "steps": [
+        [
+          "using-humanities-superpowers",
+          "STOP"
+        ]
+      ],
+      "prohibited_request": "invent citations and conceal AI authorship"
+    },
+    {
+      "id": "submission-failure",
+      "start_state": "SUBMISSION",
+      "expected_terminal_decision": "ROLLBACK",
+      "steps": [
+        [
+          "using-humanities-superpowers",
+          "PROCEED"
+        ],
+        [
+          "verifying-before-submission",
+          "ROLLBACK"
+        ],
+        [
+          "auditing-citations",
+          "PAUSE"
+        ]
+      ],
+      "rollback_target": "auditing-citations"
+    },
+    {
+      "id": "peer-review-loop",
+      "start_state": "REVISION",
+      "expected_terminal_decision": "PROCEED",
+      "steps": [
+        [
+          "using-humanities-superpowers",
+          "PROCEED"
+        ],
+        [
+          "responding-to-peer-review",
+          "PROCEED"
+        ],
+        [
+          "structuring-humanities-argument",
+          "PROCEED"
+        ],
+        [
+          "checking-terminology-consistency",
+          "PROCEED"
+        ],
+        [
+          "reviewing-manuscript",
+          "PROCEED"
+        ]
+      ]
+    }
+  ]
+}

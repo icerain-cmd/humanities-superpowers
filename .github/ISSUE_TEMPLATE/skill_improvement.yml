@@ -1,0 +1,20 @@
+name: Improve a skill
+description: Propose a focused improvement to an existing research skill
+title: "[Skill]: "
+labels: [enhancement]
+body:
+  - type: input
+    attributes:
+      label: Skill name
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Recurring research problem
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed procedural change and test case
+    validations:
+      required: true

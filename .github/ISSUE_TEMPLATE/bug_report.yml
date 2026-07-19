@@ -1,0 +1,39 @@
+name: Bug report
+description: Report a reproducible problem in a skill, workflow, validation script, or documentation.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include unpublished manuscripts, personal data, reviewer identities, or copyrighted source text.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+    validations:
+      required: true
+  - type: dropdown
+    id: harness
+    attributes:
+      label: Agent harness
+      options: [Claude Code, Codex, Cursor, Other, Not applicable]
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+    validations:
+      required: true

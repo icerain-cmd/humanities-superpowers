@@ -1,0 +1,37 @@
+name: Skill proposal
+description: Propose a new scholarly skill or a substantial change to an existing one.
+title: "[Skill proposal]: "
+labels: [skill-proposal]
+body:
+  - type: input
+    id: judgment
+    attributes:
+      label: Scholarly judgment supported
+      description: What recurring research decision would this skill support?
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: Why existing skills are insufficient
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Proposed contract
+      description: Accepts, requires, produces, fails when, guarantees, and non-guarantees.
+    validations:
+      required: true
+  - type: textarea
+    id: failure
+    attributes:
+      label: Required failure behavior
+    validations:
+      required: true
+  - type: textarea
+    id: assumptions
+    attributes:
+      label: Disciplinary assumptions and limitations
+    validations:
+      required: true

@@ -1,0 +1,48 @@
+site_name: Humanities Superpowers
+site_description: Structured research skills and quality gates for humanities scholars using AI agents.
+site_url: https://icerain-cmd.github.io/humanities-superpowers/
+docs_dir: site/docs
+site_dir: site-build
+repo_url: https://github.com/icerain-cmd/humanities-superpowers
+repo_name: icerain-cmd/humanities-superpowers
+copyright: Copyright © 2026 Lee Yong Wook. Released under the MIT License.
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+nav:
+  - Home: index.md
+  - Quick Start: quick-start.md
+  - Methodology:
+      - Overview: methodology.md
+      - Quality Gates: quality-gates.md
+      - Research State Machine: state-machine.md
+  - Skills: skills.md
+  - Examples: examples.md
+  - Installation: installation.md
+  - Contributing: contributing.md
+  - Release:
+      - Social launch kit: release/social-launch.md
+  - About:
+      - Acknowledgments: acknowledgments.md
+      - Differences from Superpowers: differences.md
+      - White Paper: white-paper.md
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true

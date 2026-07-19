@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+<title id="title">Humanities Superpowers research quality gates</title><desc id="desc">Eight research gates from question to submission, each able to pass, conditionally pass, or fail.</desc>
+<rect width="1200" height="560" rx="28" fill="#0b1020"/>
+<text x="60" y="72" fill="#ffffff" font-size="34" font-family="Arial, sans-serif" font-weight="700">Research quality gates</text>
+<text x="60" y="108" fill="#b9c2d9" font-size="18" font-family="Arial, sans-serif">A gate records evidence, unresolved risk, and the next required action.</text>
+<g font-family="Arial, sans-serif" font-size="16" text-anchor="middle">
+<g fill="#17233e" stroke="#6ea8fe" stroke-width="2">
+<rect x="55" y="165" width="125" height="88" rx="14"/><rect x="195" y="165" width="125" height="88" rx="14"/><rect x="335" y="165" width="125" height="88" rx="14"/><rect x="475" y="165" width="125" height="88" rx="14"/><rect x="615" y="165" width="125" height="88" rx="14"/><rect x="755" y="165" width="125" height="88" rx="14"/><rect x="895" y="165" width="125" height="88" rx="14"/><rect x="1035" y="165" width="125" height="88" rx="14"/>
+</g>
+<g fill="#fff"><text x="117" y="202">Question</text><text x="117" y="226">gate</text><text x="257" y="202">Scope</text><text x="257" y="226">gate</text><text x="397" y="202">Source</text><text x="397" y="226">gate</text><text x="537" y="202">Concept</text><text x="537" y="226">gate</text><text x="677" y="202">Argument</text><text x="677" y="226">gate</text><text x="817" y="202">Stress-test</text><text x="817" y="226">gate</text><text x="957" y="202">Citation</text><text x="957" y="226">gate</text><text x="1097" y="202">Submission</text><text x="1097" y="226">gate</text></g>
+</g>
+<g stroke="#7180a0" stroke-width="3"><path d="M180 209h15"/><path d="M320 209h15"/><path d="M460 209h15"/><path d="M600 209h15"/><path d="M740 209h15"/><path d="M880 209h15"/><path d="M1020 209h15"/></g>
+<g font-family="Arial, sans-serif">
+<rect x="145" y="342" width="250" height="112" rx="18" fill="#102f25" stroke="#45c486" stroke-width="2"/><text x="270" y="382" fill="#8ef0b8" font-size="24" text-anchor="middle" font-weight="700">PASS</text><text x="270" y="415" fill="#d9f7e5" font-size="16" text-anchor="middle">No known blocking issue</text>
+<rect x="475" y="342" width="250" height="112" rx="18" fill="#352b12" stroke="#e9b949" stroke-width="2"/><text x="600" y="382" fill="#ffd778" font-size="24" text-anchor="middle" font-weight="700">CONDITIONAL PASS</text><text x="600" y="415" fill="#fff0c6" font-size="16" text-anchor="middle">Risks recorded and accepted</text>
+<rect x="805" y="342" width="250" height="112" rx="18" fill="#391b22" stroke="#ff6b7d" stroke-width="2"/><text x="930" y="382" fill="#ff9ba8" font-size="24" text-anchor="middle" font-weight="700">FAIL</text><text x="930" y="415" fill="#ffd7dc" font-size="16" text-anchor="middle">Blocking evidence or decision missing</text>
+</g>
+<text x="600" y="515" fill="#b9c2d9" font-size="17" font-family="Arial, sans-serif" text-anchor="middle">A failed gate is not a broken workflow. It is a refusal to hide unresolved scholarly risk.</text>
+</svg>

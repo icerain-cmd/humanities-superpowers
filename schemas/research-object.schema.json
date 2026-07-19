@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/research-object.schema.json",
+  "title": "Humanities Superpowers Research Object",
+  "type": "object",
+  "required": ["id", "object_type", "status", "verification_state", "provenance"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "object_type": {
+      "type": "string",
+      "enum": ["research_question", "scope_boundary", "concept_record", "source_record", "claim", "evidence_item", "interpretation", "inference", "argument_node", "objection", "terminology_entry", "citation_record", "reviewer_comment", "revision_action", "gate_report"]
+    },
+    "status": {"type": "string", "enum": ["draft", "active", "superseded", "blocked", "accepted"]},
+    "verification_state": {"type": "string", "enum": ["verified-primary", "verified-secondary", "researcher-supplied", "inference", "hypothesis", "unverified", "unknown", "disputed"]},
+    "provenance": {"type": ["string", "object"]},
+    "data": {"type": "object"}
+  },
+  "additionalProperties": false
+}

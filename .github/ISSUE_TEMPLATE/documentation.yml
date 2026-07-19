@@ -1,0 +1,21 @@
+name: Documentation improvement
+description: Report unclear, missing, outdated, or misleading documentation.
+title: "[Docs]: "
+labels: [documentation]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Document or page
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is unclear or incorrect?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested improvement

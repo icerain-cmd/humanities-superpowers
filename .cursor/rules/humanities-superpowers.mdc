@@ -1,0 +1,7 @@
+---
+description: Apply Humanities Superpowers to humanities research and scholarly writing tasks
+globs: "**/*.md"
+alwaysApply: false
+---
+
+For humanities research tasks, inspect `skills/using-humanities-superpowers/SKILL.md`, select the smallest sufficient skill set, and follow each selected skill's stop signals and completion criteria. Never invent citations, quotations, page numbers, publication data, or source contents. Preserve unresolved uncertainty. Use `verifying-before-submission` before claiming a manuscript is final or submission-ready.

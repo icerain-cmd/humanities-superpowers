@@ -1,0 +1,81 @@
+{
+  "$schema": "../../schemas/research-session.schema.json",
+  "session_id": "example-platform-memory-001",
+  "updated_at": "2026-07-19T05:00:00Z",
+  "requested_outcome": "Develop and verify a bounded concept-paper argument about two platform interfaces and cultural memory.",
+  "current_state": "BLOCKED",
+  "routing_decision": "PAUSE",
+  "active_artifacts": [
+    {
+      "path": "gate-history.md",
+      "type": "gate-history"
+    },
+    {
+      "path": "handoff-trace.md",
+      "type": "handoff-trace"
+    }
+  ],
+  "completed_skills": [
+    {
+      "skill": "formulating-research-question",
+      "gate_status": "PASS"
+    },
+    {
+      "skill": "scoping-argument-boundary",
+      "gate_status": "PASS"
+    },
+    {
+      "skill": "performing-close-reading",
+      "gate_status": "CONDITIONAL PASS"
+    },
+    {
+      "skill": "planning-humanities-argument",
+      "gate_status": "PASS"
+    },
+    {
+      "skill": "stress-testing-argument",
+      "gate_status": "FAIL"
+    },
+    {
+      "skill": "scoping-argument-boundary",
+      "gate_status": "PASS"
+    },
+    {
+      "skill": "auditing-citations",
+      "gate_status": "CONDITIONAL PASS"
+    }
+  ],
+  "conditions_carried_forward": [
+    {
+      "condition": "Preserve an alternative reading of the interface sequence.",
+      "source_skill": "performing-close-reading"
+    }
+  ],
+  "blocking_issues": [
+    "One historical claim lacks a verified source and page location."
+  ],
+  "non_blocking_risks": [
+    "The two-interface corpus cannot support claims about platforms in general."
+  ],
+  "researcher_decisions_required": [],
+  "deferred_tasks": [],
+  "rollback_history": [
+    {
+      "from": "stress-testing-argument",
+      "to": "scoping-argument-boundary",
+      "reason": "The claim exceeded the two-interface evidence base."
+    }
+  ],
+  "completion_claim_restrictions": [
+    "Do not describe the manuscript as submission-ready."
+  ],
+  "next_valid_action": {
+    "skill": "auditing-citations",
+    "required_input": [
+      "Primary or authoritative secondary source for the historical claim",
+      "Exact page or stable location"
+    ],
+    "expected_output": "A verified citation record or removal/narrowing of the claim.",
+    "controlling_gate": "Citation gate"
+  }
+}

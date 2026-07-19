@@ -1,0 +1,27 @@
+cases:
+  - prompt: "I have a topic about platform aesthetics but no clear question."
+    expected_primary_skill: formulating-research-question
+  - prompt: "My thesis covers AI, ecology, politics, aesthetics, and all human experience."
+    expected_primary_skill: scoping-argument-boundary
+  - prompt: "Is my new concept actually different from disinterestedness?"
+    expected_primary_skill: mapping-concept-lineage
+  - prompt: "Turn these sources into debates instead of one-summary-per-author."
+    expected_primary_skill: conducting-literature-dialogue
+  - prompt: "Make a claim-reason-evidence map for this article."
+    expected_primary_skill: planning-humanities-argument
+  - prompt: "Analyze the syntax and narrative distance in this supplied passage."
+    expected_primary_skill: performing-close-reading
+  - prompt: "Reorganize my notes without inventing my contribution."
+    expected_primary_skill: structuring-humanities-argument
+  - prompt: "Find the strongest objections and counterexamples."
+    expected_primary_skill: stress-testing-argument
+  - prompt: "Verify every quotation, page number, and reference."
+    expected_primary_skill: auditing-citations
+  - prompt: "Check whether these three terms drift across chapters."
+    expected_primary_skill: checking-terminology-consistency
+  - prompt: "Review this complete article as a fair but skeptical reviewer."
+    expected_primary_skill: reviewing-manuscript
+  - prompt: "Turn these reviewer comments into revisions and a response letter."
+    expected_primary_skill: responding-to-peer-review
+  - prompt: "Is this manuscript truly ready to submit?"
+    expected_primary_skill: verifying-before-submission

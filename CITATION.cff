@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use Humanities Superpowers in research or teaching, please cite this software."
+title: "Humanities Superpowers: Structured Research Skills for Humanities Scholars Using AI Agents"
+type: software
+authors:
+  - family-names: "Lee"
+    given-names: "Yong Wook"
+    affiliation: "Department of Korean Language and Literature, Jeonju University"
+version: 1.0.0
+date-released: 2026-07-19
+url: "https://github.com/icerain-cmd/humanities-superpowers"
+repository-code: "https://github.com/icerain-cmd/humanities-superpowers"
+license: MIT
+keywords:
+  - humanities
+  - research methodology
+  - AI agents
+  - scholarly writing
+  - citation verification
+  - close reading

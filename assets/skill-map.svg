@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+<title id="title">Humanities Superpowers skill map</title><desc id="desc">Thirteen skills grouped into design, evidence, argument, and verification.</desc>
+<style>.h{font:700 25px system-ui,sans-serif;fill:#152238}.t{font:600 17px system-ui,sans-serif;fill:#152238}.s{font:400 14px system-ui,sans-serif;fill:#46566d}.box{fill:#fff;stroke:#9aabc0;stroke-width:1.8}.group{fill:#f5f7fa;stroke:#c4cfdb;stroke-width:2}</style>
+<text class="h" x="600" y="45" text-anchor="middle">13 composable skills, four research responsibilities</text>
+<g transform="translate(35 80)"><rect class="group" rx="20" width="540" height="220"/><text class="h" x="25" y="38">1. Research design</text>
+<g transform="translate(25 65)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Formulate question</text><text class="s" x="16" y="47">object, puzzle, stakes</text></g>
+<g transform="translate(280 65)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Scope boundary</text><text class="s" x="16" y="47">claims, corpus, limits</text></g>
+<g transform="translate(25 140)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Plan argument</text><text class="s" x="16" y="47">claim–reason–evidence</text></g></g>
+<g transform="translate(625 80)"><rect class="group" rx="20" width="540" height="220"/><text class="h" x="25" y="38">2. Evidence and interpretation</text>
+<g transform="translate(25 65)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Map concept lineage</text><text class="s" x="16" y="47">continuity and rupture</text></g>
+<g transform="translate(280 65)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Literature dialogue</text><text class="s" x="16" y="47">positions, not summaries</text></g>
+<g transform="translate(25 140)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Close reading</text><text class="s" x="16" y="47">features → interpretation</text></g></g>
+<g transform="translate(35 335)"><rect class="group" rx="20" width="540" height="235"/><text class="h" x="25" y="38">3. Argument development</text>
+<g transform="translate(25 65)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Structure argument</text><text class="s" x="16" y="47">researcher-led prose</text></g>
+<g transform="translate(280 65)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Stress-test argument</text><text class="s" x="16" y="47">objections and rivals</text></g>
+<g transform="translate(25 140)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Review manuscript</text><text class="s" x="16" y="47">reviewer simulation</text></g></g>
+<g transform="translate(625 335)"><rect class="group" rx="20" width="540" height="235"/><text class="h" x="25" y="38">4. Verification and revision</text>
+<g transform="translate(25 65)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Audit citations</text><text class="s" x="16" y="47">existence + claim fit</text></g>
+<g transform="translate(280 65)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Check terminology</text><text class="s" x="16" y="47">stable concepts</text></g>
+<g transform="translate(25 140)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Respond to review</text><text class="s" x="16" y="47">comment → revision trace</text></g>
+<g transform="translate(280 140)"><rect class="box" rx="12" width="235" height="60"/><text class="t" x="16" y="27">Submission gate</text><text class="s" x="16" y="47">PASS / FAIL with reasons</text></g></g>
+</svg>
