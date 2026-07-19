@@ -18,12 +18,12 @@ This checklist separates checks completed in the release archive from operations
 
 ## Live-repository checks still required
 
-- [ ] Create or update the GitHub repository and push the release candidate.
-- [ ] Inspect README and internal links in GitHub's rendered view.
-- [ ] Confirm that Git history contains no sensitive files.
-- [ ] Run the GitHub Pages workflow and inspect the deployed site.
-- [ ] Test Claude Code installation in the target environment.
-- [ ] Test Codex installation in the target environment.
+- [x] Create or update the GitHub repository and push the release candidate.
+- [x] Inspect README and internal links in GitHub's rendered view.
+- [x] Confirm that Git history contains no sensitive files.
+- [x] Run the GitHub Pages workflow and inspect the deployed site.
+
+- [x] Create a GitHub Release with the v1.0.0 tag, release notes, and the signed release archive.
 - [ ] Test Cursor rule loading in the target environment.
 - [ ] Set repository description and topics.
 - [ ] Enable Issues and Discussions as intended.
