@@ -1,0 +1,39 @@
+name: Sync launch manifest once
+
+on:
+  push:
+    branches:
+      - agent/international-launch-readiness
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r site/requirements.txt
+      - name: Remove one-time workflow and regenerate manifest
+        run: |
+          rm .github/workflows/sync-launch-manifest.yml
+          python3 scripts/validate_public_release.py --update-manifest
+      - name: Validate final tree
+        run: |
+          python3 scripts/validate_repository.py
+          python3 scripts/run_integrated_tests.py
+          python3 scripts/validate_public_release.py
+          mkdocs build --strict
+      - name: Commit regenerated manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add MANIFEST.json .github/workflows/sync-launch-manifest.yml
+          git commit -m "Regenerate manifest for launch feedback changes"
+          git push
