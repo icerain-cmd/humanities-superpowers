@@ -1,0 +1,65 @@
+name: Test report
+description: Report what happened when you tested one Humanities Superpowers skill on a real research project.
+title: "[Test report]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for critically testing Humanities Superpowers. Do not include unpublished manuscripts, personal data, reviewer identities, or copyrighted source text. Use anonymized descriptions and minimal excerpts.
+  - type: input
+    id: discipline
+    attributes:
+      label: Discipline or research area
+      placeholder: e.g., literary studies, history, philosophy, digital humanities
+    validations:
+      required: true
+  - type: input
+    id: skill
+    attributes:
+      label: Skill tested
+      placeholder: e.g., auditing-citations
+    validations:
+      required: true
+  - type: dropdown
+    id: harness
+    attributes:
+      label: Agent harness
+      options:
+        - Claude Code
+        - OpenAI Codex
+        - Cursor
+        - Manual Markdown use
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Research context and task
+      description: Describe the task without sharing confidential or copyrighted material.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: What happened
+      description: Report the route, gate result, useful behavior, and failure or friction you observed.
+    validations:
+      required: true
+  - type: textarea
+    id: weakness
+    attributes:
+      label: Where was the framework too rigid, too technical, or methodologically weak?
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested improvement or counterexample
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Public-report check
+      options:
+        - label: I have removed confidential, personal, unpublished, and copyrighted material from this report.
+          required: true
