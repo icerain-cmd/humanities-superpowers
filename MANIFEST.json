@@ -1,7 +1,7 @@
 {
   "name": "humanities-superpowers",
   "version": "1.0.0",
-  "file_count": 143,
+  "file_count": 146,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -49,6 +49,16 @@
       "bytes": 493
     },
     {
+      "path": ".github/ISSUE_TEMPLATE/installation_problem.yml",
+      "sha256": "70c5e7196cc6146edfefd8bf63f17430af2e5aadaca41d76ea098a91bfcfb9de",
+      "bytes": 1966
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/methodological_criticism.yml",
+      "sha256": "764d5ebf3640342d152d945f7b10e5538af6bcd67f9f5313e49151a22ccac336",
+      "bytes": 1950
+    },
+    {
       "path": ".github/ISSUE_TEMPLATE/skill_improvement.yml",
       "sha256": "2a308eb0ac7cc41f40e9641596749f1d5652205fe15cc78bb3da1aa0e55508d5",
       "bytes": 476
@@ -57,6 +67,11 @@
       "path": ".github/ISSUE_TEMPLATE/skill_proposal.yml",
       "sha256": "33c06792faccee361f34d3a54795928957bb72c1cad29c2eb7494accaa3f436a",
       "bytes": 997
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/test_report.yml",
+      "sha256": "6ac65fe2b871ade02db27d2f6f04b58a206fc792a4172cfffacb1679c23c8be9",
+      "bytes": 2000
     },
     {
       "path": ".github/pull_request_template.md",
@@ -89,31 +104,6 @@
       "bytes": 963
     },
     {
-      "path": "assets/human-ai-collaboration.svg",
-      "sha256": "00d910d1cc6c653d7727b7b13534b34dc76f7c55141679f8a608b0ac15edd05f",
-      "bytes": 2489
-    },
-    {
-      "path": "assets/quality-gates.svg",
-      "sha256": "ad1dc05731f43b9312e4d409a865d905b2b6af214c87bf7bcfbccc0bb53979e1",
-      "bytes": 3246
-    },
-    {
-      "path": "assets/research-lifecycle.svg",
-      "sha256": "5470bb1c8940fbd63a6b56b8e271ba4f2087cf30ff5afe71b2af6e3b1e89f5bd",
-      "bytes": 2027
-    },
-    {
-      "path": "assets/research-pipeline.svg",
-      "sha256": "2b0523c2c1f0993f0189c8a91615b17655d3e57d22d10edb15485201764ec411",
-      "bytes": 2443
-    },
-    {
-      "path": "assets/skill-map.svg",
-      "sha256": "717ab9f3ce60ceb839bd8855cd7fc1565c3f1f81b53626d67110be8806c99749",
-      "bytes": 3919
-    },
-    {
       "path": "CHANGELOG.md",
       "sha256": "464ef94397366f785e906ea072d7e92221a64496be4fdcc2ed3cd0fb5d77afa4",
       "bytes": 2053
@@ -144,6 +134,76 @@
       "bytes": 2297
     },
     {
+      "path": "INSTALLATION.md",
+      "sha256": "b5a9327c5c69ecab50f6a4043da700dcc8dbb75cf8f4b8e062c04ae72a26678b",
+      "bytes": 5142
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "3e2e4db37e48d28d5b4925edf729f05b77fec01f5ed92f0e776a6f41c8e9da4e",
+      "bytes": 1070
+    },
+    {
+      "path": "MANIFESTO.md",
+      "sha256": "56c72e5d5b291a4ed317ab1c5f698014fff45f3a279f6d34b7a1d5b2864eeb81",
+      "bytes": 1049
+    },
+    {
+      "path": "PUBLISHING_CHECKLIST.md",
+      "sha256": "8f1fad9fb1318689de110fea92947d08cdfdfdb4a0fb321b8978e1ff44834514",
+      "bytes": 1010
+    },
+    {
+      "path": "README.ko.md",
+      "sha256": "4b60afa3b9cdab9cd90ee35de18313765982af51fa4b95791339077d1f484d6c",
+      "bytes": 8730
+    },
+    {
+      "path": "README.md",
+      "sha256": "3b47bf3e1e10345bda73a461649cbdcce7d319b144fec3c74746548e6a15c7ae",
+      "bytes": 9442
+    },
+    {
+      "path": "ROADMAP.md",
+      "sha256": "aea8f678b5b7bec6266e746d8ab9af0dda2ee63ae0c3d28ce2d3f0b4e96132bb",
+      "bytes": 762
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "9fa704d709a5c0dfd9fbc9265c154825738dda20cf5410922cd30d12c8be75f1",
+      "bytes": 619
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "50c0549c92432e9b4d6edef6ceb1ebf434705e1365e14d5dec09c383654a7767",
+      "bytes": 756
+    },
+    {
+      "path": "assets/human-ai-collaboration.svg",
+      "sha256": "00d910d1cc6c653d7727b7b13534b34dc76f7c55141679f8a608b0ac15edd05f",
+      "bytes": 2489
+    },
+    {
+      "path": "assets/quality-gates.svg",
+      "sha256": "ad1dc05731f43b9312e4d409a865d905b2b6af214c87bf7bcfbccc0bb53979e1",
+      "bytes": 3246
+    },
+    {
+      "path": "assets/research-lifecycle.svg",
+      "sha256": "5470bb1c8940fbd63a6b56b8e271ba4f2087cf30ff5afe71b2af6e3b1e89f5bd",
+      "bytes": 2027
+    },
+    {
+      "path": "assets/research-pipeline.svg",
+      "sha256": "2b0523c2c1f0993f0189c8a91615b17655d3e57d22d10edb15485201764ec411",
+      "bytes": 2443
+    },
+    {
+      "path": "assets/skill-map.svg",
+      "sha256": "717ab9f3ce60ceb839bd8855cd7fc1565c3f1f81b53626d67110be8806c99749",
+      "bytes": 3919
+    },
+    {
       "path": "docs/ANTI_PATTERNS.md",
       "sha256": "78c0458061918847a96407a3f59b0a3402e636126fbb720147b18976711fd183",
       "bytes": 1883
@@ -157,6 +217,21 @@
       "path": "docs/DEVELOPMENT_PHASES.md",
       "sha256": "9a0ff5284dee42609b6b92221dd0aec622e11b5ba1805f6565e18ba26488ff26",
       "bytes": 850
+    },
+    {
+      "path": "docs/PHILOSOPHY.md",
+      "sha256": "cd138ee4be6973b43540dd97648197eafc136c01bae75f4ed231907793391eba",
+      "bytes": 1307
+    },
+    {
+      "path": "docs/QUALITY_GATES.md",
+      "sha256": "b0ad43e92df88cf4e25ab059abaf08710b8347c8b7b309743f4663b37a779768",
+      "bytes": 732
+    },
+    {
+      "path": "docs/SKILL_SCHEMA.md",
+      "sha256": "878352f811f379e9a96575373afd232888dbe404062da13a263eb34fcae4ace8",
+      "bytes": 1010
     },
     {
       "path": "docs/integration/INTEGRATED_CONFORMANCE.md",
@@ -189,16 +264,6 @@
       "bytes": 1187
     },
     {
-      "path": "docs/PHILOSOPHY.md",
-      "sha256": "cd138ee4be6973b43540dd97648197eafc136c01bae75f4ed231907793391eba",
-      "bytes": 1307
-    },
-    {
-      "path": "docs/QUALITY_GATES.md",
-      "sha256": "b0ad43e92df88cf4e25ab059abaf08710b8347c8b7b309743f4663b37a779768",
-      "bytes": 732
-    },
-    {
       "path": "docs/release/PRE_PUBLICATION_OPTIMIZATION_REPORT.md",
       "sha256": "00208256012821723c4545a8bfe61679b5c60f7583e9e2ae03eb452df91db7ac",
       "bytes": 10227
@@ -212,11 +277,6 @@
       "path": "docs/release/RELEASE_NOTES_v1.0.0.md",
       "sha256": "5ce57d72225aa580f3e58dbe11ba6460840b14621ae516aa925ac421414ab53b",
       "bytes": 1034
-    },
-    {
-      "path": "docs/SKILL_SCHEMA.md",
-      "sha256": "878352f811f379e9a96575373afd232888dbe404062da13a263eb34fcae4ace8",
-      "bytes": 1010
     },
     {
       "path": "docs/social-media-kit/LAUNCH_SEQUENCE.md",
@@ -284,19 +344,24 @@
       "bytes": 2935
     },
     {
-      "path": "docs/white-paper/citation-audit.md",
-      "sha256": "a6ae5bf40251f92fedad13c5fe31e29ba1fe4b6fae47d88388810f47f4aa998e",
-      "bytes": 4496
-    },
-    {
       "path": "docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md",
       "sha256": "3788dd782cb94a85ab398525cffd31ab1af5e81c38da075982c58daf9c5c5266",
       "bytes": 36769
     },
     {
+      "path": "docs/white-paper/citation-audit.md",
+      "sha256": "a6ae5bf40251f92fedad13c5fe31e29ba1fe4b6fae47d88388810f47f4aa998e",
+      "bytes": 4496
+    },
+    {
       "path": "examples/argument-map-example/README.md",
       "sha256": "d83ae3d5dea1f7681d9ee640f4f7b2b0d7b0d4eee351415946a36a8f89ec5d16",
       "bytes": 1459
+    },
+    {
+      "path": "examples/concept-paper-example/README.md",
+      "sha256": "1ab0d16bae948d8a020c752403d15b2d865a630d83f9fbd0833807c089dfc148",
+      "bytes": 854
     },
     {
       "path": "examples/concept-paper-example/input/research-brief.md",
@@ -339,9 +404,9 @@
       "bytes": 1134
     },
     {
-      "path": "examples/concept-paper-example/README.md",
-      "sha256": "1ab0d16bae948d8a020c752403d15b2d865a630d83f9fbd0833807c089dfc148",
-      "bytes": 854
+      "path": "examples/end-to-end-research-session/README.md",
+      "sha256": "a4208e65fd7c9f4124cca23f5c43d7c9a736f79f461adf6533a30f31157afa40",
+      "bytes": 926
     },
     {
       "path": "examples/end-to-end-research-session/gate-history.md",
@@ -354,11 +419,6 @@
       "bytes": 472
     },
     {
-      "path": "examples/end-to-end-research-session/README.md",
-      "sha256": "a4208e65fd7c9f4124cca23f5c43d7c9a736f79f461adf6533a30f31157afa40",
-      "bytes": 926
-    },
-    {
       "path": "examples/end-to-end-research-session/session-01.json",
       "sha256": "71fa9e99280bcf1b0579843a47d5c54fb20c26886a4467ba7641c0ab7fc9bc55",
       "bytes": 2247
@@ -369,21 +429,6 @@
       "bytes": 1709
     },
     {
-      "path": "INSTALLATION.md",
-      "sha256": "b5a9327c5c69ecab50f6a4043da700dcc8dbb75cf8f4b8e062c04ae72a26678b",
-      "bytes": 5142
-    },
-    {
-      "path": "LICENSE",
-      "sha256": "3e2e4db37e48d28d5b4925edf729f05b77fec01f5ed92f0e776a6f41c8e9da4e",
-      "bytes": 1070
-    },
-    {
-      "path": "MANIFESTO.md",
-      "sha256": "56c72e5d5b291a4ed317ab1c5f698014fff45f3a279f6d34b7a1d5b2864eeb81",
-      "bytes": 1049
-    },
-    {
       "path": "mkdocs.yml",
       "sha256": "604aa49b5bfa4578409b52855fd91b9e87a8cc8893c3c6e11f85c048c52dee62",
       "bytes": 1358
@@ -392,26 +437,6 @@
       "path": "project.json",
       "sha256": "2f4aea6ed58d95174a94b59a9b7f5399ab95f16ab21718ed819b1811d264974f",
       "bytes": 372
-    },
-    {
-      "path": "PUBLISHING_CHECKLIST.md",
-      "sha256": "8f1fad9fb1318689de110fea92947d08cdfdfdb4a0fb321b8978e1ff44834514",
-      "bytes": 1010
-    },
-    {
-      "path": "README.ko.md",
-      "sha256": "1ffe23596e1ba788a542bf520831ae0542dc71a56e4f04284a62161c4c705ab0",
-      "bytes": 7435
-    },
-    {
-      "path": "README.md",
-      "sha256": "edcdf5cfe00ab801d9fe4ecb9d356fb263f2827ef33b4c5dc358691fefecaea9",
-      "bytes": 8237
-    },
-    {
-      "path": "ROADMAP.md",
-      "sha256": "aea8f678b5b7bec6266e746d8ab9af0dda2ee63ae0c3d28ce2d3f0b4e96132bb",
-      "bytes": 762
     },
     {
       "path": "schemas/gate-report.schema.json",
@@ -454,19 +479,19 @@
       "bytes": 19841
     },
     {
-      "path": "SECURITY.md",
-      "sha256": "9fa704d709a5c0dfd9fbc9265c154825738dda20cf5410922cd30d12c8be75f1",
-      "bytes": 619
+      "path": "site/docs/CODE_OF_CONDUCT.md",
+      "sha256": "f9ebc4e13b98b32559a92dedf177ca3400dc41fe83cdb28b80c6d976da25e94c",
+      "bytes": 672
+    },
+    {
+      "path": "site/docs/THIRD_PARTY_NOTICES.md",
+      "sha256": "50c0549c92432e9b4d6edef6ceb1ebf434705e1365e14d5dec09c383654a7767",
+      "bytes": 756
     },
     {
       "path": "site/docs/acknowledgments.md",
       "sha256": "64c4022e58db25b7f1517924fe43248f56ae21c24ec2f9327d25faebd8902f73",
       "bytes": 1828
-    },
-    {
-      "path": "site/docs/CODE_OF_CONDUCT.md",
-      "sha256": "f9ebc4e13b98b32559a92dedf177ca3400dc41fe83cdb28b80c6d976da25e94c",
-      "bytes": 672
     },
     {
       "path": "site/docs/contributing.md",
@@ -514,11 +539,6 @@
       "bytes": 1857
     },
     {
-      "path": "site/docs/release/social-launch.md",
-      "sha256": "963d90aea3a35787fa6a632b752953c8e3f36a364f1ba29ff1913bd2e01ba880",
-      "bytes": 363
-    },
-    {
       "path": "site/docs/release/SOCIAL_LAUNCH_EN.md",
       "sha256": "74f3907d829cab15fb4ee6b0ea3852f8ff8021cd31525aedfb3e8f6bb6a36a43",
       "bytes": 7673
@@ -529,6 +549,11 @@
       "bytes": 8130
     },
     {
+      "path": "site/docs/release/social-launch.md",
+      "sha256": "963d90aea3a35787fa6a632b752953c8e3f36a364f1ba29ff1913bd2e01ba880",
+      "bytes": 363
+    },
+    {
       "path": "site/docs/skills.md",
       "sha256": "56333b8c52b9c1bfd90b25c846a42f47c97d94d61bf0d9521b14049a7fd8c32b",
       "bytes": 968
@@ -537,11 +562,6 @@
       "path": "site/docs/state-machine.md",
       "sha256": "e52083c1ea6d55e1733a3d5496f607338d4e38437532d18c52a7c6de2383b29b",
       "bytes": 3918
-    },
-    {
-      "path": "site/docs/THIRD_PARTY_NOTICES.md",
-      "sha256": "50c0549c92432e9b4d6edef6ceb1ebf434705e1365e14d5dec09c383654a7767",
-      "bytes": 756
     },
     {
       "path": "site/docs/white-paper.md",
@@ -697,11 +717,6 @@
       "path": "tests/invocation-cases.yaml",
       "sha256": "869c0e65944c194130036d8f33a59e69a657338b53f8099f4a846aa917b98eeb",
       "bytes": 1675
-    },
-    {
-      "path": "THIRD_PARTY_NOTICES.md",
-      "sha256": "50c0549c92432e9b4d6edef6ceb1ebf434705e1365e14d5dec09c383654a7767",
-      "bytes": 756
     },
     {
       "path": "workflows/respond-to-reviewers.md",
