@@ -1,0 +1,60 @@
+name: Methodological criticism
+description: Identify a conceptual, disciplinary, or methodological weakness in the framework.
+title: "[Methodological criticism]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Strong criticism is welcome. Please focus on claims, procedures, evidence standards, and disciplinary assumptions rather than persons.
+  - type: input
+    id: discipline
+    attributes:
+      label: Discipline or methodological perspective
+      placeholder: e.g., archival history, textual scholarship, philosophy, postcolonial studies
+    validations:
+      required: true
+  - type: dropdown
+    id: target
+    attributes:
+      label: Main target of criticism
+      options:
+        - A specific research skill
+        - Quality gates
+        - Router or rollback logic
+        - Human-AI responsibility model
+        - Documentation or terminology
+        - Framework as a whole
+    validations:
+      required: true
+  - type: input
+    id: target_name
+    attributes:
+      label: Specific file, skill, or claim
+      placeholder: e.g., performing-close-reading or PASS criteria
+  - type: textarea
+    id: criticism
+    attributes:
+      label: Methodological criticism
+      description: State the problem as precisely as possible.
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Scholarly risk created by this problem
+      description: Explain what the framework may distort, exclude, oversimplify, or falsely stabilize.
+    validations:
+      required: true
+  - type: textarea
+    id: counterexample
+    attributes:
+      label: Counterexample, alternative method, or proposed revision
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Public-report check
+      options:
+        - label: I have removed confidential, personal, unpublished, and copyrighted material from this report.
+          required: true
