@@ -1,14 +1,26 @@
 # Humanities Superpowers
 
-[한국어](README.ko.md) · [Quick start](INSTALLATION.md) · [White paper](docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md) · [Manifesto](MANIFESTO.md) · [Examples](#worked-examples)
+[한국어](README.ko.md) · [Documentation](https://icerain-cmd.github.io/humanities-superpowers/) · [Quick start](INSTALLATION.md) · [White paper](docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md) · [Manifesto](MANIFESTO.md) · [Examples](#worked-examples)
 
 **Structured research skills and quality gates for humanities scholars using AI agents.**
 
-> **Not an AI paper writer. A scholarly judgment scaffold.**
+> **Use AI without surrendering scholarly judgment.**  
+> Not an AI paper writer. A scholarly judgment scaffold.
 
 Humanities Superpowers helps researchers slow down the moments where fluent AI output is most dangerous: framing a question, defining concepts, connecting claims to evidence, testing objections, checking citations, and deciding whether a manuscript is ready to submit.
 
 It provides 13 core research skills and one Level 3 router that selects the smallest valid route through them. It supports scholarly judgment; it does not replace interpretation, source verification, ethics, or authorship, and it does not promise a publication-ready manuscript.
+
+## Critical testing invited
+
+The initial goal is to recruit **10 humanities researchers** willing to test one research skill on a real project and report where the framework is too rigid, too technical, or methodologically weak.
+
+- [Submit a test report](https://github.com/icerain-cmd/humanities-superpowers/issues/new?template=test_report.yml)
+- [Offer methodological criticism](https://github.com/icerain-cmd/humanities-superpowers/issues/new?template=methodological_criticism.yml)
+- [Report an installation problem](https://github.com/icerain-cmd/humanities-superpowers/issues/new?template=installation_problem.yml)
+- [Join a broader discussion](https://github.com/icerain-cmd/humanities-superpowers/discussions)
+
+Literary scholars, historians, philosophers, digital humanists, DH librarians, graduate researchers, and scholars working in languages other than English are especially welcome. Do not post unpublished manuscripts, personal data, reviewer identities, or copyrighted source text; use anonymized descriptions and minimal excerpts.
 
 <p align="center"><img src="assets/research-pipeline.svg" alt="Research pipeline from question to submission gate" width="100%"></p>
 
@@ -128,7 +140,6 @@ GitHub: [`@icerain-cmd`](https://github.com/icerain-cmd) · [icerain@jj.ac.kr](m
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request. Citation metadata is provided in [CITATION.cff](CITATION.cff). Released under the [MIT License](LICENSE).
 
-
 ## Research orchestration
 
 The Level 3 router diagnoses the current research state, selects the smallest valid skill route, and treats failed gates as reasons to pause or roll back—not as obstacles to hide. It can preserve a resumable session record without treating memory as evidence.
@@ -139,12 +150,11 @@ The Level 3 router diagnoses the current research state, selects the smallest va
 
 ## Documentation site
 
-The repository includes a MkDocs Material site configured for GitHub Pages. After enabling **Settings → Pages → GitHub Actions**, pushes to `main` deploy the documentation automatically.
+The live documentation is published at [icerain-cmd.github.io/humanities-superpowers](https://icerain-cmd.github.io/humanities-superpowers/). It is built with MkDocs Material and deployed from `main` through GitHub Actions.
 
 ## Public release status
 
 The v1.0.0 release notes and final publication checklist are available in [`docs/release/`](docs/release/).
-
 
 ## Social media launch kit
 
