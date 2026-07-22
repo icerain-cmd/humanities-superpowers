@@ -9,6 +9,8 @@ cd humanities-superpowers
 
 ## Ask your agent
 
+Install the framework using the tested project layout in the [Installation Guide](installation.md), then ask:
+
 ```text
 Use Humanities Superpowers to turn my broad topic about platform interfaces
 and cultural memory into a precise research question. Do not invent sources.
@@ -33,4 +35,7 @@ A valid result includes:
 ```bash
 python3 scripts/validate_repository.py
 python3 scripts/run_integrated_tests.py
+python3 scripts/validate_public_release.py
 ```
+
+On Windows, use `python` instead of `python3` if that is the available launcher.

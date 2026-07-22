@@ -12,7 +12,7 @@ The repository contains three layers of deterministic tests.
 
 ## Skill coverage
 
-All fourteen skill documents are exercised by the integrated suite.
+All 14 `SKILL.md` files—13 core research skills and 1 Level 3 router—are exercised by the integrated suite.
 
 | Skill | Integrated scenarios |
 |---|---|

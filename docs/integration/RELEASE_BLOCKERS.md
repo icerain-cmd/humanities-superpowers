@@ -8,12 +8,12 @@ No deterministic methodology or integration blocker remains in the conformance s
 
 These are hosting and live-environment checks, not claims that the archive has already completed them:
 
-1. Push the repository to GitHub and inspect the rendered README links.
-2. Run the GitHub Pages workflow and confirm the deployed site.
-3. Test installation in the actual Claude Code, Codex, and Cursor environments used by reviewers.
-4. Inspect Git history for sensitive material after the initial commit.
-5. Configure repository settings such as Pages, Issues, Discussions, and branch protection.
-6. Create and publish the `v1.0.0` GitHub Release.
+The public repository, rendered README, Pages site, Issues setting, and published `v1.0.0` Release were independently observed on 2026-07-22. The remaining external actions are:
+
+1. Test rule and skill loading in an actual Cursor environment; until then, retain the unverified-guidance label.
+2. Add repository topics.
+3. Decide whether Discussions and branch protection should be enabled.
+4. Publish subsequent fixes without moving or rewriting the existing `v1.0.0` tag and Release.
 
 ## Explicit non-blocking limitations
 

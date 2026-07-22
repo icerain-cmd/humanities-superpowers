@@ -1,6 +1,6 @@
 # Humanities Superpowers Research Specification v1.0
 
-**Status:** Phase 3-A normative draft  
+**Status:** v1.0 normative specification
 **Specification version:** 1.0.0  
 **Project version:** 1.0.0
 
@@ -45,4 +45,4 @@ It does not define a universal method for all humanities disciplines. A conformi
 - **Evidence conformant:** uncertainty and source verification states are preserved.
 - **Release conformant:** automated checks pass and unresolved blockers are disclosed.
 
-All 13 core skills conform to Level 2, and the research orchestrator conforms to Level 3.
+All 13 core research skills conform to Level 2, and the `using-humanities-superpowers` router conforms to Level 3.

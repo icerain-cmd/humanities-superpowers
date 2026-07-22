@@ -1,14 +1,13 @@
 # Recommended Launch Sequence
 
-## Before publication
+## Before the next public announcement
 
-1. Create the public GitHub repository.
-2. Push the validated repository.
-3. Enable GitHub Pages through GitHub Actions.
-4. Confirm that the README images and documentation links render correctly.
-5. Install the repository once in Claude Code, Codex, and Cursor.
-6. Create the `v1.0.0` tag and GitHub Release.
-7. Replace `[REPOSITORY_URL]` and `[PAGES_URL]` in the launch copy.
+1. Run all repository validators and inspect the final diff.
+2. Confirm that README images and documentation links render correctly.
+3. Retain Claude Code and OpenAI Codex as tested environments.
+4. Test Cursor loading, or keep the not-independently-verified label.
+5. Replace `[REPOSITORY_URL]` and `[PAGES_URL]` in the launch copy.
+6. If releasing fixes, create a new patch release without moving the existing `v1.0.0` tag.
 
 ## Launch day
 

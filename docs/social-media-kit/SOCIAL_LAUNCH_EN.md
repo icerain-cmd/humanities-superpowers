@@ -15,11 +15,11 @@ Humanities Superpowers is not a tool that writes papers for researchers. It is a
 The repository includes:
 
 - 13 core research skills, from formulating a question to pre-submission verification
-- a research orchestrator that diagnoses the current state and selects the smallest valid workflow
+- 1 Level 3 router that diagnoses the current state and selects the smallest valid workflow
 - quality gates using `PASS`, `CONDITIONAL PASS`, and `FAIL`
 - concept-lineage mapping, close reading, argument stress testing, citation auditing, terminology control, manuscript review, and peer-review response
 - rollback to an earlier research stage when a downstream failure reveals an upstream problem
-- installation guidance for Claude Code, Codex, and Cursor
+- tested installation routes for Claude Code and OpenAI Codex, plus not-yet-verified Cursor guidance
 - an English white paper, bilingual documentation, worked examples, schemas, and automated validation
 
 The project is guided by one sentence:
@@ -69,7 +69,7 @@ Rather than automating paper writing, the project supports research judgment acr
 
 Unverified citations and unsupported claims are preserved as failures rather than polished into apparently complete scholarship. When a failure originates upstream, the research orchestrator routes the project back to the earliest relevant stage.
 
-The repository supports Claude Code, Codex, and Cursor and is released under the MIT License.
+The repository has been tested with Claude Code and OpenAI Codex. It also provides Cursor installation guidance that has not yet been independently verified. The project is released under the MIT License.
 
 Repository: [REPOSITORY_URL]  
 Documentation: [PAGES_URL]
@@ -91,7 +91,7 @@ AI can generate a polished paragraph long before a research question, source bas
 - Did the manuscript actually change before the reviewer response says it did?
 - Is the submission package genuinely ready?
 
-The repository includes 13 research skills, an orchestrator, explicit quality gates, and worked examples.
+The repository includes 13 core research skills, 1 Level 3 router, explicit quality gates, and worked examples.
 
 [REPOSITORY_URL]
 
@@ -105,11 +105,11 @@ Coding agents increasingly rely on structured planning, tests, debugging, and ve
 
 Included:
 
-- 13 Level-2 research skills
-- a Level-3 research orchestrator
+- 13 core research skills at Level 2
+- 1 Level 3 router
 - research-object, gate-report, and session schemas
 - deterministic conformance and integration tests
-- Claude Code, Codex, and Cursor installation paths
+- tested Claude Code and OpenAI Codex routes, plus unverified Cursor guidance
 
 [REPOSITORY_URL]
 
@@ -125,7 +125,7 @@ I therefore wanted to build something different from a better paper-writing prom
 
 The result is **Humanities Superpowers**.
 
-It includes 13 research skills and an orchestrator covering the path from research-question formulation to citation auditing, manuscript review, peer-review revision, and submission verification. I hope it can grow as a public methodology that researchers use, criticize, and improve together.
+It includes 13 core research skills and 1 Level 3 router covering the path from research-question formulation to citation auditing, manuscript review, peer-review revision, and submission verification. I hope it can grow as a public methodology that researchers use, criticize, and improve together.
 
 [REPOSITORY_URL]
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
-import json, re, sys
+import json, os, re, sys
+from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 ERRORS: list[str] = []
@@ -20,7 +21,7 @@ EXPECTED_SKILLS = {
     "checking-terminology-consistency", "reviewing-manuscript",
     "responding-to-peer-review", "verifying-before-submission"
 }
-# Router is part of the 13-method set's orchestration layer; substantive set excludes router.
+# The router is separate from the 13 core research skills.
 EXPECTED_SUBSTANTIVE_COUNT = 13
 LEVEL2_FOUNDATION_SKILLS = {
     "formulating-research-question", "scoping-argument-boundary",
@@ -100,13 +101,68 @@ def validate_json() -> None:
 
 def validate_links() -> None:
     pattern = re.compile(r"\[[^\]]+\]\((?!https?://|mailto:|#)([^)]+)\)")
+    actual: dict[str, list[str]] = {}
+    for candidate in ROOT.rglob('*'):
+        if '.git' not in candidate.parts:
+            rel = candidate.relative_to(ROOT).as_posix()
+            actual.setdefault(rel.casefold(), []).append(rel)
     for path in ROOT.rglob('*.md'):
         text=path.read_text(encoding='utf-8')
         for raw in pattern.findall(text):
-            target=raw.split('#',1)[0]
+            target=unquote(raw.split('#',1)[0]).strip('<>')
             if not target: continue
-            resolved=(path.parent/target).resolve()
-            if not resolved.exists(): error(f"{path.relative_to(ROOT)}: broken link -> {raw}")
+            resolved=Path(os.path.normpath(path.parent / target))
+            try:
+                rel=resolved.relative_to(ROOT).as_posix()
+            except ValueError:
+                error(f"{path.relative_to(ROOT)}: link escapes repository -> {raw}")
+                continue
+            matches=actual.get(rel.casefold(), [])
+            if not matches:
+                error(f"{path.relative_to(ROOT)}: broken link -> {raw}")
+            elif rel not in matches:
+                error(f"{path.relative_to(ROOT)}: link case mismatch -> {raw}; actual={matches[0]}")
+
+def validate_public_documentation() -> None:
+    required_phrases = {
+        'README.md': [
+            '13 core research skills + 1 Level 3 router',
+            '**Tested:** Claude Code and OpenAI Codex.',
+            '**Installation guidance provided, but not yet independently verified:** Cursor.',
+            '[INSTALLATION.md](INSTALLATION.md)',
+            'Lee Yong Wook',
+            '[MIT License](LICENSE)',
+        ],
+        'README.ko.md': [
+            '13개 핵심 연구 스킬 + 1개 Level 3 라우터',
+            '**실제 설치·검증 완료:** Claude Code, OpenAI Codex.',
+            '**설치 안내는 제공하지만 독립적인 로딩 검증은 미완료:** Cursor.',
+            '[INSTALLATION.md](INSTALLATION.md)',
+            '이용욱(Lee Yong Wook)',
+            '[LICENSE](LICENSE)',
+        ],
+        'INSTALLATION.md': [
+            'Tested:',
+            'Installation guidance provided, but not yet independently verified:',
+            '14 `SKILL.md` files: 13 core research skills and the `using-humanities-superpowers` router.',
+            'Do not create `skills/skills/`',
+            'python3 scripts/validate_public_release.py',
+        ],
+    }
+    for rel, phrases in required_phrases.items():
+        text = (ROOT / rel).read_text(encoding='utf-8')
+        for phrase in phrases:
+            if phrase not in text:
+                error(f'{rel}: missing public-release wording: {phrase}')
+    if not (ROOT / 'LICENSE').exists():
+        error('LICENSE is missing')
+    citation = (ROOT / 'CITATION.cff').read_text(encoding='utf-8')
+    for phrase in ['version: 1.0.0', 'family-names: "Lee"', 'given-names: "Yong Wook"', 'license: MIT']:
+        if phrase not in citation:
+            error(f'CITATION.cff: missing metadata: {phrase}')
+    release_notes = (ROOT / 'docs/release/RELEASE_NOTES_v1.0.0.md').read_text(encoding='utf-8')
+    if '# Humanities Superpowers v1.0.0' not in release_notes:
+        error('release notes do not identify v1.0.0')
 
 def validate_example() -> None:
     base=ROOT/'examples/concept-paper-example'
@@ -117,7 +173,7 @@ def validate_example() -> None:
     if '`FAIL`' not in final:
         error('worked example must preserve its failing final gate')
     else:
-        print('INTENTIONAL FAIL — OK: worked example correctly preserves an unresolved final gate')
+        print('INTENTIONAL FAIL - OK: worked example correctly preserves an unresolved final gate')
     focused = [ROOT/'examples/argument-map-example/README.md', ROOT/'examples/terminology-audit-example/README.md']
     for path in focused:
         if not path.exists(): error(f'focused example missing {path.relative_to(ROOT)}')
@@ -271,7 +327,7 @@ def validate_placeholders() -> None:
                 error(f"{path.relative_to(ROOT)}: unexpected publication placeholder(s): {sorted(set(matches))}")
 
 def main() -> int:
-    validate_skills(); validate_json(); validate_links(); validate_example(); validate_methodology(); validate_specification(); validate_integration(); validate_placeholders()
+    validate_skills(); validate_json(); validate_links(); validate_public_documentation(); validate_example(); validate_methodology(); validate_specification(); validate_integration(); validate_placeholders()
     for msg in WARNINGS: print(f"WARNING: {msg}")
     for msg in ERRORS: print(f"ERROR: {msg}")
     if ERRORS:

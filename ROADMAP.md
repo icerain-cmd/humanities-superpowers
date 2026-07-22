@@ -5,8 +5,8 @@
 - Public repository foundation and bilingual documentation
 - Methodology white paper and quality-gate rationale
 - Research Specification v1.0
-- Thirteen substantive skills at Conformance Level 2
-- Research orchestrator at Conformance Level 3
+- 13 core research skills at Conformance Level 2
+- 1 router at Conformance Level 3
 - Explicit research state machine, rollback protocol, and resumable session record
 
 ## Next: Phase 3-F (complete)

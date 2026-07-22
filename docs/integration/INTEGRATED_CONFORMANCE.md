@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Integrated conformance tests whether Humanities Superpowers behaves as one research workflow rather than 13 core skill documents plus one Level 3 research orchestrator. It checks state transitions, handoffs, rollback targets, gate preservation, session continuity, and the alignment of examples, templates, schemas, and public documentation.
+Integrated conformance tests whether Humanities Superpowers behaves as one research workflow rather than 13 core research skills plus 1 Level 3 router. It checks state transitions, handoffs, rollback targets, gate preservation, session continuity, and the alignment of examples, templates, schemas, and public documentation.
 
 This phase does **not** claim that every AI harness will make identical judgments. The deterministic test suite verifies repository contracts and declared routing behavior. Cross-harness behavioral evaluation remains a separate empirical task.
 
@@ -60,7 +60,7 @@ README claims MUST match implemented artifacts. The repository MUST NOT advertis
 
 Phase 3-F passes when:
 
-- all fourteen skills are represented in at least one integrated scenario;
+- all 14 `SKILL.md` files (13 core research skills and 1 router) are represented in at least one integrated scenario;
 - every routing decision appears in the suite;
 - every substantive skill has at least one incoming or outgoing handoff;
 - rollback, pause, researcher-decision, and stop paths are exercised;

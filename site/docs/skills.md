@@ -1,5 +1,7 @@
 # Skills
 
+The repository contains 14 `SKILL.md` files: 13 core research skills and the separate `using-humanities-superpowers` Level 3 router.
+
 ## Orchestration
 
 - `using-humanities-superpowers` — diagnoses research state, selects the smallest valid workflow, preserves gates, and manages rollback.
@@ -29,4 +31,4 @@
 - `responding-to-peer-review`
 - `verifying-before-submission`
 
-Each core skill has an explicit contract describing what it accepts, requires, produces, guarantees, does not guarantee, and when it must fail.
+Each file has an explicit contract describing what it accepts, requires, produces, guarantees, does not guarantee, and when it must fail.
