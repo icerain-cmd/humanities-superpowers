@@ -8,7 +8,7 @@
 
 Humanities Superpowers는 유창한 AI 산출물이 가장 위험해지는 순간을 늦추고 점검합니다. 연구 질문 형성, 개념 정의, 주장과 근거 연결, 반론 검토, 인용 검증, 제출 가능 여부 판단을 명시적인 절차로 바꿉니다.
 
-AI는 정리하고 비교하며 문제를 표시할 수 있습니다. 그러나 해석, 출처 확인, 윤리적 판단, 개념적 선택, 최종 저자 책임은 연구자에게 남습니다.
+13개 핵심 연구 스킬과 그중 필요한 최소 경로를 선택하는 1개의 Level 3 라우터를 제공합니다. AI는 정리하고 비교하며 문제를 표시할 수 있지만, 해석, 출처 확인, 윤리적 판단, 개념적 선택, 최종 저자 책임을 대신하거나 원고의 게재 가능 상태를 보장하지 않습니다.
 
 <p align="center"><img src="assets/research-pipeline.svg" alt="연구 질문에서 제출 게이트까지의 연구 파이프라인" width="100%"></p>
 
@@ -20,11 +20,25 @@ cd humanities-superpowers
 python3 scripts/validate_repository.py
 ```
 
+Windows에서 `python3` 명령을 찾지 못하면 `python`을 사용하십시오.
+
 `skills/` 폴더를 사용하는 에이전트의 스킬 디렉터리에 복사하거나 [INSTALLATION.md](INSTALLATION.md)를 따르십시오.
 
 예시 명령:
 
 > Humanities Superpowers를 사용해 인공자연과 플랫폼 미학에 관한 연구 질문을 만들어라. 확인된 근거, 해석, 추론, 가설, 미확인 사항을 구분하고 출처를 만들지 마라.
+
+전체 작업 흐름을 실행하려면 다음과 같이 요청할 수 있습니다.
+
+> `workflows/write-a-paper.md`를 따르되, 각 품질 게이트에서 멈추고 다음 단계로 가기 전에 해결되지 않은 위험을 보고하라.
+
+## 검증 및 호환 상태
+
+**실제 설치·검증 완료:** Claude Code, OpenAI Codex.
+
+**설치 안내는 제공하지만 독립적인 로딩 검증은 미완료:** Cursor.
+
+그 밖의 Markdown 기반 에이전트에서도 수동으로 사용할 수 있으나 호환성을 보장하지 않습니다. 검증된 프로젝트 구조, 파일 수 확인법, 원본을 읽기 전용으로 보존하는 파일럿 절차는 [INSTALLATION.md](INSTALLATION.md)를 참조하십시오.
 
 ## 핵심 원칙
 
@@ -36,9 +50,9 @@ python3 scripts/validate_repository.py
 
 자세한 이론적 설명은 [방법론 백서](docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md), [프로젝트 철학](docs/PHILOSOPHY.md), [설계 원칙](docs/DESIGN_PRINCIPLES.md)에서 확인할 수 있습니다.
 
-## 13개 연구 스킬
+## 13개 핵심 연구 스킬 + 1개 Level 3 라우터
 
-<p align="center"><img src="assets/skill-map.svg" alt="13개 연구 스킬 지도" width="100%"></p>
+<p align="center"><img src="assets/skill-map.svg" alt="13개 핵심 연구 스킬 지도" width="100%"></p>
 
 1. 연구 질문 형성
 2. 논증 범위 설정
@@ -56,11 +70,17 @@ python3 scripts/validate_repository.py
 
 각 스킬은 호출 조건, 필수 입력, 절차, 중단 신호, 허위 생성 방지 규칙, 완료 기준, 출력 형식, 다음 단계로 구성됩니다.
 
+별도의 `using-humanities-superpowers` 라우터가 연구 상태를 진단하고 13개 핵심 연구 스킬 가운데 필요한 경로를 선택합니다. 따라서 저장소에는 13개 핵심 연구 스킬과 1개 라우터, 모두 14개의 `SKILL.md` 파일이 있습니다.
+
 ## 연구 품질 게이트
 
 <p align="center"><img src="assets/quality-gates.svg" alt="연구 품질 게이트와 판정" width="100%"></p>
 
 게이트는 `PASS`, `CONDITIONAL PASS`, `FAIL` 중 하나를 반환합니다. 필요한 근거나 판단이 없으면 실패해야 합니다. 실패는 시스템 오류가 아니라 미해결 학술 위험을 숨기지 않는 장치입니다.
+
+## 인간과 AI의 책임 구분
+
+AI는 자료를 정리하고 비교하며 논증을 점검하고 위험을 표시할 수 있습니다. 연구의 중요성, 해석, 출처 검증, 윤리, 개념적 선택, AI 사용 공개와 최종 저자 책임은 연구자에게 남습니다.
 
 ## 예제
 
@@ -87,6 +107,8 @@ Jesse Vincent, Prime Radiant 또는 Superpowers 프로젝트와 제휴·승인·
 GitHub: [`@icerain-cmd`](https://github.com/icerain-cmd) · [icerain@jj.ac.kr](mailto:icerain@jj.ac.kr)
 
 MIT License로 공개합니다.
+
+기여 전에 [CONTRIBUTING.md](CONTRIBUTING.md)를 읽어 주십시오. 인용 정보는 [CITATION.cff](CITATION.cff), 라이선스 전문은 [LICENSE](LICENSE)에서 확인할 수 있습니다.
 
 
 ## 연구 오케스트레이션

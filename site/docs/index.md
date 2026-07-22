@@ -6,6 +6,8 @@ Humanities Superpowers is a set of structured research skills, research contract
 
 It is designed to reduce the risk that fluent AI output is mistaken for verified scholarship. It does not replace the researcher. It makes research decisions, missing evidence, unresolved objections, citation status, and submission blockers more visible.
 
+The repository contains 13 core research skills and 1 Level 3 router. Claude Code and OpenAI Codex have been tested; Cursor installation guidance is provided but has not yet been independently verified.
+
 ## What it changes
 
 Most AI writing workflows move forward continuously:
@@ -25,7 +27,7 @@ A failed gate is not hidden. The workflow pauses, requests a researcher decision
 
 ## Core promise
 
-The framework does **not** promise truth, originality, publication, or error-free citations. It promises a narrower and observable discipline:
+The framework does **not** promise truth, originality, publication, or error-free citations. It instead makes a narrower and observable discipline explicit:
 
 - unknown information remains marked as unknown;
 - claims are not silently widened beyond available evidence;

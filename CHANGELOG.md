@@ -10,8 +10,8 @@ No unreleased changes.
 
 ### Added
 
-- Thirteen core humanities research skills with a shared contract, gate report, and handoff structure.
-- One Level 3 research orchestrator with explicit state transitions, pause, rollback, stop, and researcher-decision behavior.
+- 13 core research skills with a shared contract, gate report, and handoff structure.
+- One Level 3 router with explicit state transitions, pause, rollback, stop, and researcher-decision behavior.
 - Research Specification v1.0, including the research object model, research grammar, language guide, conformance levels, and extension protocol.
 - Quality gates using `PASS`, `CONDITIONAL PASS`, and `FAIL`.
 - Research session memory, machine-readable JSON Schemas, deterministic conformance cases, and integrated workflow scenarios.

@@ -5,9 +5,13 @@ import json, sys
 ROOT=Path(__file__).resolve().parents[1]
 ALLOWED_DECISIONS={"PROCEED","PAUSE","ROLLBACK","RESEARCHER_DECISION_REQUIRED","STOP"}
 EXPECTED_SKILLS={p.parent.name for p in (ROOT/'skills').glob('*/SKILL.md')}
+ROUTER='using-humanities-superpowers'
 
 def main()->int:
     errors=[]
+    core_skills=EXPECTED_SKILLS-{ROUTER}
+    if len(EXPECTED_SKILLS)!=14 or len(core_skills)!=13 or ROUTER not in EXPECTED_SKILLS:
+        errors.append('expected 14 SKILL.md files: 13 core research skills and 1 router')
     data=json.loads((ROOT/'tests/integration/scenarios.json').read_text(encoding='utf-8'))
     scenarios=data.get('scenarios',[])
     seen_skills=set(); seen_decisions=set(); total_steps=0
@@ -48,6 +52,10 @@ def main()->int:
         for e in errors: print('ERROR:',e)
         print(f'FAIL: {len(errors)} integrated conformance error(s)')
         return 1
-    print(f'PASS: {len(scenarios)} integrated scenarios, {total_steps} steps, {len(seen_skills)} skills, {len(seen_decisions)} decisions')
+    print(
+        f'PASS: {len(scenarios)} integrated scenarios, {total_steps} steps, '
+        f'{len(seen_skills)} SKILL.md files (13 core research skills + 1 router), '
+        f'{len(seen_decisions)} decisions'
+    )
     return 0
 if __name__=='__main__': raise SystemExit(main())

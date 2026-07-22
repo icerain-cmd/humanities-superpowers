@@ -14,12 +14,12 @@ Humanities Superpowers는 AI가 논문을 대신 써주는 도구가 아닙니�
 
 프로젝트에는 다음이 포함되어 있습니다.
 
-- 연구 질문 형성부터 제출 전 검증까지 이어지는 13개 핵심 스킬
-- 현재 연구 상태를 진단하고 필요한 스킬을 연결하는 연구 오케스트레이터
+- 연구 질문 형성부터 제출 전 검증까지 이어지는 13개 핵심 연구 스킬
+- 현재 연구 상태를 진단하고 필요한 스킬을 연결하는 1개 Level 3 라우터
 - `PASS`, `CONDITIONAL PASS`, `FAIL`로 작동하는 연구 품질 게이트
 - 인용 감사, 개념 계보, 정밀 읽기, 논증 스트레스 테스트, 심사의견 대응
 - 실패 원인이 발견되면 이전 단계로 돌아가는 rollback 방식
-- Claude Code, Codex, Cursor용 설치 안내
+- Claude Code와 OpenAI Codex의 검증된 설치 경로 및 아직 독립 검증되지 않은 Cursor 안내
 - 영문 백서, 한·영문 문서, 실제 예제와 자동 검증 스크립트
 
 이 프로젝트의 핵심 원칙은 단순합니다.
@@ -70,7 +70,7 @@ AI가 논문을 대신 쓰게 하는 도구가 아니라, 연구 질문·개념 
 
 이 프로젝트는 논문 자동 작성 도구가 아니라 연구 질문 형성, 범위 설정, 개념 계보, 선행연구 대화, 정밀 읽기, 논증 설계, 반론 검토, 인용 감사, 용어 일관성, 심사의견 대응, 제출 전 검증을 연결하는 연구 품질 프레임워크입니다.
 
-검증되지 않은 인용이나 과도한 주장은 `FAIL`로 남기며, 문제가 발견되면 원인이 발생한 이전 단계로 되돌아가도록 설계했습니다. Claude Code, Codex, Cursor에서 사용할 수 있고 MIT License로 공개합니다.
+검증되지 않은 인용이나 과도한 주장은 `FAIL`로 남기며, 문제가 발견되면 원인이 발생한 이전 단계로 되돌아가도록 설계했습니다. Claude Code와 OpenAI Codex에서 설치·검증했고, Cursor에는 아직 독립 검증되지 않은 설치 안내를 제공합니다. MIT License로 공개합니다.
 
 저장소: [REPOSITORY_URL]  
 문서: [PAGES_URL]
@@ -92,7 +92,7 @@ AI에게 “논문을 써 달라”고 요청하면 문장은 빨리 생기지�
 - 심사의견에 답변서만 쓰고 원고 수정은 빠뜨리지 않았는가?
 - 지금 원고는 정말 제출 가능한가?
 
-13개 연구 스킬과 제출 전 품질 게이트를 무료로 공개했습니다.
+13개 핵심 연구 스킬과 1개 Level 3 라우터, 제출 전 품질 게이트를 무료로 공개했습니다.
 
 [REPOSITORY_URL]
 
@@ -104,13 +104,13 @@ AI에게 “논문을 써 달라”고 요청하면 문장은 빨리 생기지�
 
 **Humanities Superpowers**는 composable agent skills의 발상을 인문학 연구 방법론으로 옮긴 오픈소스 프로젝트입니다.
 
-- 13 Level-2 research skills
-- Level-3 research orchestrator
+- 13 core research skills at Level 2
+- 1 Level 3 router
 - research state machine
 - quality gates and rollback
 - research-object and session JSON schemas
 - deterministic conformance tests
-- Claude Code, Codex, Cursor support
+- tested Claude Code and OpenAI Codex routes, plus unverified Cursor guidance
 
 [REPOSITORY_URL]
 
@@ -126,7 +126,7 @@ AI에게 “논문을 써 달라”고 요청하면 문장은 빨리 생기지�
 
 그 결과가 Humanities Superpowers입니다.
 
-이 프로젝트는 연구 질문부터 인용 감사, 논증 검토, 심사의견 대응, 제출 전 검증까지 13개 스킬과 연구 오케스트레이터로 구성되어 있습니다. 아직 부족하겠지만, 연구자들이 함께 사용하고 비판하며 발전시키는 공개 방법론이 되기를 바랍니다.
+이 프로젝트는 연구 질문부터 인용 감사, 논증 검토, 심사의견 대응, 제출 전 검증까지 13개 핵심 연구 스킬과 1개 Level 3 라우터로 구성되어 있습니다. 아직 부족하겠지만, 연구자들이 함께 사용하고 비판하며 발전시키는 공개 방법론이 되기를 바랍니다.
 
 [REPOSITORY_URL]
 

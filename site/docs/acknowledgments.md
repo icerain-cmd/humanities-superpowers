@@ -16,4 +16,4 @@ We are grateful for the project's clear insistence on systematic process, eviden
 
 The debt is architectural rather than disciplinary: composable skills, explicit triggers, stop conditions, and verification before completion. The difference is substantive: software correctness can often be tested against executable behavior, while humanities scholarship requires accountable interpretation, source criticism, conceptual boundaries, and judgments that remain open to contestation.
 
-See [DIFFERENCES.md](DIFFERENCES.md) for a detailed comparison.
+See [differences.md](differences.md) for a detailed comparison.

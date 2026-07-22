@@ -12,7 +12,7 @@ Version 1.0.0 · July 2026
 
 Generative AI can produce polished academic prose faster than most research workflows can verify it. This asymmetry creates a distinctive risk for humanities scholarship: fluent output may conceal weak questions, unstable concepts, unexamined assumptions, fabricated or misapplied citations, shallow close reading, and premature claims of completion. Existing AI-writing tools usually optimize generation. Humanities Superpowers instead organizes scholarly work around explicit research skills and quality gates.
 
-The framework treats AI as a **scholarly judgment scaffold**, not as an autonomous author. It decomposes humanities research into thirteen substantive skills: research-question formation, argument scoping, concept-lineage mapping, literature dialogue, argument planning, close reading, argument structuring, stress testing, citation auditing, terminology control, manuscript reviewing, peer-review response, and final submission verification. Each skill defines invocation conditions, required inputs, procedures, stop signals, anti-fabrication rules, completion criteria, and structured outputs. A routing skill coordinates their use.
+The framework treats AI as a **scholarly judgment scaffold**, not as an autonomous author. It provides 13 core research skills plus 1 Level 3 router. The core skills cover research-question formation, argument scoping, concept-lineage mapping, literature dialogue, argument planning, close reading, argument structuring, stress testing, citation auditing, terminology control, manuscript reviewing, peer-review response, and final submission verification. Each skill defines invocation conditions, required inputs, procedures, stop signals, anti-fabrication rules, completion criteria, and structured outputs. The router coordinates their use without becoming a fourteenth research method.
 
 The framework rests on five principles: research precedes prose; uncertainty must remain visible; claims must be proportionate to evidence; concepts require lineage and boundary control; and completion must be demonstrated rather than asserted. These principles are implemented as quality gates that can return `PASS`, `CONDITIONAL PASS`, or `FAIL`. A failed gate is not a system error. It is a refusal to convert unresolved scholarly risk into confident language.
 
@@ -168,7 +168,7 @@ The statement “the paper is complete” is itself a claim. The framework requi
 
 ---
 
-## 5. The thirteen substantive skills
+## 5. The 13 core research skills
 
 ### 5.1 Formulating a research question
 

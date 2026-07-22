@@ -8,7 +8,7 @@
 
 Humanities Superpowers helps researchers slow down the moments where fluent AI output is most dangerous: framing a question, defining concepts, connecting claims to evidence, testing objections, checking citations, and deciding whether a manuscript is ready to submit.
 
-It supports scholarly judgment. It does not replace interpretation, source verification, ethics, or authorship.
+It provides 13 core research skills and one Level 3 router that selects the smallest valid route through them. It supports scholarly judgment; it does not replace interpretation, source verification, ethics, or authorship, and it does not promise a publication-ready manuscript.
 
 <p align="center"><img src="assets/research-pipeline.svg" alt="Research pipeline from question to submission gate" width="100%"></p>
 
@@ -20,6 +20,8 @@ cd humanities-superpowers
 python3 scripts/validate_repository.py
 ```
 
+On Windows, use `python` instead of `python3` if that is the available launcher.
+
 Copy `skills/` into your agent's skill directory, or follow [INSTALLATION.md](INSTALLATION.md).
 
 Then ask:
@@ -29,6 +31,14 @@ Then ask:
 For a complete workflow:
 
 > Follow `workflows/write-a-paper.md`. Stop at every quality gate and report unresolved risks before proceeding.
+
+## Verification and compatibility
+
+**Tested:** Claude Code and OpenAI Codex.
+
+**Installation guidance provided, but not yet independently verified:** Cursor.
+
+Other Markdown-capable agents may use the skills manually, but compatibility is not guaranteed. Product conventions can change; see [INSTALLATION.md](INSTALLATION.md) for the tested project layouts, file-count checks, and a read-only pilot workflow.
 
 ## Why it exists
 
@@ -42,7 +52,7 @@ The framework therefore organizes work around three commitments:
 
 Read the [methodology white paper](docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md), [project philosophy](docs/PHILOSOPHY.md), and [design principles](docs/DESIGN_PRINCIPLES.md).
 
-## Thirteen research skills
+## 13 core research skills + 1 Level 3 router
 
 <p align="center"><img src="assets/skill-map.svg" alt="Map of thirteen Humanities Superpowers skills" width="100%"></p>
 
@@ -63,6 +73,8 @@ Read the [methodology white paper](docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE
 | Run a final PASS/FAIL submission gate | `verifying-before-submission` |
 
 Each skill defines invocation conditions, required inputs, a procedure, stop signals, anti-fabrication rules, completion criteria, output records, and next steps.
+
+The separate `using-humanities-superpowers` router diagnoses research state and selects among these 13 core skills. The repository therefore contains 14 `SKILL.md` files: 13 core research skills and 1 router.
 
 ## Research quality gates
 
@@ -100,10 +112,6 @@ AI may organize, compare, test, and flag. The researcher remains responsible for
 Humanities Superpowers does not guarantee truth, originality, acceptance, or citation accuracy. It does not turn an AI agent into an autonomous scholar. It reduces avoidable risk by making assumptions, evidence, unresolved verification, and researcher decisions visible.
 
 See [ANTI_PATTERNS.md](docs/ANTI_PATTERNS.md) for common failure modes.
-
-## Supported environments
-
-The repository provides manifests or copy-based installation routes for OpenAI Codex, Claude Code, Cursor, and agents capable of reading Markdown skills and project instructions. Product conventions change; compatibility does not imply marketplace endorsement. See [INSTALLATION.md](INSTALLATION.md).
 
 ## Origin and independence
 

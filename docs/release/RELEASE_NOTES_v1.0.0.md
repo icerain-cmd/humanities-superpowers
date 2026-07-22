@@ -4,8 +4,8 @@ The first public release introduces a structured research workflow for humanitie
 
 ## Included
 
-- 13 Level 2 scholarly research skills;
-- a Level 3 research orchestrator;
+- 13 core research skills at Level 2;
+- 1 Level 3 router (`using-humanities-superpowers`);
 - research state machine and rollback protocol;
 - explicit skill contracts and epistemic states;
 - citation, terminology, peer-review, and submission gates;

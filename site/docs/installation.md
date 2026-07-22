@@ -1,67 +1,115 @@
 # Installation
 
-Humanities Superpowers is a repository of Agent Skills and supporting project instructions. Installation differs by agent harness.
+Humanities Superpowers contains 13 core research skills and 1 Level 3 router. Project-local installation is recommended for a first test because it is isolated, reviewable, and easy to remove. User-level installation makes the skills available across projects but depends on the current conventions of each agent harness.
+
+## Verification status
+
+Tested:
+
+- Claude Code
+- OpenAI Codex
+
+Installation guidance provided, but not yet independently verified:
+
+- Cursor
+
+Other Markdown-capable agents may use the skills manually, but compatibility is not guaranteed.
 
 ## Claude Code
 
-Claude Code discovers project skills from:
-
 ```text
-.claude/skills/<skill-name>/SKILL.md
+project/
+├── CLAUDE.md
+└── .claude/
+    └── skills/
+        ├── using-humanities-superpowers/
+        │   └── SKILL.md
+        └── ...13 core skill directories...
 ```
-
-For a project-local installation:
 
 ```bash
 mkdir -p .claude/skills
-cp -R /path/to/humanities-superpowers/skills/* .claude/skills/
+cp -R /EXAMPLE/PATH/humanities-superpowers/skills/* .claude/skills/
+cp /EXAMPLE/PATH/humanities-superpowers/CLAUDE.md ./CLAUDE.md
 ```
 
-For a user-level installation, copy the skills into your Claude skills directory according to the current Claude Code documentation. Keep `CLAUDE.md` in the project root when project-level routing rules are desired.
+For a user-level installation, consult the current Claude Code documentation before copying the skills into its user directory.
 
-## Codex
-
-Codex discovers repository skills under:
+## OpenAI Codex
 
 ```text
-.agents/skills/<skill-name>/SKILL.md
+project/
+├── AGENTS.md
+└── .agents/
+    └── skills/
+        ├── using-humanities-superpowers/
+        │   └── SKILL.md
+        └── ...13 core skill directories...
 ```
-
-Install them into a research repository:
 
 ```bash
 mkdir -p .agents/skills
-cp -R /path/to/humanities-superpowers/skills/* .agents/skills/
-cp /path/to/humanities-superpowers/AGENTS.md ./AGENTS.md
+cp -R /EXAMPLE/PATH/humanities-superpowers/skills/* .agents/skills/
+cp /EXAMPLE/PATH/humanities-superpowers/AGENTS.md ./AGENTS.md
 ```
 
-Codex reads `AGENTS.md` before work and uses it for project-level instructions.
+Codex reads `AGENTS.md` for project-level instructions. Use the current Codex documentation before changing a user-level setup.
 
 ## Cursor
 
-The repository includes a project rule at:
+The repository provides `.cursor/rules/humanities-superpowers.mdc`. That rule refers to `skills/using-humanities-superpowers/SKILL.md`, so copy both the rule and the repository's `skills/` directory into the project. Then verify that your Cursor version loads the rule and can open the router. This route has not yet been independently verified in a target Cursor environment.
 
-```text
-.cursor/rules/humanities-superpowers.mdc
+## Avoid nested installation
+
+Copy the *contents* of the repository's `skills/` directory into the harness skill directory. Do not create `skills/skills/`. Paths should end in `<skill-name>/SKILL.md`.
+
+## Verify the installed files
+
+```bash
+find .claude/skills -type f -name SKILL.md | sort
+find .claude/skills -type f -name SKILL.md | wc -l
 ```
 
-Copy the rule and skills into the target project. Cursor compatibility may depend on the current agent and rules implementation; verify loading in the version you use.
+For Codex, replace `.claude/skills` with `.agents/skills`. Expect 14 `SKILL.md` files: 13 core research skills and the `using-humanities-superpowers` router.
 
-## Direct repository use
+PowerShell users can run:
 
-You may also clone the repository beside a research project and instruct an agent to read the relevant `skills/<name>/SKILL.md`. This is portable but provides less automatic discovery.
+```powershell
+(Get-ChildItem .agents/skills -Recurse -Filter SKILL.md).Count
+```
 
-## Verification after installation
-
-Ask the agent:
+## First run
 
 ```text
 Use Humanities Superpowers to diagnose the current research state.
 Do not invent missing sources. Return a routing decision and gate result.
 ```
 
-A valid installation should make the orchestrator visible and should preserve missing inputs instead of fabricating them.
+## Safe read-only pilot
 
-## Version caution
+Keep the only copy of a manuscript outside the agent's write area:
 
-Agent harness installation paths and plugin formats can change. Before publishing a release, compare this guide against the current official Claude Code, Codex, and Cursor documentation.
+```text
+pilot/
+├── original/   # unchanged source copy
+├── working/    # disposable working copy
+└── output/     # gate reports and proposed revisions
+```
+
+Tell the agent that `original/` is read-only.
+
+## Validate the framework clone
+
+```bash
+python3 scripts/validate_repository.py
+python3 scripts/run_integrated_tests.py
+python3 scripts/validate_public_release.py
+```
+
+On Windows, use `python` instead of `python3` if that is the available launcher.
+
+The worked example intentionally returns `FAIL` when its source set is unverified. Do not change that result to make validation appear successful.
+
+## Direct repository use
+
+You may keep the framework beside a research project and instruct an agent to read `skills/<name>/SKILL.md` directly. This is portable but provides less automatic discovery.
