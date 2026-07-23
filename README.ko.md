@@ -1,14 +1,26 @@
 # Humanities Superpowers
 
-[English](README.md) · [설치](INSTALLATION.md) · [방법론 백서](docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md) · [선언문](MANIFESTO.md)
+[English](README.md) · [문서 사이트](https://icerain-cmd.github.io/humanities-superpowers/) · [설치](INSTALLATION.md) · [방법론 백서](docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md) · [선언문](MANIFESTO.md)
 
 **AI 에이전트를 사용하는 인문학 연구자를 위한 구조화된 연구 스킬과 품질 게이트입니다.**
 
-> **AI 논문 대필 도구가 아니라, 학술적 판단을 지지하는 발판입니다.**
+> **학술적 판단을 포기하지 않고 AI를 사용하십시오.**  
+> AI 논문 대필 도구가 아니라, 학술적 판단을 지지하는 발판입니다.
 
 Humanities Superpowers는 유창한 AI 산출물이 가장 위험해지는 순간을 늦추고 점검합니다. 연구 질문 형성, 개념 정의, 주장과 근거 연결, 반론 검토, 인용 검증, 제출 가능 여부 판단을 명시적인 절차로 바꿉니다.
 
 13개 핵심 연구 스킬과 그중 필요한 최소 경로를 선택하는 1개의 Level 3 라우터를 제공합니다. AI는 정리하고 비교하며 문제를 표시할 수 있지만, 해석, 출처 확인, 윤리적 판단, 개념적 선택, 최종 저자 책임을 대신하거나 원고의 게재 가능 상태를 보장하지 않습니다.
+
+## 비판적 테스트 참여 요청
+
+첫 목표는 실제 연구 프로젝트에서 하나의 연구 스킬을 시험하고, 이 프레임워크가 **지나치게 경직되었거나 기술 중심적이거나 방법론적으로 취약한 지점**을 알려 줄 인문학 연구자 10명을 모집하는 것입니다.
+
+- [테스트 보고서 제출](https://github.com/icerain-cmd/humanities-superpowers/issues/new?template=test_report.yml)
+- [방법론적 비판 제기](https://github.com/icerain-cmd/humanities-superpowers/issues/new?template=methodological_criticism.yml)
+- [설치 문제 보고](https://github.com/icerain-cmd/humanities-superpowers/issues/new?template=installation_problem.yml)
+- [자유 토론 참여](https://github.com/icerain-cmd/humanities-superpowers/discussions)
+
+문학·역사·철학 연구자, 디지털인문학 연구자와 사서, 대학원생, 비영어권 연구자의 참여를 특히 환영합니다. 공개되지 않은 원고, 개인정보, 심사자 신원, 저작권이 있는 원문은 게시하지 말고 익명화한 설명과 최소한의 인용만 사용하십시오.
 
 <p align="center"><img src="assets/research-pipeline.svg" alt="연구 질문에서 제출 게이트까지의 연구 파이프라인" width="100%"></p>
 
@@ -110,7 +122,6 @@ MIT License로 공개합니다.
 
 기여 전에 [CONTRIBUTING.md](CONTRIBUTING.md)를 읽어 주십시오. 인용 정보는 [CITATION.cff](CITATION.cff), 라이선스 전문은 [LICENSE](LICENSE)에서 확인할 수 있습니다.
 
-
 ## 연구 오케스트레이션
 
 Level 3 라우터는 현재 연구 상태를 진단하고, 필요한 최소 스킬 경로를 선택하며, 실패한 게이트를 숨기지 않고 중단·되돌림의 근거로 사용합니다. 명시적인 세션 기록으로 작업을 이어갈 수 있지만, 그 기록을 학술적 근거로 취급하지 않습니다.
@@ -121,12 +132,11 @@ Level 3 라우터는 현재 연구 상태를 진단하고, 필요한 최소 스�
 
 ## 문서 사이트
 
-GitHub Pages 배포를 위한 MkDocs Material 사이트가 포함되어 있습니다. 저장소의 **Settings → Pages → GitHub Actions**를 활성화하면 `main` 브랜치 변경 시 자동 배포됩니다.
+공개 문서는 [icerain-cmd.github.io/humanities-superpowers](https://icerain-cmd.github.io/humanities-superpowers/)에서 볼 수 있습니다. MkDocs Material로 구성되며 `main` 브랜치에서 GitHub Actions를 통해 배포됩니다.
 
 ## 공개 릴리스 상태
 
 v1.0.0 릴리스 노트와 최종 공개 체크리스트는 [`docs/release/`](docs/release/)에서 확인할 수 있습니다.
-
 
 ## SNS 공개문 모음
 
