@@ -4,19 +4,27 @@ from __future__ import annotations
 from pathlib import Path
 import hashlib
 import json
+import os
 import re
+import subprocess
 import sys
+import tempfile
 
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / 'MANIFEST.json'
+PROJECT_VERSION = json.loads((ROOT / 'project.json').read_text(encoding='utf-8'))['version']
 TEXT_EXTENSIONS = {'.md', '.yml', '.yaml', '.json', '.toml', '.txt', '.py', '.cff', '.mdc', '.sh', '.svg', '.xml', '.html', '.css', '.js'}
 REQUIRED = [
-    'mkdocs.yml', 'site/requirements.txt', '.github/workflows/pages.yml',
+    'mkdocs.yml', 'site/requirements.txt', 'requirements-validation.txt', '.github/workflows/pages.yml',
     '.github/pull_request_template.md', '.github/ISSUE_TEMPLATE/bug_report.yml',
     '.github/ISSUE_TEMPLATE/skill_proposal.yml',
+    '.github/ISSUE_TEMPLATE/test_report.yml',
+    '.github/ISSUE_TEMPLATE/methodological_criticism.yml',
+    '.github/ISSUE_TEMPLATE/installation_problem.yml',
     'docs/release/RELEASE_NOTES_v1.0.0.md',
+    'docs/release/RELEASE_NOTES_v2.0.0.md',
     'docs/release/PUBLIC_RELEASE_CHECKLIST.md', 'site/docs/index.md',
     'site/docs/quick-start.md', 'site/docs/skills.md', 'LICENSE',
     'CITATION.cff', 'README.md', 'README.ko.md', 'INSTALLATION.md',
@@ -26,15 +34,26 @@ ROUTER = 'using-humanities-superpowers'
 
 
 def release_files() -> list[Path]:
-    files = []
-    for path in sorted(ROOT.rglob('*')):
-        if not path.is_file() or path == MANIFEST_PATH:
+    """Return Git-visible release inputs, excluding ignored local artifacts."""
+    result = subprocess.run(
+        ['git', 'ls-files', '--cached', '-z'],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+    )
+    files: list[Path] = []
+    for raw in result.stdout.decode('utf-8').split('\0'):
+        if not raw:
             continue
-        if '.git' in path.parts or 'site-build' in path.parts:
+        path = ROOT / raw
+        if path == MANIFEST_PATH or path.name == 'VALIDATION_REPORT.txt':
             continue
-        if path.name == 'VALIDATION_REPORT.txt':
-            continue
+        if path.is_symlink():
+            raise ValueError(f'release inventory refuses symlink: {raw}')
+        if not path.is_file():
+            raise ValueError(f'release inventory path is not a regular file: {raw}')
         files.append(path)
+    files.sort()
     return files
 
 
@@ -57,7 +76,7 @@ def manifest_data() -> dict:
         })
     return {
         'name': 'humanities-superpowers',
-        'version': '1.0.0',
+        'version': PROJECT_VERSION,
         'file_count': len(files),
         'files': files,
     }
@@ -65,7 +84,16 @@ def manifest_data() -> dict:
 
 def update_manifest() -> int:
     payload = json.dumps(manifest_data(), ensure_ascii=False, indent=2) + '\n'
-    MANIFEST_PATH.write_bytes(payload.encode('utf-8'))
+    descriptor, temporary = tempfile.mkstemp(prefix='.MANIFEST.', suffix='.tmp', dir=ROOT)
+    try:
+        with os.fdopen(descriptor, 'wb') as handle:
+            handle.write(payload.encode('utf-8'))
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, MANIFEST_PATH)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
     print(f'UPDATED: MANIFEST.json ({len(manifest_data()["files"])} files)')
     return 0
 
@@ -100,6 +128,9 @@ def main() -> int:
     for path in [
         ROOT / '.github/ISSUE_TEMPLATE/bug_report.yml',
         ROOT / '.github/ISSUE_TEMPLATE/skill_proposal.yml',
+        ROOT / '.github/ISSUE_TEMPLATE/test_report.yml',
+        ROOT / '.github/ISSUE_TEMPLATE/methodological_criticism.yml',
+        ROOT / '.github/ISSUE_TEMPLATE/installation_problem.yml',
         ROOT / '.github/workflows/pages.yml', ROOT / 'mkdocs.yml',
     ]:
         try:
@@ -120,8 +151,8 @@ def main() -> int:
         match = re.search(r'^version:\s*([^\s]+)', text, re.MULTILINE)
         if not match:
             errors.append(f'missing skill version: {skill_file.relative_to(ROOT)}')
-        elif match.group(1) != '1.0.0':
-            errors.append(f'skill version is not 1.0.0: {skill_file.relative_to(ROOT)} ({match.group(1)})')
+        elif match.group(1) != PROJECT_VERSION:
+            errors.append(f'skill version is not {PROJECT_VERSION}: {skill_file.relative_to(ROOT)} ({match.group(1)})')
 
     for path in [
         ROOT / 'project.json', ROOT / '.codex-plugin/plugin.json',
@@ -129,13 +160,13 @@ def main() -> int:
     ]:
         try:
             data = json.loads(path.read_text(encoding='utf-8'))
-            if data.get('version') != '1.0.0':
-                errors.append(f'version is not 1.0.0: {path.relative_to(ROOT)}')
+            if data.get('version') != PROJECT_VERSION:
+                errors.append(f'version is not {PROJECT_VERSION}: {path.relative_to(ROOT)}')
         except Exception as exc:
             errors.append(f'invalid json {path.relative_to(ROOT)}: {exc}')
 
     citation = (ROOT / 'CITATION.cff').read_text(encoding='utf-8')
-    for value in ['version: 1.0.0', 'family-names: "Lee"', 'given-names: "Yong Wook"', 'license: MIT']:
+    for value in [f'version: {PROJECT_VERSION}', 'family-names: "Lee"', 'given-names: "Yong Wook"', 'license: MIT']:
         if value not in citation:
             errors.append(f'CITATION.cff missing expected metadata: {value}')
 
@@ -171,8 +202,8 @@ def main() -> int:
                 f'manifest file_count {listed_manifest.get("file_count")} '
                 f'!= {expected_manifest["file_count"]}'
             )
-        if listed_manifest.get('version') != '1.0.0':
-            errors.append('MANIFEST.json version is not 1.0.0')
+        if listed_manifest.get('version') != PROJECT_VERSION:
+            errors.append(f'MANIFEST.json version is not {PROJECT_VERSION}')
     except Exception as exc:
         errors.append(f'invalid MANIFEST.json: {exc}')
 

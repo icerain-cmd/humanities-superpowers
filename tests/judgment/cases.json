@@ -1,0 +1,15 @@
+{
+  "cases": [
+    {
+      "id": "researcher-decision-preservation",
+      "record": {"decision_id": "D-I", "decision_point": "Choose interpretation", "target_object": "interpretation:I-I", "alternatives": ["A", "B"], "evidence_considered": ["E1"], "interpretations_considered": ["A", "B"], "counterarguments_considered": [], "agent_recommendations": [{"recommendation": "A"}], "researcher_decision": "B", "rationale": "B better preserves the observed anomaly.", "decision_status": "ACCEPTED", "authorized_by": "researcher:R1", "authorization_ref": "approval:session-1:D-I", "proposal_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "decided_at": "2026-08-20T00:00:00Z", "supersedes": null}
+    },
+    {
+      "id": "researcher-reopens-own-decision",
+      "records": [
+        {"decision_id": "D1", "decision_point": "Select thesis scope", "target_object": "claim:C1", "alternatives": ["narrow", "broad"], "evidence_considered": ["E1"], "interpretations_considered": [], "counterarguments_considered": [], "agent_recommendations": [], "researcher_decision": "broad", "rationale": "Initial evidence appeared sufficient.", "decision_status": "REOPENED", "authorized_by": "researcher:R1", "authorization_ref": "approval:session-1:D1-reopen", "proposal_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "decided_at": "2026-08-18T00:00:00Z", "supersedes": "D0"},
+        {"decision_id": "D2", "decision_point": "Reconsider thesis scope", "target_object": "claim:C1", "alternatives": ["narrow", "broad"], "evidence_considered": ["E1", "E7"], "interpretations_considered": [], "counterarguments_considered": ["E7 contradicts broad scope"], "agent_recommendations": [{"recommendation": "narrow"}], "researcher_decision": "narrow", "rationale": "New evidence defeats the broad claim.", "decision_status": "ACCEPTED", "authorized_by": "researcher:R1", "authorization_ref": "approval:session-1:D2", "proposal_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "decided_at": "2026-08-20T00:00:00Z", "supersedes": "D1"}
+      ]
+    }
+  ]
+}

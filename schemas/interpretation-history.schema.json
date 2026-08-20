@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/interpretation-history.schema.json",
+  "title": "Humanities Superpowers Interpretation Version",
+  "type": "object",
+  "required": ["interpretation_id", "object_ref", "version", "observed_features", "interpretive_move", "conceptual_frame", "alternative_readings", "evidentiary_limits", "trigger", "reason_for_change", "derived_from", "researcher_status"],
+  "properties": {
+    "interpretation_id": {"type": "string", "minLength": 1},
+    "object_ref": {"type": "string", "minLength": 1},
+    "version": {"type": "integer", "minimum": 1},
+    "observed_features": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "interpretive_move": {"type": "string", "minLength": 1},
+    "conceptual_frame": {"type": "string", "minLength": 1},
+    "alternative_readings": {"type": "array", "items": {"type": "string"}},
+    "evidentiary_limits": {"type": "array", "items": {"type": "string"}},
+    "trigger": {"type": "string", "minLength": 1},
+    "reason_for_change": {"type": "string", "minLength": 1},
+    "derived_from": {"type": "array", "items": {"type": "string"}},
+    "supersedes": {"type": ["string", "null"]},
+    "researcher_status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "SUPERSEDED"]},
+    "authorized_by": {"type": ["string", "null"], "pattern": "^researcher:"},
+    "authorization_ref": {"type": ["string", "null"]}
+    ,"proposal_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"researcher_status": {"const": "ACCEPTED"}}, "required": ["researcher_status"]},
+      "then": {
+        "required": ["authorized_by", "authorization_ref", "proposal_digest"],
+        "properties": {
+          "authorized_by": {"type": "string", "pattern": "^researcher:", "minLength": 1},
+          "authorization_ref": {"type": "string", "minLength": 1},
+          "proposal_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"version": {"minimum": 2}}, "required": ["version"]},
+      "then": {"required": ["supersedes"], "properties": {"supersedes": {"type": "string", "minLength": 1}}}
+    }
+  ],
+  "additionalProperties": false
+}

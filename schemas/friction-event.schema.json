@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/friction-event.schema.json",
+  "title": "Humanities Superpowers Friction Event",
+  "type": "object",
+  "required": ["friction_id", "friction_type", "target_object", "triggered_by", "description", "blocking", "severity", "required_action", "resolution_status"],
+  "properties": {
+    "friction_id": {"type": "string", "minLength": 1},
+    "friction_type": {"enum": ["CLAIM_OVERREACH", "CONCEPT_DRIFT", "EVIDENCE_CONFLICT", "RIVAL_INTERPRETATION", "TRANSLATION_INSTABILITY", "SOURCE_MISMATCH", "INFERENCE_PROMOTION", "AGENT_DISAGREEMENT", "RESEARCHER_DISAGREEMENT", "COMPLETION_RISK"]},
+    "target_object": {"type": "string", "minLength": 1},
+    "triggered_by": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "description": {"type": "string", "minLength": 1},
+    "blocking": {"type": "boolean"},
+    "severity": {"enum": ["LOW", "MEDIUM", "HIGH", "BLOCKING"]},
+    "required_action": {"type": "string", "minLength": 1},
+    "resolution_status": {"enum": ["OPEN", "ACCEPTED_RISK", "RESOLVED", "RETURN_TRIGGERED"]},
+    "judgment_record_ref": {"type": ["string", "null"]},
+    "return_record_ref": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {"if": {"properties": {"severity": {"const": "BLOCKING"}}, "required": ["severity"]}, "then": {"properties": {"blocking": {"const": true}}}},
+    {"if": {"properties": {"resolution_status": {"const": "ACCEPTED_RISK"}}, "required": ["resolution_status"]}, "then": {"required": ["judgment_record_ref"], "properties": {"judgment_record_ref": {"type": "string", "minLength": 1}}}},
+    {"if": {"properties": {"resolution_status": {"const": "RETURN_TRIGGERED"}}, "required": ["resolution_status"]}, "then": {"required": ["return_record_ref"], "properties": {"return_record_ref": {"type": "string", "minLength": 1}}}}
+  ],
+  "additionalProperties": false
+}

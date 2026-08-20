@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/judgment-record.schema.json",
+  "title": "Humanities Superpowers Judgment Record",
+  "type": "object",
+  "required": ["decision_id", "decision_point", "target_object", "alternatives", "evidence_considered", "interpretations_considered", "counterarguments_considered", "agent_recommendations", "decision_status"],
+  "properties": {
+    "decision_id": {"type": "string", "minLength": 1},
+    "decision_point": {"type": "string", "minLength": 1},
+    "target_object": {"type": "string", "minLength": 1},
+    "alternatives": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "evidence_considered": {"type": "array", "items": {"type": "string"}},
+    "interpretations_considered": {"type": "array", "items": {"type": "string"}},
+    "counterarguments_considered": {"type": "array", "items": {"type": "string"}},
+    "agent_recommendations": {"type": "array", "items": {"type": "object"}},
+    "researcher_decision": {"type": ["string", "null"]},
+    "rationale": {"type": ["string", "null"]},
+    "decision_status": {"enum": ["PROVISIONAL", "ACCEPTED", "REOPENED", "SUPERSEDED"]},
+    "authorized_by": {"type": ["string", "null"], "pattern": "^researcher:"},
+    "authorization_ref": {"type": ["string", "null"]},
+    "proposal_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "decided_at": {"type": ["string", "null"], "format": "date-time"},
+    "supersedes": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"decision_status": {"enum": ["ACCEPTED", "REOPENED"]}}, "required": ["decision_status"]},
+      "then": {
+        "required": ["researcher_decision", "rationale", "authorized_by", "authorization_ref", "proposal_digest", "decided_at"],
+        "properties": {
+          "researcher_decision": {"type": "string", "minLength": 1},
+          "rationale": {"type": "string", "minLength": 1},
+          "authorized_by": {"type": "string", "pattern": "^researcher:", "minLength": 1},
+          "authorization_ref": {"type": "string", "minLength": 1},
+          "proposal_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "decided_at": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"decision_status": {"const": "REOPENED"}}, "required": ["decision_status"]},
+      "then": {"required": ["supersedes"], "properties": {"supersedes": {"type": "string", "minLength": 1}}}
+    }
+  ],
+  "additionalProperties": false
+}

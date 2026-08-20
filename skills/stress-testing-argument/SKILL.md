@@ -1,7 +1,7 @@
 ---
 name: stress-testing-argument
 description: Use when a thesis, concept, interpretation, or manuscript needs disciplined adversarial testing against counterexamples, rival explanations, category errors, scale violations, false novelty, and unresolved ethical risks.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -246,6 +246,38 @@ The bad invocation requests abuse and fabricated criticism rather than scholarly
 - `scoping-argument-boundary` when overclaiming requires narrower scope.
 - `structuring-humanities-argument` to implement approved repairs.
 - `reviewing-manuscript` after major objections are resolved.
+
+## Friction triggers
+
+Create counterargument friction for strong evidence-based objections, rival explanations, negative cases, or disagreement that materially threatens a claim.
+
+## Friction checks
+
+Distinguish fatal objection from a narrowing objection and verified evidence from hypothetical review risk. Preserve the strongest counterargument and its consequence.
+
+## Judgment boundary
+
+The agent recommends rebuttal, concession, narrowing, redesign, or deferral; the researcher chooses the theoretical and authorial response.
+
+## Evidence ledger updates
+
+Add counterevidence and its claim-specific standing instead of storing only supportive material. Link objection evidence and limitations.
+
+## Interpretation history impact
+
+If a rival reading changes the defended interpretation, append a new version and retain the rejected or superseded reading.
+
+## Possible epistemic return
+
+New counterevidence or theory may reopen question, scope, concept, or interpretation. A logical defect known before the test remains rollback.
+
+## Productive refusal
+
+When available material cannot decide an objection, report its strongest supported form, missing discriminator, bounded conclusion, and researcher decision needed.
+
+## Gate impact
+
+An unresolved fatal objection forces `FAIL`; a major objection may require conditional status or return. Repairs invalidate only gates dependent on materially changed objects.
 
 ## Limitations
 

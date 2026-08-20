@@ -1,7 +1,7 @@
 ---
 name: auditing-citations
 description: Use when citations, quotations, page numbers, bibliography entries, or source-supported claims must be checked for existence, metadata accuracy, textual fidelity, and claim–source fit.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -202,6 +202,38 @@ The bad invocation requests concealment and fabrication. The skill MUST refuse i
 - `responding-to-peer-review` when the audit addresses reviewer concerns.
 - `verifying-before-submission` after all blocking citation issues are resolved.
 - `structuring-humanities-argument` when a claim must be narrowed after source mismatch.
+
+## Friction triggers
+
+Create citation/support friction when source existence, locator, quotation fidelity, claim–source fit, or evidential standing diverge.
+
+## Friction checks
+
+Audit these five checks separately. A verified source that does not support the claim receives `INSUFFICIENT`, `CONTEXT_ONLY`, `QUALIFIES`, or `CONTRADICTS`, never automatic support.
+
+## Judgment boundary
+
+The agent may recommend narrowing, replacing, or withdrawing a claim. The researcher decides the substantive revision; no citation repair authorizes an invented decision.
+
+## Evidence ledger updates
+
+Create or update a ledger entry for material evidence attached to a central or changed claim, including verification method, locator, limitations, counterevidence, and evidential standing. Routine citation identity and formatting checks may remain in the compact citation-audit table when they do not change scholarly standing.
+
+## Interpretation history impact
+
+If quotation context changes an interpretation, append a proposed version and route it for researcher review rather than rewriting the accepted reading.
+
+## Possible epistemic return
+
+New source content that changes an earlier premise may trigger epistemic return. A false locator, absent source, or misfit citation is defect repair and uses rollback.
+
+## Productive refusal
+
+When source access cannot establish a citation or first-use claim, state exactly what was checked, what remains unverified, permitted limited wording, and the source access needed.
+
+## Gate impact
+
+Central mismatch, contradiction, or unverified quotation forces `FAIL`. Material Claim or EvidenceItem change marks dependent argument and submission gates for recheck.
 
 ## Limitations
 

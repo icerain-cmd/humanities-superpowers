@@ -33,3 +33,7 @@ Next skill:
 8. Submission gate
 
 A failed gate is expected when required evidence is absent. It must never be silently converted into a pass.
+
+## Gate validity in Fricturn
+
+Historical gate status remains `PASS`, `CONDITIONAL PASS`, or `FAIL`. Fricturn records current validity separately as `VALID`, `INVALIDATED`, or `REQUIRES_RECHECK`. When a dependency materially changes, an earlier `PASS` remains in history but may no longer authorize progression. Invalidation follows explicit dependency references rather than a universal downstream cascade.

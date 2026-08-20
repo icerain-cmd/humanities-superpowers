@@ -1,7 +1,7 @@
 ---
 name: structuring-humanities-argument
 description: Use when a researcher has an approved argument map, source-grounded notes, interpretations, and draft passages that need organization and logical repair without delegating the original scholarly contribution to the agent.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -212,6 +212,38 @@ The bad invocation delegates authorship and requests deceptive completion.
 - `stress-testing-argument` to expose structural and substantive vulnerabilities.
 - `checking-terminology-consistency` after the sequence stabilizes.
 - `reviewing-manuscript` for whole-manuscript evaluation.
+
+## Friction triggers
+
+Create rhetorical-smoothing friction when restructuring deletes tension, qualification, counterevidence, provenance, or unresolved markers, or makes prose seem more complete than the argument.
+
+## Friction checks
+
+Compare structured output with the argument map, ledger, interpretation versions, and open frictions. Fluency MUST NOT close an unresolved scholarly object.
+
+## Judgment boundary
+
+Ordering and connective recommendations remain agent proposals. New substantive transitions, exclusions, or conclusions require researcher decision and provenance.
+
+## Evidence ledger updates
+
+Carry ledger references into affected claims and retain qualifying or contradicting entries. Do not convert context-only material into evidence through placement.
+
+## Interpretation history impact
+
+Structure may cite or relocate an interpretation version but must not silently revise or accept it. Material reinterpretation returns to close reading.
+
+## Possible epistemic return
+
+New tension exposed during structuring may reopen argument, interpretation, scope, or question. A missing warrant remains repair-oriented rollback.
+
+## Productive refusal
+
+If coherence requires inventing a claim or erasing a conflict, preserve the gap, explain the missing judgment, and identify the narrow structuring work still possible.
+
+## Gate impact
+
+Rhetorical coherence cannot restore an invalidated gate. Changed substantive dependencies require their original gates to be rerun before review or submission.
 
 ## Limitations
 

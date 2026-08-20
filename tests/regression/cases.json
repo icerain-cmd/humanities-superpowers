@@ -1,0 +1,26 @@
+{
+  "cases": [
+    {
+      "id": "verified-but-irrelevant",
+      "ledger": {"ledger_entry_id": "L-B", "claim_id": "C-B", "evidence_id": "E-B", "source_id": "S-B", "verification_state": "verified-secondary", "evidential_standing": "INSUFFICIENT", "verification_method": "Publisher metadata and article text", "locator": "section 2", "limitations": ["Does not address claim C-B"], "counterevidence_refs": [], "checked_at": "2026-08-20T00:00:00Z", "checked_by": "agent:A", "verification_event_ref": "verification:session-1:L-B", "source_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "provenance": "synthetic fixture"}
+    },
+    {
+      "id": "productive-refusal",
+      "claim": "first use of a concept",
+      "result": {"status": "unknown", "checked_range": "supplied bibliography only", "unverified_range": "unsearched archives and languages", "required_verification": "bounded database and archive search", "permitted_wording": "No earlier use was identified within the reviewed sources."}
+    },
+    {
+      "id": "gate-regression",
+      "previous_status": "PASS",
+      "current_validity": "INVALIDATED",
+      "changed_dependency": "concept:C3"
+    },
+    {
+      "id": "interpretation-overwrite",
+      "history": [
+        {"interpretation_id": "I1", "object_ref": "text:T1", "version": 1, "observed_features": ["repetition"], "interpretive_move": "Repetition marks continuity.", "conceptual_frame": "memory", "alternative_readings": ["ritual emphasis"], "evidentiary_limits": ["single passage"], "trigger": "initial reading", "reason_for_change": "initial proposal", "derived_from": ["text:T1"], "supersedes": null, "researcher_status": "SUPERSEDED"},
+        {"interpretation_id": "I2", "object_ref": "text:T1", "version": 2, "observed_features": ["repetition", "syntactic break"], "interpretive_move": "The break qualifies continuity.", "conceptual_frame": "memory", "alternative_readings": ["ritual emphasis"], "evidentiary_limits": ["single passage"], "trigger": "new close reading", "reason_for_change": "The break was previously omitted.", "derived_from": ["text:T1", "I1"], "supersedes": "I1", "researcher_status": "PROPOSED"}
+      ]
+    }
+  ]
+}

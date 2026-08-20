@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "fluent-but-unsupported",
+      "gate_status": "FAIL",
+      "friction": {"friction_id": "F-A", "friction_type": "CLAIM_OVERREACH", "target_object": "claim:C-A", "triggered_by": ["ledger:L-A"], "description": "Fluent prose has no supporting evidence.", "blocking": true, "severity": "BLOCKING", "required_action": "Supply evidence or narrow the claim.", "resolution_status": "OPEN"}
+    },
+    {
+      "id": "counterevidence",
+      "gate_status": "CONDITIONAL PASS",
+      "ledger_standings": ["SUPPORTS", "SUPPORTS", "CONTRADICTS"],
+      "friction": {"friction_id": "F-C", "friction_type": "EVIDENCE_CONFLICT", "target_object": "claim:C-C", "triggered_by": ["evidence:E-C3"], "description": "Strong counterevidence challenges the thesis.", "blocking": false, "severity": "HIGH", "required_action": "Researcher must assess whether to narrow or revise.", "resolution_status": "OPEN"}
+    },
+    {
+      "id": "rival-interpretation",
+      "routing_decision": "RESEARCHER_DECISION_REQUIRED",
+      "friction": {"friction_id": "F-D", "friction_type": "RIVAL_INTERPRETATION", "target_object": "interpretation:I-D", "triggered_by": ["interpretation:I-D-A", "interpretation:I-D-B"], "description": "Two readings are defensible from the supplied features.", "blocking": true, "severity": "HIGH", "required_action": "Preserve both and request a researcher decision.", "resolution_status": "OPEN"}
+    },
+    {
+      "id": "agent-disagreement",
+      "routing_decision": "RESEARCHER_DECISION_REQUIRED",
+      "friction": {"friction_id": "F-G", "friction_type": "AGENT_DISAGREEMENT", "target_object": "interpretation:I-G", "triggered_by": ["agent:A", "agent:B"], "description": "Agent proposals conflict.", "blocking": false, "severity": "MEDIUM", "required_action": "Retain both proposals without automated selection.", "resolution_status": "OPEN"}
+    }
+  ]
+}

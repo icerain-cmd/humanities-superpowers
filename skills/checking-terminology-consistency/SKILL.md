@@ -1,7 +1,7 @@
 ---
 name: checking-terminology-consistency
 description: Use when a manuscript contains recurring concepts, translations, abbreviations, proper names, or near-synonyms whose meanings and forms must remain stable across the argument.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -222,6 +222,38 @@ The bad invocation confuses visual uniformity with conceptual consistency and MU
 - `structuring-humanities-argument` when approved terms must be propagated.
 - `reviewing-manuscript` for whole-manuscript evaluation.
 - `verifying-before-submission` after terminology blockers are resolved.
+
+## Friction triggers
+
+Create semantic-drift friction when a term changes concept, scale, translation, historical function, or normative force; spelling variation alone is not friction.
+
+## Friction checks
+
+Compare each occurrence to the canonical ConceptRecord and distinguish harmless form variation from conceptual or translation instability.
+
+## Judgment boundary
+
+The agent may present translation and naming alternatives, but canonical adoption that affects the thesis requires an attributable researcher decision.
+
+## Evidence ledger updates
+
+Record sources used to justify definitions and translations with claim-specific standing. Dictionary overlap alone is `INSUFFICIENT` for conceptual identity.
+
+## Interpretation history impact
+
+When terminology changes an interpretation's frame, append a new interpretation version; do not retroactively normalize historical readings.
+
+## Possible epistemic return
+
+A new translation or conceptual distinction may reopen lineage, question, interpretation, or argument. Mechanical inconsistency repair remains rollback.
+
+## Productive refusal
+
+When no translation can be authorized, preserve alternatives, describe semantic stakes, give bounded wording, and request specialist or researcher judgment.
+
+## Gate impact
+
+Material ConceptRecord or translation change can invalidate terminology, interpretation, argument, citation-fit, review, and submission validity through explicit dependencies.
 
 ## Limitations
 

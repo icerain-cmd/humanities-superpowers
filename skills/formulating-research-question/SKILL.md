@@ -1,7 +1,7 @@
 ---
 name: formulating-research-question
 description: Use when a humanities researcher has a broad topic, intuition, corpus, or problem but does not yet have a precise, contestable, and researchable question.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -242,6 +242,38 @@ This request presupposes a conclusion, asks for unsupported novelty, and provide
 - `scoping-argument-boundary` to delimit corpus, period, comparison, and excluded claims.
 - `mapping-concept-lineage` when key terms require genealogy and differentiation.
 - `conducting-literature-dialogue` before any originality claim is accepted.
+
+## Friction triggers
+
+Create premise friction when a preferred answer is embedded in the question, an unverified premise controls the inquiry, or new material undermines the question's object or tension.
+
+## Friction checks
+
+Compare the premise, evidence path, and revision conditions with exploratory findings. Record `CLAIM_OVERREACH`, `INFERENCE_PROMOTION`, or `EVIDENCE_CONFLICT` only when the issue materially affects answerability.
+
+## Judgment boundary
+
+The agent may present question alternatives and consequences; the researcher selects the governing question and stakes. Preserve recommendations separately from the authorized decision.
+
+## Evidence ledger updates
+
+Register evidence classes and any source tied to a premise. Verification state does not determine whether that source supports the premise.
+
+## Interpretation history impact
+
+When a new reading changes the question, link the accepted or proposed interpretation version rather than replacing the earlier rationale.
+
+## Possible epistemic return
+
+This skill is a primary return target when new sources or interpretations materially alter an earlier question. Preserve Q1, create Q2 with `supersedes`, and identify affected scope, argument, and submission gates.
+
+## Productive refusal
+
+If originality, first use, or a premise cannot be established, report the checked range, missing search, bounded wording currently permitted, and next verification action.
+
+## Gate impact
+
+Premise friction that makes the question circular or unsupported forces `FAIL`. A materially revised question marks dependent gates `INVALIDATED` or `REQUIRES_RECHECK` without changing their historical status.
 
 ## Limitations
 

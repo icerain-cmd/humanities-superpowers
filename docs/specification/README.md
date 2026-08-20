@@ -46,3 +46,7 @@ It does not define a universal method for all humanities disciplines. A conformi
 - **Release conformant:** automated checks pass and unresolved blockers are disclosed.
 
 All 13 core research skills conform to Level 2, and the `using-humanities-superpowers` router conforms to Level 3.
+
+## Version 2 extension
+
+[Humanities Superpowers 2.0 — Fricturn](v2/README.md) extends this v1 base with interpretive friction, traceable scholarly judgment, evidential standing, gate validity, and epistemic return. The v1 vocabulary and objects remain backward compatible.

@@ -1,7 +1,7 @@
 ---
 name: mapping-concept-lineage
 description: Use when a humanities argument depends on a concept whose history, competing definitions, translations, or boundaries must be reconstructed before the concept can support new claims.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -237,6 +237,38 @@ The request demands fabricated continuity and unsupported novelty. The correct r
 - `conducting-literature-dialogue` to position the stabilized concept within current scholarship.
 - `checking-terminology-consistency` when the manuscript already uses multiple variants.
 - `planning-humanities-argument` after conceptual boundaries and literature positions are sufficiently clear.
+
+## Friction triggers
+
+Create novelty or lineage friction for similarity presented as inheritance, genealogy confused with lineage, unstable translation, redundant coinage, or unsupported first-use claims.
+
+## Friction checks
+
+Test each edge for documentary support and each coined term for explanatory necessity. Preserve disputed or unknown relations rather than completing a smooth lineage.
+
+## Judgment boundary
+
+The agent may recommend rename, narrow, merge, or abandon; canonical adoption and theoretical commitment require an attributable researcher decision.
+
+## Evidence ledger updates
+
+Record source verification separately from the standing of a passage as evidence for influence, inheritance, analogy, or novelty.
+
+## Interpretation history impact
+
+Append a new concept interpretation when a relation changes; preserve prior maps and link the successor with its trigger and reason.
+
+## Possible epistemic return
+
+New lineage evidence may reopen the question, concept, terminology, or argument. A false or missing citation is rollback; genuinely new historical evidence can trigger epistemic return.
+
+## Productive refusal
+
+For unsupported novelty or first-use requests, return reviewed scope, unverified traditions or archives, permitted limited wording, and required search.
+
+## Gate impact
+
+Material ConceptRecord change may invalidate terminology, argument, interpretation, citation-fit, and submission validity where dependency references exist.
 
 ## Limitations
 

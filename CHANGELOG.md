@@ -4,7 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-No unreleased changes.
+### Added
+
+- Humanities Superpowers 2.0 Fricturn normative specification and Humanities Engineering methodology.
+- Schemas for evidence ledgers, judgment records, interpretation histories, friction events, and epistemic returns.
+- Gate-validity and versioning extensions that remain compatible with v1 session and object samples.
+- Twelve deterministic conformance cases for unsupported fluency, source mismatch, counterevidence, rival interpretation, productive refusal, agent disagreement, gate invalidation, researcher decisions, append-only history, and no-op returns.
+- Four synthetic worked examples for conflict, rival readings, epistemic return, and judgment history.
+
+### Changed
+
+- Extended the Level 3 router and all 13 core skills with friction, judgment, evidence-ledger, history, productive-refusal, epistemic-return, and gate-impact behavior.
+- Preserved the existing 13+1 skill structure, verification states, gate statuses, routing decisions, anti-fabrication rules, and human authorization boundary.
 
 ## [1.0.0] - 2026-07-19
 

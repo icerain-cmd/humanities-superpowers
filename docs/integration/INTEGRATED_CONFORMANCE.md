@@ -1,5 +1,9 @@
 # Integrated Conformance
 
+## Fricturn 2.0 extension
+
+Integrated conformance also runs `scripts/run_v2_tests.py`. It verifies unsupported-fluency failure, source verification versus evidential standing, counterevidence preservation, rival interpretation, agent disagreement, productive refusal, bounded gate invalidation, append-only judgment and interpretation history, authorized epistemic return, and no-op return behavior. These checks do not alter the 13+1 skill count or routing vocabulary.
+
 ## Purpose
 
 Integrated conformance tests whether Humanities Superpowers behaves as one research workflow rather than 13 core research skills plus 1 Level 3 router. It checks state transitions, handoffs, rollback targets, gate preservation, session continuity, and the alignment of examples, templates, schemas, and public documentation.

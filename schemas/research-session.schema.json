@@ -33,6 +33,10 @@
         "properties": {
           "skill": {"type": "string"},
           "gate_status": {"enum": ["PASS", "CONDITIONAL PASS", "FAIL"]},
+          "gate_validity": {"enum": ["VALID", "INVALIDATED", "REQUIRES_RECHECK"]},
+          "dependency_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "invalidation_reason": {"type": ["string", "null"]},
+          "gate_report_ref": {"type": ["string", "null"]},
           "evidence_checked": {"type": "array", "items": {"type": "string"}},
           "output_artifact": {"type": "string"}
         },
@@ -46,6 +50,14 @@
     "deferred_tasks": {"type": "array", "items": {"type": "string"}},
     "rollback_history": {"type": "array", "items": {"type": "object"}},
     "completion_claim_restrictions": {"type": "array", "items": {"type": "string"}},
+    "open_frictions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "resolved_frictions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "judgment_log_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "evidence_ledger_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "interpretation_history_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "epistemic_return_history": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "invalidated_gates": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "reopened_objects": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
     "next_valid_action": {
       "type": "object",
       "required": ["skill", "required_input", "expected_output", "controlling_gate"],

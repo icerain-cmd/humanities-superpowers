@@ -5,8 +5,12 @@
   "type": "object",
   "required": ["gate", "status", "evidence_checked", "blocking_issues", "non_blocking_risks", "researcher_decisions_required", "required_next_action", "next_skill"],
   "properties": {
+    "schema_version": {"const": "2.0"},
     "gate": {"type": "string", "minLength": 1},
     "status": {"type": "string", "enum": ["PASS", "CONDITIONAL PASS", "FAIL"]},
+    "validity": {"type": "string", "enum": ["VALID", "INVALIDATED", "REQUIRES_RECHECK"]},
+    "dependency_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "invalidation_reason": {"type": ["string", "null"]},
     "evidence_checked": {"type": "array", "items": {"type": "string"}},
     "blocking_issues": {"type": "array", "items": {"type": "string"}},
     "non_blocking_risks": {"type": "array", "items": {"type": "string"}},
@@ -14,5 +18,28 @@
     "required_next_action": {"type": "string"},
     "next_skill": {"type": ["string", "null"]}
   },
+  "allOf": [
+    {
+      "if": {"required": ["validity"]},
+      "then": {
+        "required": ["dependency_refs"],
+        "properties": {"dependency_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true}}
+      }
+    },
+    {
+      "if": {"properties": {"schema_version": {"const": "2.0"}}, "required": ["schema_version"]},
+      "then": {
+        "required": ["validity", "dependency_refs"],
+        "properties": {
+          "dependency_refs": {"minItems": 1},
+          "evidence_checked": {"minItems": 1},
+          "required_next_action": {"minLength": 1}
+        },
+        "allOf": [
+          {"if": {"properties": {"status": {"const": "PASS"}}, "required": ["status"]}, "then": {"properties": {"blocking_issues": {"maxItems": 0}, "researcher_decisions_required": {"maxItems": 0}, "validity": {"const": "VALID"}}}}
+        ]
+      }
+    }
+  ],
   "additionalProperties": false
 }

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/epistemic-return.schema.json",
+  "title": "Humanities Superpowers Epistemic Return Record",
+  "type": "object",
+  "required": ["return_id", "trigger", "trigger_object", "from_state", "target_state", "target_object", "target_skill", "reason", "new_evidence", "new_interpretation", "invalidated_gates", "preserved_gates", "artifacts_to_reopen", "researcher_decision_required", "return_status"],
+  "properties": {
+    "return_id": {"type": "string", "minLength": 1},
+    "trigger": {"type": "string", "minLength": 1},
+    "trigger_object": {"type": "string", "minLength": 1},
+    "from_state": {"$ref": "#/$defs/state"},
+    "target_state": {"$ref": "#/$defs/state"},
+    "target_object": {"type": "string", "minLength": 1},
+    "target_skill": {"type": "string", "minLength": 1},
+    "reason": {"type": "string", "minLength": 1},
+    "new_evidence": {"type": "array", "items": {"type": "string"}},
+    "new_interpretation": {"type": "array", "items": {"type": "string"}},
+    "invalidated_gates": {"type": "array", "items": {"$ref": "#/$defs/gate_ref"}},
+    "preserved_gates": {"type": "array", "items": {"$ref": "#/$defs/gate_ref"}},
+    "artifacts_to_reopen": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "researcher_decision_required": {"type": "boolean"},
+    "return_status": {"enum": ["PROPOSED", "APPROVED", "EXECUTED", "RESOLVED"]},
+    "authorized_by": {"type": ["string", "null"], "pattern": "^researcher:"},
+    "authorization_ref": {"type": ["string", "null"]},
+    "proposal_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "state": {"enum": ["IDEA", "QUESTION", "SCOPE", "SOURCES", "INTERPRETATION", "ARGUMENT", "STRUCTURE", "REVIEW", "REVISION", "SUBMISSION", "BLOCKED", "UNKNOWN"]},
+    "gate_ref": {
+      "type": "object",
+      "required": ["gate", "previous_status", "validity", "dependency_refs"],
+      "properties": {
+        "gate": {"type": "string", "minLength": 1},
+        "previous_status": {"enum": ["PASS", "CONDITIONAL PASS", "FAIL"]},
+        "validity": {"enum": ["VALID", "INVALIDATED", "REQUIRES_RECHECK"]},
+        "dependency_refs": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {"if": {"properties": {"return_status": {"enum": ["APPROVED", "EXECUTED", "RESOLVED"]}}, "required": ["return_status"]}, "then": {"required": ["authorized_by", "authorization_ref", "proposal_digest"], "properties": {"authorized_by": {"type": "string", "pattern": "^researcher:", "minLength": 1}, "authorization_ref": {"type": "string", "minLength": 1}, "proposal_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}}}
+  ],
+  "additionalProperties": false
+}

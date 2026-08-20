@@ -14,6 +14,9 @@ It records workflow context:
 - researcher decisions;
 - rollback history;
 - next valid action.
+- open and resolved friction references;
+- evidence-ledger, judgment-log, and interpretation-history references;
+- epistemic-return history, invalidated gates, and reopened objects.
 
 ## What it does not do
 

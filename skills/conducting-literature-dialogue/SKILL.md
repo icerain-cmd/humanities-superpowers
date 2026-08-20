@@ -1,7 +1,7 @@
 ---
 name: conducting-literature-dialogue
 description: Use when a humanities researcher needs to transform verified sources into a structured scholarly conversation rather than a chronological list of summaries.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -249,6 +249,38 @@ The request requires fabricated sources and an unsupported gap claim. The skill 
 - `mapping-concept-lineage` when disagreement turns on unstable or translated concepts.
 - `planning-humanities-argument` when the conversation and project position are sufficiently grounded.
 - `auditing-citations` when source claims and bibliographic records need independent verification.
+
+## Friction triggers
+
+Create consensus friction when disagreement clusters, incompatible scales, counterpositions, or unverified summaries are flattened into a unified field account.
+
+## Friction checks
+
+Preserve specific agreements and disagreements, test whether apparent conflict addresses the same question, and flag excluded counterevidence or unsupported gap claims.
+
+## Judgment boundary
+
+The agent may map defensible positions but must not choose the project's final alignment or manufacture consensus. Strategic positioning requires researcher authorization.
+
+## Evidence ledger updates
+
+Assign each source a claim-specific standing, including `QUALIFIES`, `CONTRADICTS`, `INSUFFICIENT`, and `CONTEXT_ONLY`; verification alone never means support.
+
+## Interpretation history impact
+
+When the literature changes a source interpretation or project position, append the new version and preserve the earlier map.
+
+## Possible epistemic return
+
+New scholarship that materially changes the premise or concept may reopen question, scope, or lineage. A missing required source is repair-oriented rollback or pause, not epistemic return.
+
+## Productive refusal
+
+If consensus, neglect, comprehensiveness, or a gap cannot be established, state the reviewed corpus, coverage limits, bounded finding, and search needed.
+
+## Gate impact
+
+Unresolved central conflict may force `FAIL` or a researcher decision. Material source-role changes require rechecking argument and submission gates that depend on them.
 
 ## Limitations
 

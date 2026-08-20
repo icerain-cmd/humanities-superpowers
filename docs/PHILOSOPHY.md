@@ -2,7 +2,7 @@
 
 Humanities Superpowers treats AI-assisted research as a problem of **scholarly judgment under conditions of accelerated text production**.
 
-The project is built around four commitments.
+The project is built around seven commitments.
 
 ## 1. Judgment is the scarce resource
 
@@ -20,4 +20,16 @@ The repository uses skills, templates, and gates to slow work at high-risk momen
 
 The agent may compare, organize, test, and flag. The researcher remains responsible for interpretation, verification, ethical judgment, disclosure, and submission.
 
-See also [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md), [ANTI_PATTERNS.md](ANTI_PATTERNS.md), and the [white paper](white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md).
+## 5. Friction can be productive
+
+Conflict, uncertainty, and rival interpretation must not be polished into false consensus. Friction is recorded when fluency risks premature closure.
+
+## 6. Judgment must remain traceable
+
+Agent recommendations and researcher decisions are different objects. Decisions remain attributable, revisable, and linked to their evidence and alternatives.
+
+## 7. Inquiry may return
+
+New evidence can reopen an earlier question, concept, interpretation, or argument. Epistemic return preserves prior work and invalidates only dependent gate validity; it is not failure.
+
+See also [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md), [Humanities Engineering](methodology/HUMANITIES_ENGINEERING.md), the [Fricturn specification](specification/v2/README.md), [ANTI_PATTERNS.md](ANTI_PATTERNS.md), and the [white paper](white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md).

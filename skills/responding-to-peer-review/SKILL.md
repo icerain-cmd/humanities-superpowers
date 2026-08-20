@@ -1,7 +1,7 @@
 ---
 name: responding-to-peer-review
 description: Use when authors must interpret real reviewer comments, decide how to revise a humanities manuscript, and produce a transparent point-by-point response grounded in actual changes.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -237,6 +237,38 @@ The bad invocation requires false claims and MUST be refused.
 - `auditing-citations` for requested sources and quotation checks.
 - `checking-terminology-consistency` after conceptual revisions.
 - `verifying-before-submission` before resubmission.
+
+## Friction triggers
+
+Create reviewer–author friction when a comment conflicts with evidence, another reviewer, project scope, or the researcher's defended interpretation.
+
+## Friction checks
+
+Treat reviewer claims as claims, not truth. Preserve accept, rebut, and partial-acceptance alternatives and identify evidence for each.
+
+## Judgment boundary
+
+Acceptance, rebuttal, partial acceptance, and core-concept revision require researcher decisions. Agent recommendations remain separate from the response authorization.
+
+## Evidence ledger updates
+
+Add evidence introduced by revision and reassess standing for claims affected by reviewer requests; do not add decorative citations.
+
+## Interpretation history impact
+
+If a response changes an interpretation, append a version with the reviewer trigger and researcher status. Preserve the submitted reading.
+
+## Possible epistemic return
+
+A reviewer-supplied source or defensible interpretation may trigger return when it materially changes inquiry. Mere disagreement or a known manuscript defect does not automatically qualify.
+
+## Productive refusal
+
+When comments conflict or evidence is unavailable, state the conflict, bounded response possible, missing authority or source, and need for editor or researcher decision.
+
+## Gate impact
+
+Core concept or claim changes invalidate dependent gates and require re-audit. No response gate may pass on planned but unverified revisions.
 
 ## Limitations
 

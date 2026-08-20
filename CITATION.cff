@@ -6,8 +6,7 @@ authors:
   - family-names: "Lee"
     given-names: "Yong Wook"
     affiliation: "Department of Korean Language and Literature, Jeonju University"
-version: 1.0.0
-date-released: 2026-07-19
+version: 2.0.0
 url: "https://github.com/icerain-cmd/humanities-superpowers"
 repository-code: "https://github.com/icerain-cmd/humanities-superpowers"
 license: MIT

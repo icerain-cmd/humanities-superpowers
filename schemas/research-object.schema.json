@@ -8,11 +8,19 @@
     "id": {"type": "string", "minLength": 1},
     "object_type": {
       "type": "string",
-      "enum": ["research_question", "scope_boundary", "concept_record", "source_record", "claim", "evidence_item", "interpretation", "inference", "argument_node", "objection", "terminology_entry", "citation_record", "reviewer_comment", "revision_action", "gate_report"]
+      "enum": ["research_question", "scope_boundary", "concept_record", "source_record", "claim", "evidence_item", "interpretation", "inference", "argument_node", "objection", "terminology_entry", "citation_record", "reviewer_comment", "revision_action", "gate_report", "evidence_ledger_entry", "judgment_record", "interpretation_version", "friction_event", "epistemic_return_record"]
     },
     "status": {"type": "string", "enum": ["draft", "active", "superseded", "blocked", "accepted"]},
     "verification_state": {"type": "string", "enum": ["verified-primary", "verified-secondary", "researcher-supplied", "inference", "hypothesis", "unverified", "unknown", "disputed"]},
     "provenance": {"type": ["string", "object"]},
+    "version": {"anyOf": [{"type": "integer", "minimum": 1}, {"type": "string", "minLength": 1}]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "derived_from": {"type": "array", "items": {"type": "string"}},
+    "supersedes": {"type": ["string", "null"]},
+    "triggered_by": {"type": "array", "items": {"type": "string"}},
+    "validation_refs": {"type": "array", "items": {"type": "string"}},
+    "last_gate_status": {"enum": ["PASS", "CONDITIONAL PASS", "FAIL", null]},
     "data": {"type": "object"}
   },
   "additionalProperties": false

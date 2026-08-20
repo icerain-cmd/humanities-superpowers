@@ -1,7 +1,7 @@
 ---
 name: performing-close-reading
 description: Use when an interpretation must be grounded in specific textual, visual, rhetorical, formal, interface, archival, performative, or material features rather than thematic summary or theoretical labeling.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -248,6 +248,38 @@ The bad invocation lacks the object and asks theoretical fluency to replace evid
 - `planning-humanities-argument` to place the local finding in a dependency map.
 - `structuring-humanities-argument` to integrate the reading into researcher-authored prose.
 - `stress-testing-argument` to test scale, alternatives, and counterexamples.
+
+## Friction triggers
+
+Create interpretive friction when multiple readings fit the observed features, persuasive language is treated as fact, contextual claims exceed the object, or agents disagree.
+
+## Friction checks
+
+Separate feature, interpretive move, warrant, and scale. Preserve serious rivals and create `RIVAL_INTERPRETATION` or `AGENT_DISAGREEMENT` when no responsible automatic choice exists.
+
+## Judgment boundary
+
+AI readings begin `PROPOSED`. The researcher accepts, rejects, or selects among defensible interpretations; silence is not acceptance.
+
+## Evidence ledger updates
+
+Record what an observed feature does for the target claim and its limitations. Object verification does not make an interpretation factual.
+
+## Interpretation history impact
+
+Append every material reading as a version with observed features, trigger, change reason, derivation, alternatives, and supersession. Never overwrite I1 with I2.
+
+## Possible epistemic return
+
+A new reading that materially changes a question, concept, or argument may trigger a return. An inadequate or absent object is rollback or pause.
+
+## Productive refusal
+
+When the object cannot decide among readings, state the shared observations, unresolved alternatives, bounded claims, and additional context or researcher judgment required.
+
+## Gate impact
+
+Unresolved blocking rival interpretation prevents automatic advance. A materially accepted interpretation change may require argument, structure, review, and submission rechecks.
 
 ## Limitations
 

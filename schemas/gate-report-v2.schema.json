@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/gate-report-v2.schema.json",
+  "title": "Humanities Superpowers Gate Report — Full v2 Profile",
+  "type": "object",
+  "required": ["schema_version", "gate", "status", "validity", "dependency_refs", "evidence_checked", "blocking_issues", "non_blocking_risks", "researcher_decisions_required", "required_next_action", "next_skill"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "gate": {"type": "string", "minLength": 1},
+    "status": {"enum": ["PASS", "CONDITIONAL PASS", "FAIL"]},
+    "validity": {"enum": ["VALID", "INVALIDATED", "REQUIRES_RECHECK"]},
+    "dependency_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
+    "invalidation_reason": {"type": ["string", "null"]},
+    "evidence_checked": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "blocking_issues": {"type": "array", "items": {"type": "string"}},
+    "non_blocking_risks": {"type": "array", "items": {"type": "string"}},
+    "researcher_decisions_required": {"type": "array", "items": {"type": "string"}},
+    "required_next_action": {"type": "string", "minLength": 1},
+    "next_skill": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "PASS"}}, "required": ["status"]},
+      "then": {"properties": {"blocking_issues": {"maxItems": 0}, "researcher_decisions_required": {"maxItems": 0}, "validity": {"const": "VALID"}}}
+    }
+  ],
+  "additionalProperties": false
+}

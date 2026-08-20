@@ -7,13 +7,15 @@
 > **학술적 판단을 포기하지 않고 AI를 사용하십시오.**  
 > AI 논문 대필 도구가 아니라, 학술적 판단을 지지하는 발판입니다.
 
-Humanities Superpowers는 유창한 AI 산출물이 가장 위험해지는 순간을 늦추고 점검합니다. 연구 질문 형성, 개념 정의, 주장과 근거 연결, 반론 검토, 인용 검증, 제출 가능 여부 판단을 명시적인 절차로 바꿉니다.
+Humanities Superpowers는 유창한 AI 산출물이 가장 위험해지는 순간을 늦추고 점검합니다. 연구 질문 형성, 개념 정의, 주장과 근거 연결, 반론 검토, 인용 검증, 판단 수정, 제출 가능 여부 판단을 명시적인 절차로 바꿉니다.
 
 13개 핵심 연구 스킬과 그중 필요한 최소 경로를 선택하는 1개의 Level 3 라우터를 제공합니다. AI는 정리하고 비교하며 문제를 표시할 수 있지만, 해석, 출처 확인, 윤리적 판단, 개념적 선택, 최종 저자 책임을 대신하거나 원고의 게재 가능 상태를 보장하지 않습니다.
 
+2.0 **Fricturn**은 해석적 마찰, 추적 가능한 학술 판단, 인식론적 되돌림을 명시적 연구 객체로 다룹니다. “AI는 유창성을 제공하고, 인문학은 마찰을 제공한다”는 설명은 기존 정체성, 곧 **학술적 판단을 포기하지 않고 AI를 사용한다**는 원칙을 보강합니다.
+
 ## 비판적 테스트 참여 요청
 
-첫 목표는 실제 연구 프로젝트에서 하나의 연구 스킬을 시험하고, 이 프레임워크가 **지나치게 경직되었거나 기술 중심적이거나 방법론적으로 취약한 지점**을 알려 줄 인문학 연구자 10명을 모집하는 것입니다.
+첫 목표는 실제 연구 프로젝트에서 하나의 연구 스킬을 시험하고, 이 프레임워크가 **지나치게 경직되었거나 기술 중심적이거나 방법론적으로 취약한 지점**을 알려 줄 인문학 연구자 10명을 모집하는 것입니다. Fricturn에서는 학술적 마찰을 잘못 판별하거나 정상적인 해석을 과도하게 형식화하거나 인간의 판단을 보존하지 못하는 지점에 대한 비판이 특히 중요합니다.
 
 - [테스트 보고서 제출](https://github.com/icerain-cmd/humanities-superpowers/issues/new?template=test_report.yml)
 - [방법론적 비판 제기](https://github.com/icerain-cmd/humanities-superpowers/issues/new?template=methodological_criticism.yml)
@@ -59,6 +61,8 @@ Windows에서 `python3` 명령을 찾지 못하면 `python`을 사용하십시�
 - **모른다는 표시는 허위 완성보다 낫다.**
 - **개념은 계보와 경계를 가져야 한다.**
 - **완료는 선언이 아니라 검증되어야 한다.**
+- **충돌을 소리 없이 조화시키지 않는다.**
+- **새로운 지식은 이전 탐구를 다시 열 수 있다.**
 
 자세한 이론적 설명은 [방법론 백서](docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md), [프로젝트 철학](docs/PHILOSOPHY.md), [설계 원칙](docs/DESIGN_PRINCIPLES.md)에서 확인할 수 있습니다.
 
@@ -102,6 +106,14 @@ AI는 자료를 정리하고 비교하며 논증을 점검하고 위험을 표�
 
 - [논증 지도](examples/argument-map-example/README.md)
 - [용어 일관성 감사](examples/terminology-audit-example/README.md)
+- [충돌하는 근거](examples/conflicting-evidence-example/README.md)
+- [경쟁 해석](examples/rival-interpretation-example/README.md)
+- [인식론적 되돌림](examples/epistemic-return-example/README.md)
+- [판단 이력](examples/judgment-history-example/README.md)
+
+## Fricturn 프로토콜
+
+Fricturn은 출처 검증과 근거적 지위를 분리하고, AI 추천과 연구자 결정을 별도로 기록하며, 해석 이력과 변경된 의존성에 따른 gate 유효성을 보존합니다. [v2 명세](docs/specification/v2/README.md)와 [Humanities Engineering](docs/methodology/HUMANITIES_ENGINEERING.md)을 참조하십시오.
 
 ## 보장하지 않는 것
 

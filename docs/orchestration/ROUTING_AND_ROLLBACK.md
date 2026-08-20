@@ -44,3 +44,9 @@ The following are prohibited:
 - treating `planned` revision as `verified` revision;
 - treating a remembered summary as a verified source;
 - issuing a final `PASS` from workflow state alone.
+
+## Rollback versus epistemic return
+
+Rollback repairs an error, omission, failed prerequisite, invalid citation, or scope defect. Epistemic return reopens inquiry because new evidence, interpretation, theory, definition, or researcher judgment changes an earlier object. A return is recorded as an `EpistemicReturnRecord`; it is not a new routing decision.
+
+Before routing, report current state, open frictions, evidence conflicts, researcher decisions required, gate validity, possible epistemic returns, and the next valid action. A historical `PASS` whose validity is `INVALIDATED` or `REQUIRES_RECHECK` cannot authorize progress.

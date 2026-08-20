@@ -1,7 +1,7 @@
 ---
 name: planning-humanities-argument
 description: Use when a research question, scope boundary, and source base exist but the manuscript still needs a defensible sequence of claims, warrants, evidence, objections, and section functions.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -213,6 +213,38 @@ The bad invocation supplies an inflated conclusion, no bounded corpus, and permi
 - `performing-close-reading` to generate accountable object-level evidence.
 - `structuring-humanities-argument` to organize researcher-authored material around the map.
 - `stress-testing-argument` to challenge the architecture before drafting.
+
+## Friction triggers
+
+Create claim–evidence friction when a central claim lacks support, counterevidence is hidden, a verified source is irrelevant, or a warrant promotes inference into fact.
+
+## Friction checks
+
+For every major claim inspect supporting, qualifying, contradicting, disputed, and insufficient ledger entries. Do not pass by counting supportive sources.
+
+## Judgment boundary
+
+Alternative thesis structures and responses may be recommended, but choosing a thesis, concession, or acceptable limitation remains the researcher's decision.
+
+## Evidence ledger updates
+
+Connect each Claim to ledger entries and display `evidential_standing` alongside verification state and limitations.
+
+## Interpretation history impact
+
+Reference the exact interpretation version used by a claim. New readings append versions and trigger dependency review rather than silently changing the warrant.
+
+## Possible epistemic return
+
+New evidence that changes the question or core premise may return to question, scope, literature, or interpretation. Missing planned support remains rollback or pause.
+
+## Productive refusal
+
+When evidence cannot establish a major claim, give the supported narrower proposition, missing evidence, affected dependencies, and next valid research action.
+
+## Gate impact
+
+Unresolved central `CONTRADICTS` or `INSUFFICIENT` standing prevents `PASS`. Material Claim or EvidenceItem changes require bounded citation, argument-review, and submission rechecks.
 
 ## Limitations
 

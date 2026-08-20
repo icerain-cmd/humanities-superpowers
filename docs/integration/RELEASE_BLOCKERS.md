@@ -1,5 +1,7 @@
 # Release Blockers
 
+For Fricturn 2.0, release is blocked if any new schema fails Draft 2020-12 parsing, any of the 14 skills lacks its friction contract, gate status vocabulary changes, agent recommendation can become an accepted decision without human authorization, a prior `PASS` remains valid after a materially changed dependency, or the v2 conformance runner fails.
+
 ## Methodology and integration status
 
 No deterministic methodology or integration blocker remains in the conformance suite.
