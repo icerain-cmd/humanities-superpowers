@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-08-21
+
 ### Added
 
 - Humanities Superpowers 2.0 Fricturn normative specification and Humanities Engineering methodology.
