@@ -1,6 +1,6 @@
 # Humanities Superpowers v2.0.0 — Fricturn
 
-**Status: draft release notes. v2.0.0 has not been tagged, pushed, or publicly released by this implementation task.**
+Released 2026-08-21.
 
 Fricturn extends the v1 scholarly judgment scaffold without changing its 13 core skills, one router, verification-state vocabulary, gate statuses, or routing decisions.
 
@@ -20,4 +20,4 @@ v1 research objects and sessions remain valid because the extended base fields a
 
 ## Validation
 
-Release preparation requires repository validation, integrated tests, v2 conformance tests, public-release validation, JSON/YAML parsing, link checks, and manifest regeneration. No tag, push, release, or merge is performed by the implementation task.
+The release passed repository validation, integrated tests, v2 conformance tests, public-release validation, JSON/YAML parsing, link checks, strict documentation build, and manifest regeneration.

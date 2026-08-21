@@ -105,13 +105,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "ffa354d16b30d10ac75286261a10b74faf20bd5868d6eb0336776831843b8583",
-      "bytes": 3048
+      "sha256": "3ea8211d6fc29546ff4994660309d37e808d4ffc2682570d839afe8394795d2e",
+      "bytes": 3073
     },
     {
       "path": "CITATION.cff",
-      "sha256": "8c6abc1a7fc2cd00b6928c0992f69c6c63c85dba1ab804a73146f7e7aab15c4b",
-      "bytes": 668
+      "sha256": "2d03b701332021f1cae17e83ffa37b08bbfc1d472052071c66072884d6c7455d",
+      "bytes": 694
     },
     {
       "path": "CLAUDE.md",
@@ -285,8 +285,8 @@
     },
     {
       "path": "docs/release/RELEASE_NOTES_v2.0.0.md",
-      "sha256": "d95082b8f62018f49640bd8bc0d7c8055fd91985455083b9b27b62acf9d306dd",
-      "bytes": 1382
+      "sha256": "264c005c3c0ed9ef211cb51748f57283012097788a30323debad21b7225778bf",
+      "bytes": 1229
     },
     {
       "path": "docs/social-media-kit/LAUNCH_SEQUENCE.md",
