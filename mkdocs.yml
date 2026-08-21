@@ -21,6 +21,7 @@ nav:
   - Quick Start: quick-start.md
   - Methodology:
       - Overview: methodology.md
+      - Fricturn 2.0: fricturn.md
       - Quality Gates: quality-gates.md
       - Research State Machine: state-machine.md
   - Skills: skills.md

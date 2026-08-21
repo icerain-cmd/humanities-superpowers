@@ -1,0 +1,4 @@
+[
+  {"interpretation_id":"I1","object_ref":"synthetic-text:T1","version":1,"observed_features":["phrase repetition"],"interpretive_move":"Repetition figures continuity.","conceptual_frame":"memory","alternative_readings":["I2"],"evidentiary_limits":["synthetic local passage"],"trigger":"initial close reading","reason_for_change":"initial proposal","derived_from":["synthetic-text:T1"],"supersedes":null,"researcher_status":"PROPOSED"},
+  {"interpretation_id":"I2","object_ref":"synthetic-text:T1","version":1,"observed_features":["phrase repetition","syntactic break"],"interpretive_move":"The break qualifies apparent continuity.","conceptual_frame":"memory","alternative_readings":["I1"],"evidentiary_limits":["synthetic local passage"],"trigger":"rival reading check","reason_for_change":"the break supports a distinct account","derived_from":["synthetic-text:T1","I1"],"supersedes":null,"researcher_status":"PROPOSED"}
+]

@@ -4,7 +4,7 @@
 
 **Lee Yong Wook**  
 Jeonju University  
-Version 1.0.0 · July 2026
+Version 2.0.0 · August 2026
 
 ---
 
@@ -68,6 +68,10 @@ A scholarly judgment scaffold asks different questions:
 The word **scaffold** is deliberate. A scaffold supports work without becoming the work itself. It provides sequence, stability, and access. It can make difficult operations visible and repeatable. It does not replace the researcher who determines the significance of a text, the legitimacy of an inference, the ethical boundaries of interpretation, or the contribution of an argument.
 
 Humanities Superpowers therefore rejects two symmetrical errors.
+
+### Fricturn extension
+
+Version 2.0 extends this scaffold through interpretive friction, traceable scholarly judgment, and epistemic return. A verified source is no longer assumed to support a claim; evidential standing is recorded separately. Competing interpretations and counterevidence remain visible rather than being harmonized. When new knowledge materially changes an earlier object, the workflow can reopen it without deleting the earlier question, interpretation, argument, decision, or gate history. AI recommendation remains distinct from researcher authorization throughout.
 
 The first is **automation triumphalism**: the assumption that an AI system can independently conduct humanities research because it can produce recognizable academic forms.
 
@@ -784,6 +788,6 @@ Vincent, Jesse. *Superpowers: An Agentic Skills Framework & Software Development
 
 ## Suggested citation
 
-Lee, Yong Wook. *Humanities Superpowers: A Structured Workflow for AI-Assisted Humanities Research*. Version 1.0.0. Jeonju University, 2026.
+Lee, Yong Wook. *Humanities Superpowers: A Structured Workflow for AI-Assisted Humanities Research*. Version 2.0.0. Jeonju University, 2026.
 
 Methodological restraint is therefore not a limitation of the framework; it is its central scholarly commitment.

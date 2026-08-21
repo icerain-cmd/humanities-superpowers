@@ -47,3 +47,23 @@ Mark choices that require disciplinary, ethical, or interpretive judgment.
 ## 12. Validation can fail
 
 A framework that cannot refuse completion is not a quality framework.
+
+## 13. Friction before premature closure
+
+Preserve material conflict, counterevidence, and rival readings instead of harmonizing them for fluency.
+
+## 14. Verification is not evidential standing
+
+A source may be verified and still be insufficient, contextual, qualifying, contradictory, or disputed for a claim.
+
+## 15. Judgment remains attributable
+
+Keep agent recommendations separate from authorized researcher decisions and preserve superseded history.
+
+## 16. Completion can lose validity
+
+A prior `PASS` remains historical, but changed dependencies can make its current validity `INVALIDATED` or `REQUIRES_RECHECK`.
+
+## 17. Epistemic return is inquiry
+
+Reopen earlier objects when new knowledge materially changes them. Do not confuse this with rollback that repairs defects.

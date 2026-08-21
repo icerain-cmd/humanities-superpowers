@@ -138,6 +138,7 @@ Tell the agent that `original/` is read-only and that every proposed change must
 Run the repository checks from the Humanities Superpowers clone:
 
 ```bash
+python3 -m pip install -r requirements-validation.txt
 python3 scripts/validate_repository.py
 python3 scripts/run_integrated_tests.py
 python3 scripts/validate_public_release.py

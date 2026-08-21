@@ -1,7 +1,7 @@
 ---
 name: scoping-argument-boundary
 description: Use when a research question is promising but its corpus, period, comparison, concepts, or claim size remain too broad or unstable for a defensible humanities argument.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -204,6 +204,38 @@ The evidence cannot support the requested temporal and universal claim. The skil
 - `mapping-concept-lineage` when the bounded project depends on contested or inherited concepts.
 - `conducting-literature-dialogue` to map the scholarly conversation within the selected boundary.
 - `planning-humanities-argument` only after the conceptual and literature foundations are adequate.
+
+## Friction triggers
+
+Create overreach friction when claim scale exceeds corpus, method, period, geography, language, or comparison symmetry.
+
+## Friction checks
+
+Test generalization against actual coverage and distinguish defensible exclusion from removal of counterevidence. Record a friction event when prose or ambition masks the mismatch.
+
+## Judgment boundary
+
+When both claim narrowing and corpus expansion are defensible, present costs and record the researcher's choice; do not select the author's ambition level.
+
+## Evidence ledger updates
+
+Link each major claim to covered, qualifying, contradicting, and missing evidence. A verified source outside the boundary may be `CONTEXT_ONLY`, not support.
+
+## Interpretation history impact
+
+Record when a scope decision limits the scale of an existing interpretation; do not rewrite its earlier version as though it had always been narrow.
+
+## Possible epistemic return
+
+Return to the research question when revised boundaries change the inquiry itself. New corpus evidence may reopen a prior scope record; ordinary overreach repair remains `ROLLBACK`.
+
+## Productive refusal
+
+When representativeness cannot be established, state actual coverage, unexamined range, the strongest bounded claim, and the sampling or corpus work required.
+
+## Gate impact
+
+Material scope change may invalidate source-coverage, argument, review, and submission validity. Bound invalidation to gates that reference the changed scope.
 
 ## Limitations
 

@@ -1,7 +1,7 @@
 ---
 name: reviewing-manuscript
 description: Use when a humanities manuscript needs an evidence-based, whole-document review of research question, scope, concepts, argument, interpretation, citations, structure, and contribution.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -197,6 +197,38 @@ The bad invocation requests theater and unsupported prediction rather than evide
 - `checking-terminology-consistency` for concept drift.
 - `responding-to-peer-review` when real reviewer comments exist.
 - `verifying-before-submission` after revision.
+
+## Friction triggers
+
+Create structural-coherence friction for hidden contradictions, invalidated gates, reopened decisions, unresolved evidence conflicts, or fluency that masks argumentative gaps.
+
+## Friction checks
+
+Report open friction and separate rhetorical fluency from argument coherence. Inspect whether counterevidence, rival readings, and decision history remain visible.
+
+## Judgment boundary
+
+Review recommendations do not become author decisions. Rank options and consequences, then request researcher action where revision changes thesis, scope, or interpretation.
+
+## Evidence ledger updates
+
+Reference ledger gaps and contradictory standing for each affected claim; do not infer support from citation density or polished discussion.
+
+## Interpretation history impact
+
+Review the active version and its supersession chain. A new review interpretation remains proposed until researcher response.
+
+## Possible epistemic return
+
+New review evidence may reopen question, scope, concept, interpretation, or argument. Known defects discovered in review use rollback.
+
+## Productive refusal
+
+If the supplied manuscript cannot support a whole-document judgment, state inspected range, unavailable artifacts, bounded findings, and required review inputs.
+
+## Gate impact
+
+Summarize invalidated and unrechecked gates. Whole-manuscript `PASS` is prohibited while a blocking friction or controlling invalid validity remains.
 
 ## Limitations
 

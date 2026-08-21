@@ -1,0 +1,14 @@
+{
+  "cases": [
+    {
+      "id": "epistemic-return",
+      "record": {"return_id": "R-E", "trigger": "New primary evidence changes the question premise.", "trigger_object": "evidence:E7", "from_state": "ARGUMENT", "target_state": "QUESTION", "target_object": "question:Q1", "target_skill": "formulating-research-question", "reason": "The assumed chronology is false.", "new_evidence": ["E7"], "new_interpretation": [], "invalidated_gates": [{"gate": "Argument gate", "previous_status": "PASS", "validity": "INVALIDATED", "dependency_refs": ["question:Q1", "evidence:E7"]}], "preserved_gates": [{"gate": "Source identity gate", "previous_status": "PASS", "validity": "VALID", "dependency_refs": ["source:S1"]}], "artifacts_to_reopen": ["question:Q1", "argument:A1"], "researcher_decision_required": true, "return_status": "APPROVED", "authorized_by": "researcher:R1", "authorization_ref": "approval:session-1:R-E", "proposal_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}
+    },
+    {
+      "id": "no-op-return",
+      "material_change": false,
+      "return_record": null,
+      "gate_validity": "VALID"
+    }
+  ]
+}

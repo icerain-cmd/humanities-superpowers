@@ -1,7 +1,7 @@
 ---
 name: verifying-before-submission
 description: Use when a humanities manuscript is about to be submitted or resubmitted and requires a final evidence-based gate covering argument, citations, terminology, files, author information, venue requirements, and disclosure.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -213,6 +213,38 @@ The bad invocation mistakes appearance for verified readiness and MUST receive `
 - `reviewing-manuscript` after substantive changes.
 - `responding-to-peer-review` for mismatch between revision letter and manuscript.
 - `using-humanities-superpowers` to route any failed gate.
+
+## Friction triggers
+
+Create completion friction when polished presentation masks unresolved blockers, open friction, changed dependencies, missing decisions, or stale gate validity.
+
+## Friction checks
+
+Reconfirm the exact package, every controlling gate's status and validity, unresolved friction, reopened decisions, ledger conflicts, and post-audit changes.
+
+## Judgment boundary
+
+The agent may report readiness evidence and risks but cannot authorize submission, accept scholarly risk, or convert a missing researcher decision into approval.
+
+## Evidence ledger updates
+
+Confirm that final claims still point to current ledger entries and that contradicting, qualifying, disputed, or insufficient standing has not been hidden.
+
+## Interpretation history impact
+
+Verify that the manuscript uses researcher-accepted versions and that late interpretation changes triggered the required rechecks.
+
+## Possible epistemic return
+
+New knowledge discovered at submission may propose a return to an earlier object. Defective files or stale audits use rollback. A return is not a way to evade `FAIL`.
+
+## Productive refusal
+
+If readiness cannot be demonstrated, identify the exact missing evidence, current checked package range, claims that remain blocked, and next gate to run.
+
+## Gate impact
+
+Any controlling gate with `INVALIDATED` or `REQUIRES_RECHECK` validity, or any unresolved blocking friction, forces submission `FAIL`. Historical `PASS` is not permanent certification.
 
 ## Limitations
 

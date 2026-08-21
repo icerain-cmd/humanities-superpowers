@@ -1,6 +1,6 @@
 from __future__ import annotations
 from pathlib import Path
-import json, os, re, sys
+import json, os, re, subprocess, sys
 from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,6 +41,11 @@ LEVEL3_ROUTER = "using-humanities-superpowers"
 CONTRACT_FIELDS = [
     "**Accepts**", "**Requires**", "**Produces**", "**May produce**",
     "**Fails when**", "**Guarantees**", "**Does not guarantee**"
+]
+V2_SKILL_SECTIONS = [
+    "Friction triggers", "Friction checks", "Judgment boundary",
+    "Evidence ledger updates", "Interpretation history impact",
+    "Possible epistemic return", "Productive refusal", "Gate impact",
 ]
 
 def error(msg: str) -> None: ERRORS.append(msg)
@@ -86,6 +91,9 @@ def validate_skills() -> None:
             minimum = 1800 if name == LEVEL3_ROUTER else 1100
             if len(text.split()) < minimum:
                 warning(f"{path.relative_to(ROOT)}: conformance skill is shorter than {minimum:,} words")
+            for section in V2_SKILL_SECTIONS:
+                if f"## {section}" not in text:
+                    error(f"{path.relative_to(ROOT)}: missing v2 section {section}")
         if "guarantee" in text.lower() and "does not guarantee" not in text.lower() and "cannot guarantee" not in text.lower():
             warning(f"{path.relative_to(ROOT)}: inspect guarantee language")
     if found != EXPECTED_SKILLS:
@@ -98,6 +106,21 @@ def validate_json() -> None:
     for path in [ROOT/'project.json', ROOT/'.codex-plugin/plugin.json', ROOT/'.claude-plugin/plugin.json', ROOT/'.cursor-plugin/plugin.json']:
         try: json.loads(path.read_text(encoding='utf-8'))
         except Exception as exc: error(f"{path.relative_to(ROOT)}: invalid JSON: {exc}")
+    schema_ids: dict[str, str] = {}
+    for path in sorted((ROOT / 'schemas').glob('*.schema.json')):
+        try:
+            data = json.loads(path.read_text(encoding='utf-8'))
+            if data.get('$schema') != 'https://json-schema.org/draft/2020-12/schema':
+                error(f'{path.relative_to(ROOT)}: unexpected JSON Schema version')
+            schema_id = data.get('$id')
+            if not schema_id:
+                error(f'{path.relative_to(ROOT)}: missing schema id')
+            elif schema_id in schema_ids:
+                error(f'{path.relative_to(ROOT)}: duplicate schema id with {schema_ids[schema_id]}')
+            else:
+                schema_ids[schema_id] = path.relative_to(ROOT).as_posix()
+        except Exception as exc:
+            error(f'{path.relative_to(ROOT)}: invalid schema JSON: {exc}')
 
 def validate_links() -> None:
     pattern = re.compile(r"\[[^\]]+\]\((?!https?://|mailto:|#)([^)]+)\)")
@@ -132,6 +155,11 @@ def validate_public_documentation() -> None:
             '[INSTALLATION.md](INSTALLATION.md)',
             'Lee Yong Wook',
             '[MIT License](LICENSE)',
+            'Critical testing invited',
+            'issues/new?template=test_report.yml',
+            'issues/new?template=methodological_criticism.yml',
+            'issues/new?template=installation_problem.yml',
+            '/discussions',
         ],
         'README.ko.md': [
             '13개 핵심 연구 스킬 + 1개 Level 3 라우터',
@@ -140,6 +168,11 @@ def validate_public_documentation() -> None:
             '[INSTALLATION.md](INSTALLATION.md)',
             '이용욱(Lee Yong Wook)',
             '[LICENSE](LICENSE)',
+            '비판적 테스트 참여 요청',
+            'issues/new?template=test_report.yml',
+            'issues/new?template=methodological_criticism.yml',
+            'issues/new?template=installation_problem.yml',
+            '/discussions',
         ],
         'INSTALLATION.md': [
             'Tested:',
@@ -157,7 +190,8 @@ def validate_public_documentation() -> None:
     if not (ROOT / 'LICENSE').exists():
         error('LICENSE is missing')
     citation = (ROOT / 'CITATION.cff').read_text(encoding='utf-8')
-    for phrase in ['version: 1.0.0', 'family-names: "Lee"', 'given-names: "Yong Wook"', 'license: MIT']:
+    project_version = json.loads((ROOT / 'project.json').read_text(encoding='utf-8'))['version']
+    for phrase in [f'version: {project_version}', 'family-names: "Lee"', 'given-names: "Yong Wook"', 'license: MIT']:
         if phrase not in citation:
             error(f'CITATION.cff: missing metadata: {phrase}')
     release_notes = (ROOT / 'docs/release/RELEASE_NOTES_v1.0.0.md').read_text(encoding='utf-8')
@@ -184,7 +218,8 @@ def validate_methodology() -> None:
     required = [
         ROOT/'MANIFESTO.md', ROOT/'docs/PHILOSOPHY.md', ROOT/'docs/DESIGN_PRINCIPLES.md',
         ROOT/'docs/ANTI_PATTERNS.md', ROOT/'docs/QUALITY_GATES.md',
-        ROOT/'docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md'
+        ROOT/'docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md',
+        ROOT/'docs/methodology/HUMANITIES_ENGINEERING.md'
     ]
     for path in required:
         if not path.exists(): error(f'methodology document missing {path.relative_to(ROOT)}')
@@ -211,6 +246,20 @@ def validate_specification() -> None:
     ]
     for path in required:
         if not path.exists(): error(f'specification artifact missing {path.relative_to(ROOT)}')
+    v2_required = [
+        'README.md', 'CORE_SPECIFICATION.md', 'RESEARCH_OBJECT_MODEL.md',
+        'FRICTION_PROTOCOL.md', 'EPISTEMIC_RETURN.md', 'EVIDENCE_LEDGER.md',
+        'JUDGMENT_PROTOCOL.md', 'MIGRATION_FROM_V1.md',
+    ]
+    for name in v2_required:
+        path = ROOT / 'docs/specification/v2' / name
+        if not path.exists(): error(f'v2 specification artifact missing {path.relative_to(ROOT)}')
+    for name in [
+        'evidence-ledger.schema.json', 'judgment-record.schema.json',
+        'interpretation-history.schema.json', 'friction-event.schema.json',
+        'epistemic-return.schema.json', 'gate-report-v2.schema.json',
+    ]:
+        if not (ROOT / 'schemas' / name).exists(): error(f'v2 schema missing schemas/{name}')
     for path in [ROOT/'schemas/research-object.schema.json', ROOT/'schemas/gate-report.schema.json']:
         try:
             data=json.loads(path.read_text(encoding='utf-8'))
@@ -283,6 +332,19 @@ def validate_specification() -> None:
         error(f'schemas/research-session.schema.json: invalid schema JSON: {exc}')
     router_pattern=rf"- skill: {re.escape(LEVEL3_ROUTER)}\n    current_level: 3\n    target_level: 3"
     if not re.search(router_pattern, registry): error('conformance registry does not mark router at Level 3')
+    v2_core = (ROOT/'docs/specification/v2/CORE_SPECIFICATION.md').read_text(encoding='utf-8')
+    for value in ['PASS', 'CONDITIONAL PASS', 'FAIL', 'verified-primary', 'unknown', 'AI recommendation']:
+        if value not in v2_core: error(f'v2 core specification missing preserved semantic: {value}')
+    friction_schema = json.loads((ROOT/'schemas/friction-event.schema.json').read_text(encoding='utf-8'))
+    gate_schema = json.loads((ROOT/'schemas/gate-report.schema.json').read_text(encoding='utf-8'))
+    if gate_schema['properties']['status'].get('enum') != ['PASS', 'CONDITIONAL PASS', 'FAIL']:
+        error('gate status vocabulary changed')
+    friction_types = friction_schema['properties']['friction_type'].get('enum', [])
+    for value in ['EVIDENCE_CONFLICT', 'RIVAL_INTERPRETATION', 'AGENT_DISAGREEMENT', 'COMPLETION_RISK']:
+        if value not in friction_types: error(f'friction schema missing {value}')
+    result = subprocess.run([sys.executable, str(ROOT/'scripts/run_v2_tests.py')], cwd=ROOT, capture_output=True, text=True)
+    if result.returncode:
+        error('v2 conformance runner failed: ' + (result.stdout + result.stderr).strip())
 
 
 def validate_integration() -> None:

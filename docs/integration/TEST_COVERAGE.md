@@ -1,5 +1,9 @@
 # Test Coverage Report
 
+## Fricturn cases
+
+The v2 deterministic suite contains twelve cases across `tests/friction`, `tests/judgment`, `tests/return`, and `tests/regression`. The existing eight integrated scenarios and all v1 conformance fixtures remain active.
+
 ## Scope
 
 The repository contains three layers of deterministic tests.

@@ -74,3 +74,9 @@ A project may end with:
 - `SUBMISSION + FAIL`: submission should not proceed until blocking defects are repaired.
 
 No state authorizes claims of truth, originality, or publication success.
+
+## Epistemic return
+
+Epistemic return is not an additional state. It is a record of a knowledge-driven transition from a later state to an earlier object. The router uses the existing decisions: `RESEARCHER_DECISION_REQUIRED` while authorization is absent, then `PROCEED` to the approved target. Defect repair remains `ROLLBACK`.
+
+A return records its trigger, target object and skill, prior versions, affected and preserved gate validity, reopened artifacts, and human authorization. New evidence that leaves the earlier object materially unchanged does not force a return.

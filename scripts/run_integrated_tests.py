@@ -1,6 +1,6 @@
 from __future__ import annotations
 from pathlib import Path
-import json, sys
+import json, subprocess, sys
 
 ROOT=Path(__file__).resolve().parents[1]
 ALLOWED_DECISIONS={"PROCEED","PAUSE","ROLLBACK","RESEARCHER_DECISION_REQUIRED","STOP"}
@@ -48,6 +48,9 @@ def main()->int:
     for item in session.get('completed_skills',[]):
         if 'gate_status' not in item: errors.append('completed skill missing gate_status')
     if not isinstance(session.get('next_valid_action'),dict): errors.append('next_valid_action must be an object')
+    v2 = subprocess.run([sys.executable, str(ROOT/'scripts/run_v2_tests.py')], cwd=ROOT, capture_output=True, text=True)
+    if v2.returncode:
+        errors.append('v2 conformance runner failed: ' + (v2.stdout + v2.stderr).strip())
     if errors:
         for e in errors: print('ERROR:',e)
         print(f'FAIL: {len(errors)} integrated conformance error(s)')
@@ -57,5 +60,6 @@ def main()->int:
         f'{len(seen_skills)} SKILL.md files (13 core research skills + 1 router), '
         f'{len(seen_decisions)} decisions'
     )
+    print(v2.stdout.strip())
     return 0
 if __name__=='__main__': raise SystemExit(main())

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/evidence-ledger.schema.json",
+  "title": "Humanities Superpowers Evidence Ledger Entry",
+  "type": "object",
+  "required": ["ledger_entry_id", "claim_id", "evidence_id", "source_id", "verification_state", "evidential_standing", "limitations", "counterevidence_refs", "provenance"],
+  "properties": {
+    "ledger_entry_id": {"type": "string", "minLength": 1},
+    "claim_id": {"type": "string", "minLength": 1},
+    "evidence_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "verification_state": {"$ref": "#/$defs/verification_state"},
+    "evidential_standing": {"enum": ["SUPPORTS", "QUALIFIES", "CONTRADICTS", "INSUFFICIENT", "CONTEXT_ONLY", "DISPUTED"]},
+    "verification_method": {"type": ["string", "null"]},
+    "locator": {"type": ["string", "null"]},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "counterevidence_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "checked_at": {"type": ["string", "null"], "format": "date-time"},
+    "checked_by": {"type": ["string", "null"]},
+    "verification_event_ref": {"type": ["string", "null"]},
+    "source_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "provenance": {"type": ["string", "object"]}
+  },
+  "$defs": {
+    "verification_state": {"enum": ["verified-primary", "verified-secondary", "researcher-supplied", "inference", "hypothesis", "unverified", "unknown", "disputed"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"verification_state": {"enum": ["verified-primary", "verified-secondary"]}}, "required": ["verification_state"]},
+      "then": {
+        "required": ["verification_method", "locator", "checked_at", "checked_by", "verification_event_ref", "source_digest"],
+        "properties": {
+          "verification_method": {"type": "string", "minLength": 1},
+          "locator": {"type": "string", "minLength": 1},
+          "checked_at": {"type": "string", "format": "date-time"},
+          "checked_by": {"type": "string", "minLength": 1},
+          "verification_event_ref": {"type": "string", "minLength": 1},
+          "source_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

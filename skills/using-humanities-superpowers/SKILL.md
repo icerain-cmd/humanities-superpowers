@@ -1,7 +1,7 @@
 ---
 name: using-humanities-superpowers
 description: Use when an agent must diagnose research state, select and sequence Humanities Superpowers skills, handle failed gates, and preserve a resumable humanities research workflow.
-version: 1.0.0
+version: 2.0.0
 language: en
 license: MIT
 ---
@@ -50,7 +50,8 @@ Do not use this skill for a simple transformation that requires no scholarly dia
 - a prerequisite and input check;
 - a routing decision: `PROCEED`, `PAUSE`, `ROLLBACK`, `RESEARCHER_DECISION_REQUIRED`, or `STOP`;
 - a session record suitable for resuming work;
-- a gate-aware handoff to the next valid skill.
+- a gate-aware handoff to the next valid skill;
+- open friction, evidence conflict, judgment, gate-validity, and possible epistemic-return summaries.
 
 **May produce**
 
@@ -114,9 +115,9 @@ Use the following primary states:
 
 A state label describes the present workflow condition. It does not certify quality. A manuscript can be in `SUBMISSION` state and still receive `FAIL`.
 
-### Iteration is a transition pattern, not a quality state
+### Epistemic return is a transition record, not a quality state
 
-Humanities inquiry often moves repeatedly between question, source, interpretation, and argument. Do not force this movement into a false one-way pipeline. Record an `ITERATIVE_RETURN` transition whenever later work materially changes an earlier object, while retaining the primary state that best describes the present artifact. Typical returns include:
+Humanities inquiry often moves repeatedly between question, source, interpretation, and argument. Do not force this movement into a false one-way pipeline. Create an `EpistemicReturnRecord` whenever new knowledge materially changes an earlier object, while retaining the primary state that best describes the present artifact. Typical returns include:
 
 ```text
 SOURCES → QUESTION
@@ -125,7 +126,7 @@ ARGUMENT → INTERPRETATION
 REVIEW → ARGUMENT, SCOPE, or SOURCES
 ```
 
-Every iterative return MUST record the later finding that caused the return, the object being revised, and whether the previous gate remains valid. Iteration is not permission to bypass gates or erase provenance.
+Every epistemic return MUST record its trigger, target object and skill, invalidated and preserved gates, reopened artifacts, and required authorization. It is not a new routing decision: use `RESEARCHER_DECISION_REQUIRED` while approval is absent and `PROCEED` to an approved target. Iteration is not permission to bypass gates or erase provenance.
 
 ## Procedure
 
@@ -256,6 +257,16 @@ Examples:
 
 Record the causal link between failed gate and rollback target.
 
+### 8a. Distinguish rollback from epistemic return
+
+Use `ROLLBACK` for defect repair: invalid citation, missing prerequisite, failed claim–source fit, or scope violation. When new evidence, a rival interpretation, or a revised concept materially changes an earlier premise, create an `EpistemicReturnRecord`. Name the target object and skill, preserve prior versions, and invalidate only gates that reference the changed dependency. New evidence that does not materially change an object is a ledger update or recheck, not an automatic return.
+
+### 8b. Inspect friction and gate validity
+
+Before routing, list open friction events, evidence conflicts, and gates whose validity is `INVALIDATED` or `REQUIRES_RECHECK`. A historical `PASS` with invalid validity cannot authorize progression. Do not harmonize conflict merely to restore a smooth route.
+
+Apply the minimum-sufficient-record rule: create Fricturn objects only for material scholarly consequences, attributable decisions, or dependency validity. Do not create friction, judgment, or return records for spelling, formatting, stylistic preference, routine source addition, or harmless restatement alone. Prefer one narrowly targeted record over duplicated records across the route.
+
 ### 9. Researcher decision points
 
 Return `RESEARCHER_DECISION_REQUIRED` when the system cannot legitimately choose among defensible alternatives, including:
@@ -284,7 +295,10 @@ After each routing decision or substantive gate, update a `research-session.md` 
 - deferred tasks;
 - next valid action;
 - rollback history;
-- completion claim restrictions.
+- completion claim restrictions;
+- open and resolved friction references;
+- judgment-log, evidence-ledger, and interpretation-history references;
+- epistemic-return history, invalidated gates, and reopened objects.
 
 The session record is workflow memory, not factual evidence. It must link to or name the underlying artifacts instead of replacing them.
 
@@ -373,6 +387,14 @@ Use this format before execution:
 **Conditions carried forward:**
 **Completion claim restrictions:**
 
+## Fricturn state
+
+**Open frictions:**
+**Evidence conflicts:**
+**Researcher decisions required:**
+**Gate validity:** VALID | INVALIDATED | REQUIRES_RECHECK
+**Possible epistemic returns:**
+
 ## Next valid action
 
 **Skill:**
@@ -432,6 +454,38 @@ The orchestration gate evaluates routing integrity, not manuscript quality.
 - `PASS` — state, prerequisites, route, and next action are explicit; no blocking dependency is bypassed.
 - `CONDITIONAL PASS` — routing can proceed with named conditions that do not invalidate the next operation.
 - `FAIL` — the route depends on fabrication, missing blocking evidence, an unresolved researcher decision, or a bypassed failed gate.
+
+## Friction triggers
+
+Trigger friction when a route would smooth over evidence conflict, rival interpretation, agent or researcher disagreement, unsupported promotion, or completion risk. Stylistic preference alone is not scholarly friction.
+
+## Friction checks
+
+For each event confirm a target object, trigger, material description, blocking status, categorical severity, required action, and resolution status. Preserve unresolved conflict in the session.
+
+## Judgment boundary
+
+Keep agent recommendations separate from `researcher_decision`. Only attributable human authorization may accept a scholarly choice or risk. Route defensible alternatives to `RESEARCHER_DECISION_REQUIRED`.
+
+## Evidence ledger updates
+
+Carry ledger references and distinguish `verification_state` from `evidential_standing`. A verified source may be `INSUFFICIENT` or `CONTRADICTS`; source counts do not decide a gate.
+
+## Interpretation history impact
+
+Append interpretation versions and preserve superseded readings. Agent-generated readings remain `PROPOSED` until researcher action.
+
+## Possible epistemic return
+
+Propose a bounded return when new knowledge materially changes an earlier object. Name invalidated and preserved gates, reopened artifacts, target skill, and authorization requirement. Do not mislabel defect repair as epistemic return.
+
+## Productive refusal
+
+When routing cannot proceed, state the reason, missing evidence, bounded work still possible, and next verification action. Do not manufacture a decision or completion state.
+
+## Gate impact
+
+Gate `status` remains `PASS`, `CONDITIONAL PASS`, or `FAIL`; current `validity` is tracked separately as `VALID`, `INVALIDATED`, or `REQUIRES_RECHECK`. Submission may not proceed on invalidated or unrechecked controlling gates.
 
 ## Limitations
 

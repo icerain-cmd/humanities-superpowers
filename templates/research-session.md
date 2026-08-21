@@ -16,8 +16,8 @@ completion_claim_restrictions: []
 
 ## Completed skills
 
-| Skill | Gate status | Evidence checked | Output artifact | Date |
-|---|---|---|---|---|
+| Skill | Gate status | Current validity | Dependency or gate-report refs | Evidence checked | Output artifact | Date |
+|---|---|---|---|---|---|---|
 
 ## Conditions carried forward
 
@@ -54,3 +54,21 @@ completion_claim_restrictions: []
 **Expected output:**
 
 **Controlling gate:**
+
+## Fricturn records
+
+**Open frictions:**
+
+**Resolved frictions:**
+
+**Evidence ledger refs:**
+
+**Judgment log refs:**
+
+**Interpretation history refs:**
+
+**Epistemic return history:**
+
+**Invalidated gates:**
+
+**Reopened objects:**

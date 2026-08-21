@@ -7,13 +7,15 @@
 > **Use AI without surrendering scholarly judgment.**  
 > Not an AI paper writer. A scholarly judgment scaffold.
 
-Humanities Superpowers helps researchers slow down the moments where fluent AI output is most dangerous: framing a question, defining concepts, connecting claims to evidence, testing objections, checking citations, and deciding whether a manuscript is ready to submit.
+Humanities Superpowers helps researchers slow down the moments where fluent AI output is most dangerous: framing a question, defining concepts, connecting claims to evidence, testing objections, checking citations, revising judgments, and deciding whether a manuscript is ready to submit.
 
 It provides 13 core research skills and one Level 3 router that selects the smallest valid route through them. It supports scholarly judgment; it does not replace interpretation, source verification, ethics, or authorship, and it does not promise a publication-ready manuscript.
 
+Version 2.0, **Fricturn**, makes interpretive friction, traceable scholarly judgment, and epistemic return explicit. AI provides fluency; humanities provides friction. This addition does not replace the project's primary identity: **Use AI without surrendering scholarly judgment.**
+
 ## Critical testing invited
 
-The initial goal is to recruit **10 humanities researchers** willing to test one research skill on a real project and report where the framework is too rigid, too technical, or methodologically weak.
+The initial goal is to recruit **10 humanities researchers** willing to test one research skill on a real project and report where the framework is too rigid, too technical, or methodologically weak. For Fricturn, criticism is especially valuable where the protocol misidentifies scholarly friction, over-formalizes ordinary interpretation, or obscures rather than preserves human judgment.
 
 - [Submit a test report](https://github.com/icerain-cmd/humanities-superpowers/issues/new?template=test_report.yml)
 - [Offer methodological criticism](https://github.com/icerain-cmd/humanities-superpowers/issues/new?template=methodological_criticism.yml)
@@ -61,6 +63,8 @@ The framework therefore organizes work around three commitments:
 - **Research before prose**
 - **Evidence over confidence**
 - **Completion must be demonstrated**
+- **Conflict must not be silently harmonized**
+- **Changed knowledge may reopen earlier inquiry**
 
 Read the [methodology white paper](docs/white-paper/HUMANITIES_SUPERPOWERS_WHITE_PAPER.md), [project philosophy](docs/PHILOSOPHY.md), and [design principles](docs/DESIGN_PRINCIPLES.md).
 
@@ -118,6 +122,14 @@ AI may organize, compare, test, and flag. The researcher remains responsible for
 
 - [Argument-map example](examples/argument-map-example/README.md)
 - [Terminology-audit example](examples/terminology-audit-example/README.md)
+- [Conflicting evidence](examples/conflicting-evidence-example/README.md)
+- [Rival interpretation](examples/rival-interpretation-example/README.md)
+- [Epistemic return](examples/epistemic-return-example/README.md)
+- [Judgment history](examples/judgment-history-example/README.md)
+
+## Fricturn protocol
+
+Fricturn distinguishes source verification from evidential standing, stores agent recommendations separately from researcher decisions, preserves interpretation history, and tracks whether a historical gate result remains valid after dependencies change. See the [v2 specification](docs/specification/v2/README.md) and [Humanities Engineering](docs/methodology/HUMANITIES_ENGINEERING.md).
 
 ## What this project does not claim
 
