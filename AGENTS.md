@@ -2,7 +2,7 @@
 
 For humanities research, scholarly argument, close reading, literature review, citation work, manuscript review, or reviewer response:
 
-1. Inspect `skills/using-humanities-superpowers/SKILL.md`.
+1. Inspect the router at `.agents/skills/using-humanities-superpowers/SKILL.md` (Codex), `.claude/skills/using-humanities-superpowers/SKILL.md` (Claude Code), or `skills/using-humanities-superpowers/SKILL.md` (Cursor and direct clone use). The framework's `templates/` and `schemas/` directories are referenced from the project root.
 2. Select skills by their `description`; do not load every skill without need.
 3. Read the full selected `SKILL.md` before acting.
 4. Preserve the distinction among verified fact, source-supported interpretation, inference, hypothesis, and unknown.

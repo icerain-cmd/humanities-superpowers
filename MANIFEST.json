@@ -100,8 +100,8 @@
     },
     {
       "path": "AGENTS.md",
-      "sha256": "d5f25c5a9a7298462ce019924603976d884b07f6ae1d1dc2ae4ca1ab3f4905d5",
-      "bytes": 963
+      "sha256": "36cc88981f9d4e28c03fe252e00d90267bdd1d404c22e8402b0bbc7a6ed99fca",
+      "bytes": 1238
     },
     {
       "path": "CHANGELOG.md",
@@ -115,8 +115,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "d5f25c5a9a7298462ce019924603976d884b07f6ae1d1dc2ae4ca1ab3f4905d5",
-      "bytes": 963
+      "sha256": "d09b93b80d9df61881c47c893079d92f7222a3ac5b407cfaf39a7e1f457b22bd",
+      "bytes": 1238
     },
     {
       "path": "CODE_OF_CONDUCT.md",
@@ -135,8 +135,8 @@
     },
     {
       "path": "INSTALLATION.md",
-      "sha256": "ed6da5ffceaf30e2778e05b3e01c8b4e493d0e1e3ab72a6b7eba83c5f3ac8714",
-      "bytes": 5196
+      "sha256": "988ef61f4e73cbe16f89b11199d80c4ed4073960e044ebc6f7584e7d3fab6384",
+      "bytes": 8942
     },
     {
       "path": "LICENSE",

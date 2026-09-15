@@ -24,6 +24,8 @@ Use this project-local layout:
 ```text
 project/
 ├── CLAUDE.md
+├── templates/          # runtime artifacts referenced by the skills
+├── schemas/
 └── .claude/
     └── skills/
         ├── using-humanities-superpowers/
@@ -34,10 +36,19 @@ project/
 Install from a local clone:
 
 ```bash
-mkdir -p .claude/skills
+mkdir -p .claude/skills templates schemas
 cp -R /EXAMPLE/PATH/humanities-superpowers/skills/* .claude/skills/
-cp /EXAMPLE/PATH/humanities-superpowers/CLAUDE.md ./CLAUDE.md
+cp -R /EXAMPLE/PATH/humanities-superpowers/templates/* templates/
+cp -R /EXAMPLE/PATH/humanities-superpowers/schemas/* schemas/
+# Never overwrite an existing instruction file.
+if [ -e CLAUDE.md ]; then
+  echo "CLAUDE.md already exists: append the Humanities Superpowers block instead (see 'Existing instruction files')."
+else
+  cp /EXAMPLE/PATH/humanities-superpowers/CLAUDE.md ./CLAUDE.md
+fi
 ```
+
+Skills name the framework's `templates/` and `schemas/` artifacts by project-root-relative path, so both directories must be installed alongside the skills. They are small guidance aids and schemas, not executable tooling.
 
 For a user-level installation, copy the skill directories into the current Claude Code user skills directory. Consult the current Claude Code documentation before doing so; global paths can change. Keep `CLAUDE.md` in a project root when project-level routing rules are desired.
 
@@ -48,6 +59,8 @@ Use this project-local layout:
 ```text
 project/
 ├── AGENTS.md
+├── templates/          # runtime artifacts referenced by the skills
+├── schemas/
 └── .agents/
     └── skills/
         ├── using-humanities-superpowers/
@@ -58,10 +71,19 @@ project/
 Install from a local clone:
 
 ```bash
-mkdir -p .agents/skills
+mkdir -p .agents/skills templates schemas
 cp -R /EXAMPLE/PATH/humanities-superpowers/skills/* .agents/skills/
-cp /EXAMPLE/PATH/humanities-superpowers/AGENTS.md ./AGENTS.md
+cp -R /EXAMPLE/PATH/humanities-superpowers/templates/* templates/
+cp -R /EXAMPLE/PATH/humanities-superpowers/schemas/* schemas/
+# Never overwrite an existing instruction file.
+if [ -e AGENTS.md ]; then
+  echo "AGENTS.md already exists: append the Humanities Superpowers block instead (see 'Existing instruction files')."
+else
+  cp /EXAMPLE/PATH/humanities-superpowers/AGENTS.md ./AGENTS.md
+fi
 ```
+
+Skills name the framework's `templates/` and `schemas/` artifacts by project-root-relative path, so both directories must be installed alongside the skills.
 
 Codex reads `AGENTS.md` for project-level instructions. For a user-level installation, use the current Codex user-skills location rather than guessing a global path.
 
@@ -81,16 +103,42 @@ project/
 │   ├── using-humanities-superpowers/
 │   │   └── SKILL.md
 │   └── ...13 core skill directories...
+├── templates/
+├── schemas/
 └── .cursor/
     └── rules/
         └── humanities-superpowers.mdc
 ```
 
-Copy the rule and `skills/` directory into the target project, then verify that your Cursor version loads the rule and can open the router. This route has not yet been independently verified in a target Cursor environment.
+```bash
+mkdir -p skills templates schemas .cursor/rules
+cp -R /EXAMPLE/PATH/humanities-superpowers/skills/* skills/
+cp -R /EXAMPLE/PATH/humanities-superpowers/templates/* templates/
+cp -R /EXAMPLE/PATH/humanities-superpowers/schemas/* schemas/
+cp /EXAMPLE/PATH/humanities-superpowers/.cursor/rules/humanities-superpowers.mdc .cursor/rules/
+```
+
+Copy the rule, the `skills/` directory, and the artifacts the skills reference, then verify that your Cursor version loads the rule and can open the router. This route has not yet been independently verified in a target Cursor environment.
+
+## Existing instruction files
+
+`AGENTS.md` and `CLAUDE.md` are generic project-instruction names. A project may already contain one, and replacing it would destroy the researcher's own instructions. The install commands above therefore copy these files only when they are absent.
+
+```text
+no existing file -> create it from the framework
+existing file    -> never overwrite
+                 -> append only the Humanities Superpowers block
+```
+
+The framework's `AGENTS.md` and `CLAUDE.md` carry the same eight harness-neutral rules, so an existing file can be extended instead of replaced: add those rules after your own instructions, and adjust the router path to the layout you installed.
+
+This release deliberately ships no automatic merge tool. Merge by hand and keep your own instructions first. Skill directories, by contrast, are framework-owned: copying the framework's skills over an earlier copy is the intended upgrade path, and only the two generic instruction files need the guard.
 
 ## Avoid nested installation
 
-Copy the *contents* of the repository's `skills/` directory into the harness skill directory. Do not create `skills/skills/` accidentally. After installation, paths should end in `<skill-name>/SKILL.md`, not `skills/<skill-name>/skills/SKILL.md`.
+Copy the *contents* of the repository's `skills/`, `templates/`, and `schemas/` directories into the target directories. Do not create `skills/skills/`, `templates/templates/`, or `schemas/schemas/` accidentally. After installation, paths should end in `<skill-name>/SKILL.md`, not `skills/<skill-name>/skills/SKILL.md`.
+
+`cp -R source/templates templates` copies the directory *into* an existing `templates/`. Create the target directory first and copy its contents, as the commands above do.
 
 ## Verify the installed files
 
@@ -102,6 +150,14 @@ find .claude/skills -type f -name SKILL.md | wc -l
 ```
 
 For Codex, replace `.claude/skills` with `.agents/skills`. The expected result is 14 `SKILL.md` files: 13 core research skills and the `using-humanities-superpowers` router.
+
+Then confirm that the artifacts the skills reference are present in the project. Any missing path is reported as a line beginning with `MISSING`:
+
+```bash
+grep -rho '`\(templates\|schemas\)/[A-Za-z0-9._/-]*`' .agents/skills | tr -d '`' | sort -u | while read -r artifact; do [ -e "$artifact" ] || echo "MISSING: $artifact"; done
+```
+
+Substitute `.claude/skills` or `skills` for `.agents/skills` when you installed one of the other layouts.
 
 PowerShell users can count them with:
 
@@ -142,11 +198,14 @@ python3 -m pip install -r requirements-validation.txt
 python3 scripts/validate_repository.py
 python3 scripts/run_integrated_tests.py
 python3 scripts/validate_public_release.py
+python3 scripts/check_installation.py
 ```
 
 On Windows, use `python` instead of `python3` if that is the available launcher.
 
 The worked example intentionally returns `FAIL` when its source set is unverified. That result must not be changed to make validation appear successful.
+
+`validate_repository.py` proves the repository is internally consistent. `check_installation.py` proves something different: it executes the documented commands in throwaway projects and fails when an installed skill or instruction file points at a path the procedure never copies. Repository validation passing is not by itself installation validation.
 
 ## Direct repository use
 
