@@ -10,6 +10,7 @@ into a project whose skills point at directories that were never copied.
 """
 from __future__ import annotations
 
+import json
 import re
 import shutil
 import subprocess
@@ -41,7 +42,7 @@ HARNESSES = {
 }
 
 SENTINEL = "PRE-EXISTING PROJECT INSTRUCTIONS - MUST SURVIVE INSTALL"
-ARTIFACT_REFERENCE = re.compile(r"`((?:templates|schemas)/[A-Za-z0-9._/-]+)`")
+ARTIFACT_REFERENCE = re.compile(r"`((?:templates|schemas|vendor|docs)/[A-Za-z0-9._/-]+)`")
 SKILL_REFERENCE = re.compile(r"`?((?:\.agents/skills|\.claude/skills|skills)/[a-z0-9-]+/SKILL\.md)`?")
 MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\((?!https?://|mailto:|#)([^)]+)\)")
 
@@ -103,6 +104,16 @@ def check_fresh_project(name: str, spec: dict, errors: list[str]) -> None:
         if not run_documented_install(name, project, errors):
             return
 
+        provenance = project / "vendor/obra-superpowers/PROVENANCE.json"
+        if not provenance.is_file():
+            errors.append(f"[{name}] the vendored engineering provenance was not installed")
+        else:
+            imported = json.loads(provenance.read_text(encoding="utf-8")).get("imported", {})
+            if not imported:
+                errors.append(f"[{name}] installed provenance records no engineering skills")
+            for skill in sorted(imported):
+                if not (project / "vendor/obra-superpowers/skills" / skill / "SKILL.md").is_file():
+                    errors.append(f"[{name}] installed engineering skill missing: {skill}")
         skill_dir = project / spec["skills"]
         installed = sorted(skill_dir.glob("*/SKILL.md"))
         if len(installed) != EXPECTED_SKILLS:

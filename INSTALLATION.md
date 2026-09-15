@@ -36,10 +36,12 @@ project/
 Install from a local clone:
 
 ```bash
-mkdir -p .claude/skills templates schemas
+mkdir -p .claude/skills templates schemas vendor/obra-superpowers docs/specification/dual-core
 cp -R /EXAMPLE/PATH/humanities-superpowers/skills/* .claude/skills/
 cp -R /EXAMPLE/PATH/humanities-superpowers/templates/* templates/
 cp -R /EXAMPLE/PATH/humanities-superpowers/schemas/* schemas/
+cp -R /EXAMPLE/PATH/humanities-superpowers/vendor/obra-superpowers/* vendor/obra-superpowers/
+cp -R /EXAMPLE/PATH/humanities-superpowers/docs/specification/dual-core/* docs/specification/dual-core/
 # Never overwrite an existing instruction file.
 if [ -e CLAUDE.md ]; then
   echo "CLAUDE.md already exists: append the Humanities Superpowers block instead (see 'Existing instruction files')."
@@ -48,7 +50,7 @@ else
 fi
 ```
 
-Skills name the framework's `templates/` and `schemas/` artifacts by project-root-relative path, so both directories must be installed alongside the skills. They are small guidance aids and schemas, not executable tooling.
+Skills and the router name the framework's `templates/`, `schemas/`, `vendor/obra-superpowers/`, and `docs/specification/dual-core/` artifacts by project-root-relative path, so those directories must be installed at the same relative locations. They are guidance text, schemas, a vendored third-party skill set, and its provenance record — not executable tooling.
 
 For a user-level installation, copy the skill directories into the current Claude Code user skills directory. Consult the current Claude Code documentation before doing so; global paths can change. Keep `CLAUDE.md` in a project root when project-level routing rules are desired.
 
@@ -71,10 +73,12 @@ project/
 Install from a local clone:
 
 ```bash
-mkdir -p .agents/skills templates schemas
+mkdir -p .agents/skills templates schemas vendor/obra-superpowers docs/specification/dual-core
 cp -R /EXAMPLE/PATH/humanities-superpowers/skills/* .agents/skills/
 cp -R /EXAMPLE/PATH/humanities-superpowers/templates/* templates/
 cp -R /EXAMPLE/PATH/humanities-superpowers/schemas/* schemas/
+cp -R /EXAMPLE/PATH/humanities-superpowers/vendor/obra-superpowers/* vendor/obra-superpowers/
+cp -R /EXAMPLE/PATH/humanities-superpowers/docs/specification/dual-core/* docs/specification/dual-core/
 # Never overwrite an existing instruction file.
 if [ -e AGENTS.md ]; then
   echo "AGENTS.md already exists: append the Humanities Superpowers block instead (see 'Existing instruction files')."
@@ -83,7 +87,7 @@ else
 fi
 ```
 
-Skills name the framework's `templates/` and `schemas/` artifacts by project-root-relative path, so both directories must be installed alongside the skills.
+Skills and the router name the framework's `templates/`, `schemas/`, `vendor/obra-superpowers/`, and `docs/specification/dual-core/` artifacts by project-root-relative path, so those directories must be installed at the same relative locations.
 
 Codex reads `AGENTS.md` for project-level instructions. For a user-level installation, use the current Codex user-skills location rather than guessing a global path.
 
@@ -111,14 +115,16 @@ project/
 ```
 
 ```bash
-mkdir -p skills templates schemas .cursor/rules
+mkdir -p skills templates schemas vendor/obra-superpowers docs/specification/dual-core .cursor/rules
 cp -R /EXAMPLE/PATH/humanities-superpowers/skills/* skills/
 cp -R /EXAMPLE/PATH/humanities-superpowers/templates/* templates/
 cp -R /EXAMPLE/PATH/humanities-superpowers/schemas/* schemas/
+cp -R /EXAMPLE/PATH/humanities-superpowers/vendor/obra-superpowers/* vendor/obra-superpowers/
+cp -R /EXAMPLE/PATH/humanities-superpowers/docs/specification/dual-core/* docs/specification/dual-core/
 cp /EXAMPLE/PATH/humanities-superpowers/.cursor/rules/humanities-superpowers.mdc .cursor/rules/
 ```
 
-Copy the rule, the `skills/` directory, and the artifacts the skills reference, then verify that your Cursor version loads the rule and can open the router. This route has not yet been independently verified in a target Cursor environment.
+Copy the rule, the `skills/` directory, the vendored engineering core, and the artifacts the skills reference, then verify that your Cursor version loads the rule and can open the router. This route has not yet been independently verified in a target Cursor environment.
 
 ## Existing instruction files
 
@@ -136,7 +142,7 @@ This release deliberately ships no automatic merge tool. Merge by hand and keep 
 
 ## Avoid nested installation
 
-Copy the *contents* of the repository's `skills/`, `templates/`, and `schemas/` directories into the target directories. Do not create `skills/skills/`, `templates/templates/`, or `schemas/schemas/` accidentally. After installation, paths should end in `<skill-name>/SKILL.md`, not `skills/<skill-name>/skills/SKILL.md`.
+Copy the *contents* of the repository's `skills/`, `templates/`, `schemas/`, `vendor/obra-superpowers/`, and `docs/specification/dual-core/` directories into the target directories. Do not create `skills/skills/`, `templates/templates/`, `schemas/schemas/`, or `vendor/obra-superpowers/obra-superpowers/` accidentally. After installation, paths should end in `<skill-name>/SKILL.md`, not `skills/<skill-name>/skills/SKILL.md`.
 
 `cp -R source/templates templates` copies the directory *into* an existing `templates/`. Create the target directory first and copy its contents, as the commands above do.
 
@@ -151,13 +157,15 @@ find .claude/skills -type f -name SKILL.md | wc -l
 
 For Codex, replace `.claude/skills` with `.agents/skills`. The expected result is 14 `SKILL.md` files: 13 core research skills and the `using-humanities-superpowers` router.
 
-Then confirm that the artifacts the skills reference are present in the project. Any missing path is reported as a line beginning with `MISSING`:
+Then confirm that the artifacts the skills and the router reference are present in the project. Any missing path is reported as a line beginning with `MISSING`:
 
 ```bash
-grep -rho '`\(templates\|schemas\)/[A-Za-z0-9._/-]*`' .agents/skills | tr -d '`' | sort -u | while read -r artifact; do [ -e "$artifact" ] || echo "MISSING: $artifact"; done
+grep -rho '`\(templates\|schemas\|vendor\)/[A-Za-z0-9._/-]*`' .agents/skills | tr -d '`' | sort -u | while read -r artifact; do [ -e "$artifact" ] || echo "MISSING: $artifact"; done
 ```
 
 Substitute `.claude/skills` or `skills` for `.agents/skills` when you installed one of the other layouts.
+
+The installed project should contain the 14 Humanities skills, the vendored engineering core under `vendor/obra-superpowers/skills/`, its `PROVENANCE.json`, and the dual-core specification under `docs/specification/dual-core/`. The vendored files are an unmodified third-party import; edit them only in the upstream project, never in a installed project.
 
 These verification commands, like the install commands above, need a POSIX shell (Linux, macOS, WSL, or Git Bash on Windows). On native Windows PowerShell, compare the names the skills reference against the files in `templates/` and `schemas/`, or run `python3 scripts/check_installation.py` from the framework clone inside WSL or Git Bash.
 

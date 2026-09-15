@@ -350,7 +350,7 @@ Rules:
 - Name the specific engineering skills a route needs — `writing-plans`, `executing-plans`, `test-driven-development`, `systematic-debugging`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `finishing-a-development-branch` — rather than the core as a whole.
 - In `HYBRID`, a change to how research artifacts are produced (citation checking, evidence extraction, terminology tables, schema validation, gate automation) may be a material dependency change. Re-run the affected humanities check and mark affected gates `INVALIDATED` or `REQUIRES_RECHECK`; a code change alone never keeps a research gate `VALID`.
 
-See [Dual-Core Router](../../docs/specification/dual-core/DUAL_CORE_ROUTER.md).
+See `docs/specification/dual-core/DUAL_CORE_ROUTER.md` (project-root relative in every documented install, and in this repository).
 
 ## Risk calibration
 
@@ -366,7 +366,7 @@ See [Dual-Core Router](../../docs/specification/dual-core/DUAL_CORE_ROUTER.md).
 
 Choose by property — reversibility, blast radius, privilege boundary, persistence, contract surface, environment, failure cost, uncertainty — not by keyword. Do not classify everything `STRICT`: ceremony without risk is a defect, and `QUICK` reduces ceremony but never evidence. If a required step genuinely does not apply, record `NOT_APPLICABLE` with the reason instead of inventing work.
 
-See [Risk calibration](../../docs/specification/dual-core/RISK_ROUTER.md).
+See `docs/specification/dual-core/RISK_ROUTER.md`.
 
 ## Autonomous worker and handoff
 
@@ -374,7 +374,7 @@ Unattended work reports exactly one of `WORKING`, `WAITING_INPUT`, `WAITING_PRIV
 
 Handoffs use a `WORK_PACKAGE` (objective, scope, constraints, risk level, acceptance criteria, required verification, forbidden actions) and an `EVIDENCE_PACKAGE` (files changed, tests run, test results, unresolved items, deviations, completion status). Roles are `PLANNER`, `IMPLEMENTER`, `REVIEWER`, and `ESCALATION_REVIEWER`; model names belong only in an operating profile, never in the contract. The producer of work is not its approver.
 
-See [Autonomous worker protocol](../../docs/specification/dual-core/AUTONOMOUS_WORKER.md) and [Agent orchestration](../../docs/specification/dual-core/AGENT_ORCHESTRATION.md).
+See `docs/specification/dual-core/AUTONOMOUS_WORKER.md` and `docs/specification/dual-core/AGENT_ORCHESTRATION.md`.
 
 ## Stop signals
 

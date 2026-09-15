@@ -115,6 +115,21 @@ AI는 자료를 정리하고 비교하며 논증을 점검하고 위험을 표�
 
 Fricturn은 출처 검증과 근거적 지위를 분리하고, AI 추천과 연구자 결정을 별도로 기록하며, 해석 이력과 변경된 의존성에 따른 gate 유효성을 보존합니다. [v2 명세](docs/specification/v2/README.md)와 [Humanities Engineering](docs/methodology/HUMANITIES_ENGINEERING.md)을 참조하십시오.
 
+## Dual-Core: 인문학 코어 + 엔지니어링 코어
+
+아직 릴리스되지 않은 개발 버전에서 연구 프로토콜 옆에 두 번째 코어가 추가되었습니다.
+
+인문학 코어는 그대로입니다. 13개 연구 스킬과 라우터, 동일한 gate, historical status와 current validity의 분리, 그리고 연구자의 판단 권한이 유지됩니다. 엔지니어링 코어는 [`obra/superpowers`](https://github.com/obra/superpowers) 6.3.0(MIT, Copyright (c) 2025 Jesse Vincent)의 일부를 **수정 없이** vendoring한 것입니다. 14개 중 10개 스킬을 가져왔고, import commit과 스킬별 해시, 제외한 스킬의 이유를 `vendor/obra-superpowers/PROVENANCE.json`에 기록했습니다.
+
+라우터는 두 축으로 동작합니다.
+
+- **도메인** — `RESEARCH`, `CODE`, `HYBRID`. 인용 검토는 research, 여백 수정은 code, 인용 검증기 자체를 고치는 일은 hybrid입니다. 연구 산출물이 만들어지는 방식을 바꾸는 코드 변경은 영향을 받는 gate를 무효화할 수 있습니다.
+- **위험도** — code/hybrid 작업에 대해 `QUICK`, `STANDARD`, `STRICT`를 적용합니다. 키워드가 아니라 되돌릴 수 있는지, 영향 범위, 권한 경계, 영속성, 계약 표면, 환경, 실패 비용, 불확실성으로 판정합니다. 국소적 수정은 작게 유지하고, SYSTEM 소유 예약 작업은 `STRICT`가 됩니다.
+
+무인 작업은 `WORKING`, `WAITING_INPUT`, `WAITING_PRIVILEGE`, `BLOCKED`, `ERROR`, `DONE` 중 하나를 보고합니다. `DONE`은 완료 검증 기록이 있을 때만 가능하고, `WAITING_PRIVILEGE`는 에이전트가 넘을 수 없는 권한 경계를 명시합니다. 역할 기반 `PLANNER`/`IMPLEMENTER`/`REVIEWER`/`ESCALATION_REVIEWER` 사이의 인계는 `WORK_PACKAGE`와 `EVIDENCE_PACKAGE`로 이루어지며, 모델 이름은 교체 가능한 운용 profile에만 등장합니다.
+
+이 추가 기능은 아직 평가되지 않았습니다. 코딩 품질 비교 실험을 수행하지 않았으므로 어느 코어에 대해서도 향상을 주장하지 않습니다. 코딩 비교는 연구 비교와 분리해서 다룹니다. 자세한 내용은 [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md)를 참조하십시오.
+
 ## 보장하지 않는 것
 
 이 프로젝트는 진실, 독창성, 게재, 인용 정확성을 보장하지 않습니다. AI를 자율적인 학자로 만들지도 않습니다. 설계 의도는 근거와 해석, 추론과 가설, 확인과 미확인을 분리하여 연구자가 검토해야 할 위험을 드러내는 것입니다.

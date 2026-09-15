@@ -16,11 +16,14 @@ All notable changes to this project will be documented in this file.
 - `tests/regression/gate-validity-cases.json` and an end-to-end contract check in `scripts/run_v2_tests.py` that feed invalidation output into both gate-report profiles and then into the progression rule, covering normal PASS, material dependency change, absent dependency metadata, formatting-only change, and recheck restoration.
 - `scripts/check_installation.py`, which executes the documented install commands in throwaway Codex, Claude Code, and Cursor projects and fails when an installed skill or instruction file refers to a path the procedure never copies. It is part of the validation workflow.
 - `tests/eval/cases.json`, `scripts/hsp_eval.py`, and [the comparison harness guide](docs/evaluation/HSP_COMPARISON_HARNESS.md) for a reproducible CONTROL-versus-HSP comparison on six task types, with deterministic scoring, a clean case for false blocks, and `NOT_MEASURED` for any metric the response record does not contain. No effectiveness result is recorded by this release.
+- Dual-Core: a vendored, unmodified import of ten `obra/superpowers` 6.3.0 engineering skills with `PROVENANCE.json` hashes and documented exclusions, a `RESEARCH`/`CODE`/`HYBRID` domain axis, `QUICK`/`STANDARD`/`STRICT` property-based risk calibration, an autonomous worker state contract, and role-based orchestration handoffs with `WORK_PACKAGE`/`EVIDENCE_PACKAGE` schemas.
+- `scripts/run_dual_core_tests.py` and `tests/dual-core/cases.json`, covering domain and risk routing, privilege-boundary escalation, smallest-sufficient routes, rejected completion without verification, worker-state representation, provenance integrity, model-agnostic contracts, and unchanged Humanities regression.
 
 ### Changed
 
 - Public wording now separates design intent from measured effect: the README states that no comparison run has been recorded and that repository validation is not evidence of research benefit.
 - `docs/integration/TEST_COVERAGE.md` documents the gate-contract, installation, and evaluation checks and lists research benefit as an unmeasured target.
+- The installation guide copies the vendored engineering core and the dual-core specification, and the router names both the research and engineering cores. The 14 Humanities skills, their gates, and their validity rules are unchanged, and the release version stays 2.0.0 until a deliberate release decision is made.
 
 ## [2.0.0] - 2026-08-21
 

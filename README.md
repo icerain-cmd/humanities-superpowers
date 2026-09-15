@@ -131,6 +131,21 @@ AI may organize, compare, test, and flag. The researcher remains responsible for
 
 Fricturn distinguishes source verification from evidential standing, stores agent recommendations separately from researcher decisions, preserves interpretation history, and tracks whether a historical gate result remains valid after dependencies change. See the [v2 specification](docs/specification/v2/README.md) and [Humanities Engineering](docs/methodology/HUMANITIES_ENGINEERING.md).
 
+## Dual-Core: Humanities and Engineering
+
+Unreleased development adds a second core beside the research protocol.
+
+The Humanities core is unchanged: 13 research skills plus the router, the same gates, the same separation of historical status from current validity, and the same human authority. The Engineering core is a partial, **unmodified** vendored import of [`obra/superpowers`](https://github.com/obra/superpowers) 6.3.0 (MIT, Copyright (c) 2025 Jesse Vincent). Ten of its fourteen skills are imported; import commit, per-skill hashes, and the reason for every excluded skill are recorded in `vendor/obra-superpowers/PROVENANCE.json`.
+
+The router treats these as one entry point with two axes:
+
+- **Domain** — `RESEARCH`, `CODE`, or `HYBRID`. A citation review is research; a spacing fix is code; fixing the citation verifier itself is hybrid, and a code change that alters how research artifacts are produced can invalidate affected gates.
+- **Risk** — `QUICK`, `STANDARD`, or `STRICT` for code and hybrid work, derived from properties (reversibility, blast radius, privilege boundary, persistence, contract surface, environment, failure cost, uncertainty) rather than keywords. A localized edit stays small; a SYSTEM-owned scheduled task is `STRICT`.
+
+Unattended work reports `WORKING`, `WAITING_INPUT`, `WAITING_PRIVILEGE`, `BLOCKED`, `ERROR`, or `DONE`, where `DONE` requires a completion verification record and `WAITING_PRIVILEGE` names an elevation boundary the agent cannot cross. Handoffs use a `WORK_PACKAGE` and an `EVIDENCE_PACKAGE` between role-based `PLANNER`, `IMPLEMENTER`, `REVIEWER`, and `ESCALATION_REVIEWER` assignments; model names live only in a replaceable operating profile.
+
+This addition has not been evaluated. No coding-quality comparison has been run, so no improvement is claimed for either core. The coding comparison is kept separate from the research comparison; see [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md).
+
 ## What this project does not claim
 
 Humanities Superpowers does not guarantee truth, originality, acceptance, or citation accuracy. It does not turn an AI agent into an autonomous scholar. Its design intent is to reduce avoidable risk by making assumptions, evidence, unresolved verification, and researcher decisions visible.

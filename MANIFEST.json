@@ -105,8 +105,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "a13b1583ee1e36143dea98f380afa4a67f005536d3a55231fa95cd2e628a8363",
-      "bytes": 5471
+      "sha256": "3a07a687ddf1e455095c7f344cb24f8b5971df9ae417280937d6fed5f1564c6e",
+      "bytes": 6483
     },
     {
       "path": "CITATION.cff",
@@ -135,8 +135,8 @@
     },
     {
       "path": "INSTALLATION.md",
-      "sha256": "9086df52bbac3d62ca4d02beee71f1201320936a5aad88302c49d3a26ee26c31",
-      "bytes": 9284
+      "sha256": "2a74cbc5ab198351b05746d277e91eb8ba23fc54776ca9a8cb45f0e16abda0e1",
+      "bytes": 10784
     },
     {
       "path": "LICENSE",
@@ -155,13 +155,13 @@
     },
     {
       "path": "README.ko.md",
-      "sha256": "7bf15c4b8ea39dfad9a457bf32156c5c7a1ace797eb89afcca08220383f75415",
-      "bytes": 10589
+      "sha256": "e6e653ae8861e345bef966c2367d6d75286255f9e66ba8a2e8e800d659493260",
+      "bytes": 12890
     },
     {
       "path": "README.md",
-      "sha256": "b9154addb2ba085573e04cf4fefc660101fd4d13c16d3069e8e5be0e32fcb139",
-      "bytes": 11166
+      "sha256": "f97a78a66acafcabddfd21b939dd73a49951830d0a64e56980ec6699ba2e68f6",
+      "bytes": 13166
     },
     {
       "path": "ROADMAP.md",
@@ -625,8 +625,8 @@
     },
     {
       "path": "scripts/check_installation.py",
-      "sha256": "37d4ec1c260f0cc7faa355973f5c54f70e7a4203dac608e1580b7c9fb3b2b353",
-      "bytes": 8006
+      "sha256": "e35cd45dafbaad96355b01ff90f78ec94e1fac066a08d2c2c6ea773e72827159",
+      "bytes": 8699
     },
     {
       "path": "scripts/dual_core_router.py",
@@ -840,8 +840,8 @@
     },
     {
       "path": "skills/using-humanities-superpowers/SKILL.md",
-      "sha256": "59594d7cb9f95e147b16f60588f646a1b960bc1fe27ac4e0e3d93a1b229ef982",
-      "bytes": 29792
+      "sha256": "d29eb4135b4a4841c6998c60d8e41153cdbd80bec0caa83608d4125bc3575a78",
+      "bytes": 29759
     },
     {
       "path": "skills/verifying-before-submission/SKILL.md",
