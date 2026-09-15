@@ -1,7 +1,7 @@
 {
   "name": "humanities-superpowers",
   "version": "2.0.0",
-  "file_count": 210,
+  "file_count": 217,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -359,6 +359,26 @@
       "bytes": 2935
     },
     {
+      "path": "docs/specification/dual-core/AGENT_ORCHESTRATION.md",
+      "sha256": "b769433280db3e1e06b96ea8117abef3572210f58089218a28640835b3633d5b",
+      "bytes": 3670
+    },
+    {
+      "path": "docs/specification/dual-core/AUTONOMOUS_WORKER.md",
+      "sha256": "915df9ef4dadfbc5bd32ad01a0234427ab58ec62b8ab1e2bd19a7e653687cc64",
+      "bytes": 4625
+    },
+    {
+      "path": "docs/specification/dual-core/DUAL_CORE_ROUTER.md",
+      "sha256": "3ed051a4799b13b0b4540624d0253bc2473d81d9ae81bef745bfd2fcb9d89eb8",
+      "bytes": 4843
+    },
+    {
+      "path": "docs/specification/dual-core/RISK_ROUTER.md",
+      "sha256": "06e2d77a4a19c39bd1cee803be40de8dda5e930391d326e3558ff78b6cc94f91",
+      "bytes": 4519
+    },
+    {
       "path": "docs/specification/v2/CORE_SPECIFICATION.md",
       "sha256": "0ce9d3d14feec3e29e94391de7996ca165231da566ab7f34bf2f2d087a7535b5",
       "bytes": 4117
@@ -554,6 +574,11 @@
       "bytes": 2411
     },
     {
+      "path": "schemas/evidence-package.schema.json",
+      "sha256": "e5fbe0590bf9726e3f1c8d6b26b7a6f50acf1e6749e2649b6503f8df026341a2",
+      "bytes": 1859
+    },
+    {
       "path": "schemas/friction-event.schema.json",
       "sha256": "776d692dca22907acda81750b32bb94f1ff4cfa9c6493fa0cfb6d3c04c875916",
       "bytes": 1954
@@ -587,6 +612,16 @@
       "path": "schemas/research-session.schema.json",
       "sha256": "bd04d229f21b220028def420abdfe955ccdfec759a8077265fcdde90475a186c",
       "bytes": 3574
+    },
+    {
+      "path": "schemas/work-package.schema.json",
+      "sha256": "c0e1c2f7ddd485abc5f58f72ff3f91feb7a6934aecf985ec0615f5920a6d9fde",
+      "bytes": 2213
+    },
+    {
+      "path": "schemas/worker-state.schema.json",
+      "sha256": "ab501f7a688d80bebd6f7bf532eadb98aad6fa7a5af3b48c6f925be53cd70aa8",
+      "bytes": 2808
     },
     {
       "path": "scripts/check_installation.py",
@@ -795,8 +830,8 @@
     },
     {
       "path": "skills/using-humanities-superpowers/SKILL.md",
-      "sha256": "99a98fbdb5a3183c85f8e5617f9b37a0774aef7202057e919f0c857528c4917e",
-      "bytes": 24920
+      "sha256": "59594d7cb9f95e147b16f60588f646a1b960bc1fe27ac4e0e3d93a1b229ef982",
+      "bytes": 29792
     },
     {
       "path": "skills/verifying-before-submission/SKILL.md",

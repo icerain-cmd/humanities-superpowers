@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/work-package.schema.json",
+  "title": "Humanities Superpowers Work Package",
+  "type": "object",
+  "required": ["package_id", "objective", "scope", "constraints", "risk_level", "acceptance_criteria", "required_verification", "forbidden_actions"],
+  "properties": {
+    "package_id": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "domain": {"enum": ["RESEARCH", "CODE", "HYBRID"]},
+    "scope": {
+      "type": "object",
+      "required": ["in_scope", "out_of_scope"],
+      "properties": {
+        "in_scope": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+        "out_of_scope": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1}
+      },
+      "additionalProperties": false
+    },
+    "constraints": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "risk_level": {"enum": ["QUICK", "STANDARD", "STRICT"]},
+    "risk_reason": {"type": "string", "minLength": 1},
+    "acceptance_criteria": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "required_verification": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "forbidden_actions": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "planner_role": {"const": "PLANNER"},
+    "implementer_role": {"const": "IMPLEMENTER"},
+    "reviewer_role": {"type": ["string", "null"], "enum": ["REVIEWER", "ESCALATION_REVIEWER", null]},
+    "references": {"type": "array", "items": {"type": "string"}},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"risk_level": {"enum": ["STANDARD", "STRICT"]}}, "required": ["risk_level"]},
+      "then": {"required": ["risk_reason"], "properties": {"reviewer_role": {"enum": ["REVIEWER", "ESCALATION_REVIEWER"]}}}
+    },
+    {
+      "if": {"properties": {"risk_level": {"const": "STRICT"}}, "required": ["risk_level"]},
+      "then": {"required": ["reviewer_role"]}
+    }
+  ],
+  "additionalProperties": false
+}

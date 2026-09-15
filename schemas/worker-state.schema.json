@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/worker-state.schema.json",
+  "title": "Humanities Superpowers Autonomous Worker State",
+  "type": "object",
+  "required": ["worker_id", "task_ref", "state", "since", "last_progress_at", "stall_threshold_seconds", "attempt_count"],
+  "properties": {
+    "worker_id": {"type": "string", "minLength": 1},
+    "task_ref": {"type": "string", "minLength": 1},
+    "state": {"enum": ["WORKING", "WAITING_INPUT", "WAITING_PRIVILEGE", "BLOCKED", "ERROR", "DONE"]},
+    "since": {"type": "string", "format": "date-time"},
+    "last_progress_at": {"type": "string", "format": "date-time"},
+    "stall_threshold_seconds": {"type": "integer", "minimum": 1},
+    "progress_evidence": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "attempt_count": {"type": "integer", "minimum": 0},
+    "blocking_reason": {"type": ["string", "null"]},
+    "privilege_boundary": {"type": ["string", "null"], "enum": ["UAC", "SYSTEM", "ADMINISTRATOR", "SERVICE_ACCOUNT", "EXTERNAL_CREDENTIAL", null]},
+    "requested_action": {"type": ["string", "null"]},
+    "rollback_plan": {"type": ["string", "null"]},
+    "work_package_ref": {"type": ["string", "null"]},
+    "evidence_package_ref": {"type": ["string", "null"]},
+    "completion_verification_ref": {"type": ["string", "null"]},
+    "last_event": {"enum": ["STATE_CHANGED", "STALL_DETECTED", "PRIVILEGE_REQUIRED", "INPUT_REQUIRED", "ERROR_RECORDED", "COMPLETION_VERIFIED", null]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"state": {"const": "WORKING"}}, "required": ["state"]},
+      "then": {"required": ["progress_evidence"], "properties": {"progress_evidence": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"state": {"const": "WAITING_PRIVILEGE"}}, "required": ["state"]},
+      "then": {
+        "required": ["privilege_boundary", "requested_action", "rollback_plan"],
+        "properties": {
+          "privilege_boundary": {"type": "string", "enum": ["UAC", "SYSTEM", "ADMINISTRATOR", "SERVICE_ACCOUNT", "EXTERNAL_CREDENTIAL"]},
+          "requested_action": {"type": "string", "minLength": 1},
+          "rollback_plan": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"state": {"enum": ["WAITING_INPUT", "BLOCKED", "ERROR"]}}, "required": ["state"]},
+      "then": {"required": ["blocking_reason"], "properties": {"blocking_reason": {"type": "string", "minLength": 1}}}
+    },
+    {
+      "if": {"properties": {"state": {"const": "DONE"}}, "required": ["state"]},
+      "then": {"required": ["completion_verification_ref"], "properties": {"completion_verification_ref": {"type": "string", "minLength": 1}}}
+    }
+  ],
+  "additionalProperties": false
+}

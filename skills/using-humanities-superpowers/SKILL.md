@@ -1,6 +1,6 @@
 ---
 name: using-humanities-superpowers
-description: Use when an agent must diagnose research state, select and sequence Humanities Superpowers skills, handle failed gates, and preserve a resumable humanities research workflow.
+description: Use when an agent must classify a task as research, code, or hybrid, calibrate process depth, select the smallest sufficient route across the Humanities and Engineering cores, handle failed gates, and preserve a resumable workflow.
 version: 2.0.0
 language: en
 license: MIT
@@ -152,6 +152,14 @@ Classify the request as one or more of:
 - peer-review response;
 - submission verification;
 - workflow orchestration only.
+
+Then classify its domain, because this router serves two cores:
+
+- `RESEARCH` — the artifact that must end up correct is scholarly: text, interpretation, a source claim, a citation record, or a research decision.
+- `CODE` — the artifact that must end up correct is working software, configuration, or infrastructure.
+- `HYBRID` — software whose correctness depends on scholarly requirements, or scholarship whose correctness depends on software the agent changes.
+
+Domain classification is semantic. The words "review", "structure", and "verify" appear in both cores; decide by the artifact, not the vocabulary. See [Domain routing (dual-core)](#domain-routing-dual-core).
 
 Do not infer that “write my paper” authorizes all tasks. Diagnose what scholarly objects and evidence already exist.
 
@@ -325,6 +333,48 @@ A workflow may end successfully with `FAIL` when the correct outcome is to preve
 | Whole manuscript needs prioritized diagnosis | `reviewing-manuscript` | manuscript and research purpose | revision or peer-review response |
 | Reviewer comments need verified responses | `responding-to-peer-review` | comments and manuscript | manuscript review or final gate |
 | Readiness or completion is claimed | `verifying-before-submission` | final package and requirements | submit, repair, or stop |
+
+## Domain routing (dual-core)
+
+This router selects skills from two cores. The Humanities core is the 13 research skills under `skills/`. The Engineering core is the vendored, unmodified `obra/superpowers` skills under `vendor/obra-superpowers/skills/`, whose provenance is recorded in `vendor/obra-superpowers/PROVENANCE.json`.
+
+| Domain | Artifact that must be correct | Core |
+|---|---|---|
+| `RESEARCH` | scholarly text, interpretation, source claim, citation record, research decision | Humanities |
+| `CODE` | working software, configuration, or infrastructure | Engineering |
+| `HYBRID` | software whose correctness depends on scholarly requirements, or scholarship whose correctness depends on changed software | both, smallest sufficient combination |
+
+Rules:
+
+- Never load both cores by default. Loading a core without an artifact that needs it is a routing failure, not diligence.
+- Name the specific engineering skills a route needs — `writing-plans`, `executing-plans`, `test-driven-development`, `systematic-debugging`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `dispatching-parallel-agents`, `using-git-worktrees`, `finishing-a-development-branch` — rather than the core as a whole.
+- In `HYBRID`, a change to how research artifacts are produced (citation checking, evidence extraction, terminology tables, schema validation, gate automation) may be a material dependency change. Re-run the affected humanities check and mark affected gates `INVALIDATED` or `REQUIRES_RECHECK`; a code change alone never keeps a research gate `VALID`.
+
+See [Dual-Core Router](../../docs/specification/dual-core/DUAL_CORE_ROUTER.md).
+
+## Risk calibration
+
+`CODE` and `HYBRID` requests are graded before implementation begins. `RESEARCH` requests keep their existing gate and progression rules and are not graded on this axis.
+
+| Level | Default steps |
+|---|---|
+| `QUICK` | inspect → modify → targeted verification |
+| `STANDARD` | inspect → short plan → implement → test → regression → verification |
+| `STRICT` | investigate → root cause or design → explicit plan → test strategy → implement → review → integration test → regression → evidence → completion |
+
+`STRICT` is mandatory for production systems, authentication, authorization, security or credential handling, database migration, destructive data operations, deployment, Windows SYSTEM/administrator/UAC boundaries, networking or serving configuration, backup and restore, major refactors, public API or contract changes, and persistent infrastructure such as schedulers, daemons, or startup tasks.
+
+Choose by property — reversibility, blast radius, privilege boundary, persistence, contract surface, environment, failure cost, uncertainty — not by keyword. Do not classify everything `STRICT`: ceremony without risk is a defect, and `QUICK` reduces ceremony but never evidence. If a required step genuinely does not apply, record `NOT_APPLICABLE` with the reason instead of inventing work.
+
+See [Risk calibration](../../docs/specification/dual-core/RISK_ROUTER.md).
+
+## Autonomous worker and handoff
+
+Unattended work reports exactly one of `WORKING`, `WAITING_INPUT`, `WAITING_PRIVILEGE`, `BLOCKED`, `ERROR`, or `DONE`. A live process is not `WORKING`, and a finished process is not `DONE`: `DONE` requires a completion verification record. `WAITING_PRIVILEGE` names an elevation boundary the agent cannot cross, such as a UAC consent prompt or a SYSTEM-owned resource.
+
+Handoffs use a `WORK_PACKAGE` (objective, scope, constraints, risk level, acceptance criteria, required verification, forbidden actions) and an `EVIDENCE_PACKAGE` (files changed, tests run, test results, unresolved items, deviations, completion status). Roles are `PLANNER`, `IMPLEMENTER`, `REVIEWER`, and `ESCALATION_REVIEWER`; model names belong only in an operating profile, never in the contract. The producer of work is not its approver.
+
+See [Autonomous worker protocol](../../docs/specification/dual-core/AUTONOMOUS_WORKER.md) and [Agent orchestration](../../docs/specification/dual-core/AGENT_ORCHESTRATION.md).
 
 ## Stop signals
 

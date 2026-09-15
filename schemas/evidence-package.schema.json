@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/icerain-cmd/humanities-superpowers/schemas/evidence-package.schema.json",
+  "title": "Humanities Superpowers Evidence Package",
+  "type": "object",
+  "required": ["package_id", "work_package_ref", "files_changed", "tests_run", "test_results", "unresolved", "deviations", "completion_status"],
+  "properties": {
+    "package_id": {"type": "string", "minLength": 1},
+    "work_package_ref": {"type": "string", "minLength": 1},
+    "files_changed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "reason"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "tests_run": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "test_results": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "unresolved": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "deviations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "completion_status": {"enum": ["DONE", "PARTIAL", "BLOCKED", "ERROR"]},
+    "completion_verification": {"type": ["string", "null"]},
+    "worker_state_ref": {"type": ["string", "null"]},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"completion_status": {"const": "DONE"}}, "required": ["completion_status"]},
+      "then": {
+        "required": ["completion_verification"],
+        "properties": {
+          "completion_verification": {"type": "string", "minLength": 1},
+          "tests_run": {"minItems": 1},
+          "test_results": {"minItems": 1}
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}
