@@ -23,7 +23,7 @@ status: PASS | CONDITIONAL PASS | FAIL
 validity: VALID | INVALIDATED | REQUIRES_RECHECK
 ```
 
-Full v2 workflows validate gate outputs against `schemas/gate-report-v2.schema.json`, which requires `schema_version: 2.0`, nonempty evidence and dependency references, and current validity. The backward-compatible base schema alone does not certify v2 progression.
+Full v2 workflows validate gate outputs against `schemas/gate-report-v2.schema.json`, which requires `schema_version: 2.0`, nonempty `evidence_checked`, an explicit current validity, and dependency references that bound the invalidation. Dependency references MUST be nonempty for `VALID` and `INVALIDATED`; a gate that fails closed as `REQUIRES_RECHECK` because its dependency metadata is absent records an explicitly empty list instead. `INVALIDATED` and `REQUIRES_RECHECK` records MUST carry an `invalidation_reason`. Both profiles keep `status` historical, so a record may read `status: PASS` with `validity: INVALIDATED`. The backward-compatible base schema alone does not certify v2 progression.
 
 Invalidation MUST be bounded by dependency references. Typical candidates are:
 

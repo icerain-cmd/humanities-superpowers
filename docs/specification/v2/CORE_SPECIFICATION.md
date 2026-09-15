@@ -20,7 +20,9 @@ A final scholarly choice MUST identify the deciding human, alternatives consider
 
 ### 2.3 Changed knowledge may invalidate earlier completion
 
-When an object materially changes, dependent gate results MUST be evaluated for current validity. `INVALIDATED` and `REQUIRES_RECHECK` describe validity, not new gate statuses.
+When an object materially changes, dependent gate results MUST be evaluated for current validity. `INVALIDATED` and `REQUIRES_RECHECK` describe validity, not new gate statuses. A recorded `PASS` MUST NOT be rewritten as `FAIL`; the earlier result remains historical evidence.
+
+Progression authorization MUST be derived from the record rather than stored as a third state: it requires both a pass-class historical result (`PASS` or `CONDITIONAL PASS`) and current `VALID` validity. A gate whose invalidation cannot be bounded by dependency references MUST fail closed as `REQUIRES_RECHECK` and MUST record an explicitly empty dependency list instead of inventing one. `INVALIDATED` and `REQUIRES_RECHECK` records MUST state an `invalidation_reason`. Validity MAY return to `VALID` only after the affected gate is re-run; the invalidated record MUST remain inspectable.
 
 ### 2.4 Return is not failure
 

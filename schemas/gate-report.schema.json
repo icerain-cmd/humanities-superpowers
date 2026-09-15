@@ -23,7 +23,18 @@
       "if": {"required": ["validity"]},
       "then": {
         "required": ["dependency_refs"],
-        "properties": {"dependency_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true}}
+        "properties": {"dependency_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}}
+      }
+    },
+    {
+      "if": {"properties": {"validity": {"enum": ["VALID", "INVALIDATED"]}}, "required": ["validity"]},
+      "then": {"properties": {"dependency_refs": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"validity": {"enum": ["INVALIDATED", "REQUIRES_RECHECK"]}}, "required": ["validity"]},
+      "then": {
+        "required": ["invalidation_reason"],
+        "properties": {"invalidation_reason": {"type": "string", "minLength": 1}}
       }
     },
     {
@@ -31,12 +42,11 @@
       "then": {
         "required": ["validity", "dependency_refs"],
         "properties": {
-          "dependency_refs": {"minItems": 1},
           "evidence_checked": {"minItems": 1},
           "required_next_action": {"minLength": 1}
         },
         "allOf": [
-          {"if": {"properties": {"status": {"const": "PASS"}}, "required": ["status"]}, "then": {"properties": {"blocking_issues": {"maxItems": 0}, "researcher_decisions_required": {"maxItems": 0}, "validity": {"const": "VALID"}}}}
+          {"if": {"properties": {"status": {"const": "PASS"}}, "required": ["status"]}, "then": {"properties": {"blocking_issues": {"maxItems": 0}, "researcher_decisions_required": {"maxItems": 0}}}}
         ]
       }
     }

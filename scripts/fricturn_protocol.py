@@ -2,6 +2,15 @@
 
 These functions do not automate scholarly judgment. They preserve existing gate
 statuses while calculating current validity from explicit dependency references.
+
+Three layers are deliberately kept separate:
+
+1. historical gate result -- ``status`` (``PASS``, ``CONDITIONAL PASS``, ``FAIL``),
+   frozen at the time the gate was evaluated and never rewritten by invalidation;
+2. current validity -- ``validity`` (``VALID``, ``INVALIDATED``, ``REQUIRES_RECHECK``),
+   recalculated when a material dependency change is observed;
+3. progression authorization -- derived, not stored: only a pass-class result whose
+   current validity is explicitly ``VALID`` may authorize forward progress.
 """
 from __future__ import annotations
 
@@ -15,6 +24,9 @@ def invalidate_dependent_gates(
 
     A material change cannot safely preserve a gate whose dependency metadata is
     absent. Such a gate requires recheck rather than being assumed valid.
+
+    ``status`` is never modified: invalidation records current validity and the
+    reason for it, and the earlier pass or failure remains historical evidence.
     """
     updated = deepcopy(gates)
     invalidated: list[str] = []
@@ -24,14 +36,47 @@ def invalidate_dependent_gates(
         dependencies = set(gate.get("dependency_refs", []))
         if material_change and not dependencies:
             gate["validity"] = "REQUIRES_RECHECK"
+            gate["dependency_refs"] = []
+            gate["invalidation_reason"] = (
+                "material change with missing dependency metadata; invalidation cannot be bounded"
+            )
             recheck.append(gate["gate"])
         elif material_change and dependencies.intersection(changed_refs):
             gate["validity"] = "INVALIDATED"
+            gate["invalidation_reason"] = "material change to " + ", ".join(
+                sorted(dependencies.intersection(changed_refs))
+            )
             invalidated.append(gate["gate"])
         else:
             gate.setdefault("validity", "VALID")
             preserved.append(gate["gate"])
     return updated, invalidated, recheck, preserved
+
+
+def progression_authorized(gate: dict) -> bool:
+    """Return whether a gate may authorize forward progress right now.
+
+    Progression authorization is a separate concern from the historical result and
+    from current validity. A recorded ``PASS`` or ``CONDITIONAL PASS`` authorizes
+    progress only while its current validity is explicitly ``VALID``. Legacy records
+    that carry no ``validity`` field fail closed and cannot authorize v2 progression.
+    """
+    if gate.get("status") not in {"PASS", "CONDITIONAL PASS"}:
+        return False
+    return gate.get("validity") == "VALID"
+
+
+def gate_validity_restoration_allowed(
+    previous_validity: str, proposed_validity: str, *, recheck_performed: bool
+) -> bool:
+    """Reject silent restoration of an invalidated or unrechecked gate.
+
+    Returning to ``VALID`` requires an explicit recheck act, mirroring the rule that
+    verified evidence standing is never promoted without verification.
+    """
+    if proposed_validity == "VALID" and previous_validity != "VALID":
+        return recheck_performed
+    return True
 
 
 def should_propose_epistemic_return(*, material_change: bool, new_knowledge: bool) -> bool:

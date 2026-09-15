@@ -9,7 +9,7 @@
     "gate": {"type": "string", "minLength": 1},
     "status": {"enum": ["PASS", "CONDITIONAL PASS", "FAIL"]},
     "validity": {"enum": ["VALID", "INVALIDATED", "REQUIRES_RECHECK"]},
-    "dependency_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
+    "dependency_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
     "invalidation_reason": {"type": ["string", "null"]},
     "evidence_checked": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
     "blocking_issues": {"type": "array", "items": {"type": "string"}},
@@ -21,7 +21,18 @@
   "allOf": [
     {
       "if": {"properties": {"status": {"const": "PASS"}}, "required": ["status"]},
-      "then": {"properties": {"blocking_issues": {"maxItems": 0}, "researcher_decisions_required": {"maxItems": 0}, "validity": {"const": "VALID"}}}
+      "then": {"properties": {"blocking_issues": {"maxItems": 0}, "researcher_decisions_required": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"validity": {"enum": ["VALID", "INVALIDATED"]}}, "required": ["validity"]},
+      "then": {"properties": {"dependency_refs": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"validity": {"enum": ["INVALIDATED", "REQUIRES_RECHECK"]}}, "required": ["validity"]},
+      "then": {
+        "required": ["invalidation_reason"],
+        "properties": {"invalidation_reason": {"type": "string", "minLength": 1}}
+      }
     }
   ],
   "additionalProperties": false

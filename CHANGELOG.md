@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- Reconciled the gate contract: `schemas/gate-report-v2.schema.json` and `schemas/gate-report.schema.json` no longer force `status: PASS` to imply `validity: VALID`, so the official invalidation helper output validates. Historical status, current validity, and progression authorization are now separate and explicitly documented.
+- Required an `invalidation_reason` for `INVALIDATED` and `REQUIRES_RECHECK` gates, and allowed an explicitly empty `dependency_refs` list only for `REQUIRES_RECHECK`, where dependency metadata is absent and invalidation cannot be bounded.
+- Recorded `invalidation_reason` in `invalidate_dependent_gates()` output and added `progression_authorized()` and `gate_validity_restoration_allowed()` so progression authorization is derived rather than stored.
+
 ## [2.0.0] - 2026-08-21
 
 ### Added

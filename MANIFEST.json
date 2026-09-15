@@ -105,8 +105,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "3ea8211d6fc29546ff4994660309d37e808d4ffc2682570d839afe8394795d2e",
-      "bytes": 3073
+      "sha256": "e764830d1c72d3acf83980b6345050444287aa455a4eaa1db84cc802fec94335",
+      "bytes": 3869
     },
     {
       "path": "CITATION.cff",
@@ -225,8 +225,8 @@
     },
     {
       "path": "docs/QUALITY_GATES.md",
-      "sha256": "797b1eb266f08e29651e152afb84bb87e138a02db581e7db0b375e87c9f68aa4",
-      "bytes": 1140
+      "sha256": "7ed399bf0d215ce0937ea3abbb3c62f1dc593edab26c281f5d89abcf59d184f0",
+      "bytes": 2511
     },
     {
       "path": "docs/SKILL_SCHEMA.md",
@@ -355,13 +355,13 @@
     },
     {
       "path": "docs/specification/v2/CORE_SPECIFICATION.md",
-      "sha256": "0eed2310bc4fcc78ce68da5ce240281d28829aa764fd50746053b28062cbd456",
-      "bytes": 3426
+      "sha256": "0ce9d3d14feec3e29e94391de7996ca165231da566ab7f34bf2f2d087a7535b5",
+      "bytes": 4117
     },
     {
       "path": "docs/specification/v2/EPISTEMIC_RETURN.md",
-      "sha256": "6933a78e36752ecf7f0f359c8d90fe209d9839d34438c5c494c43f5e665dd6ff",
-      "bytes": 2912
+      "sha256": "2378080472714e521f0205a6c0773836a79d18f19d9fa00802d28334489e3b76",
+      "bytes": 3348
     },
     {
       "path": "docs/specification/v2/EVIDENCE_LEDGER.md",
@@ -555,13 +555,13 @@
     },
     {
       "path": "schemas/gate-report-v2.schema.json",
-      "sha256": "0724293fc9d71bb15d4639bb98bc6884459cd3e53d1e703bd2ddd54af6da485f",
-      "bytes": 1633
+      "sha256": "c49ec3772432744c190507ef1acaa4637f45f2ab0fda6226d5e5444aa658c7f3",
+      "bytes": 2049
     },
     {
       "path": "schemas/gate-report.schema.json",
-      "sha256": "93fd456419421f9de37242bfecfffef8d96049ff385f4d9bede21f6324bf3ce4",
-      "bytes": 2162
+      "sha256": "0abb901e4d091652dcc2d3b7733aee082640029dc8e240674e553783908c476f",
+      "bytes": 2532
     },
     {
       "path": "schemas/interpretation-history.schema.json",
@@ -585,8 +585,8 @@
     },
     {
       "path": "scripts/fricturn_protocol.py",
-      "sha256": "50781b63096a345a72693d00be57dea4ef3af582081833b3be63078a9dff98d6",
-      "bytes": 3272
+      "sha256": "177eec146921bf9afdd600363086f90fc66fbfba60531ad25b42c650f7ac476d",
+      "bytes": 5390
     },
     {
       "path": "scripts/prepare_release.py",
@@ -600,8 +600,8 @@
     },
     {
       "path": "scripts/run_v2_tests.py",
-      "sha256": "bb64a7bf81b122b308a0510addd9040e169da302642b999ceba576984b9f677d",
-      "bytes": 15966
+      "sha256": "f6e3cb8a69e6df8e024d6d83e5f4852ca3461952dc157a46cba4e07808f3bbea",
+      "bytes": 21445
     },
     {
       "path": "scripts/validate-skills.sh",
