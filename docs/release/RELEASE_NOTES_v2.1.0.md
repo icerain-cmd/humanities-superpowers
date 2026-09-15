@@ -31,7 +31,7 @@ One router, two cores, and an explicit boundary between them.
 
 ## Preserved
 
-- The 13 core research skills are byte-identical to the audited tip (`2a452b6`).
+- The 13 core research skill bodies are unchanged from the audited tip (`2a452b6`); only the release-metadata `version:` line changed, from `2.0.0` to `2.1.0`.
 - Gate status, current validity, and progression authorization stay separate properties, and invalidation remains bounded by dependency references.
 - Epistemic return, citation verification, productive refusal, terminology control, and human judgment authority are unchanged.
 - Installation safety: an existing `AGENTS.md` or `CLAUDE.md` is never overwritten, and `skills/skills/` is never created.
