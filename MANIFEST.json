@@ -1,7 +1,7 @@
 {
   "name": "humanities-superpowers",
   "version": "2.1.0",
-  "file_count": 223,
+  "file_count": 225,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -105,8 +105,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "c3a80b77ac6a3944dbbd346ec74a707e497a391e3fc531ec194e828c997f2018",
-      "bytes": 7217
+      "sha256": "215eae87e0f2cf5a9591370dfd58ec6c263c77caf971ace2f56cae5ae0bc4097",
+      "bytes": 10054
     },
     {
       "path": "CITATION.cff",
@@ -135,8 +135,8 @@
     },
     {
       "path": "INSTALLATION.md",
-      "sha256": "2a74cbc5ab198351b05746d277e91eb8ba23fc54776ca9a8cb45f0e16abda0e1",
-      "bytes": 10784
+      "sha256": "f12961c8f1b35b69c8ffa8fd621d70963c1f703e3641f1106e758d83b947a669",
+      "bytes": 11138
     },
     {
       "path": "LICENSE",
@@ -155,13 +155,13 @@
     },
     {
       "path": "README.ko.md",
-      "sha256": "e6e653ae8861e345bef966c2367d6d75286255f9e66ba8a2e8e800d659493260",
-      "bytes": 12890
+      "sha256": "7b6bdef4a2f2a9ab0239f72ab831b51bfe0bf4a81037c9c23439643596c20e8d",
+      "bytes": 14083
     },
     {
       "path": "README.md",
-      "sha256": "f97a78a66acafcabddfd21b939dd73a49951830d0a64e56980ec6699ba2e68f6",
-      "bytes": 13166
+      "sha256": "79533c5d77c223ce605fd373c9ea95bef40951fd4bec911efcd3c0b52dba3d96",
+      "bytes": 14357
     },
     {
       "path": "ROADMAP.md",
@@ -297,6 +297,11 @@
       "path": "docs/release/RELEASE_NOTES_v2.0.0.md",
       "sha256": "264c005c3c0ed9ef211cb51748f57283012097788a30323debad21b7225778bf",
       "bytes": 1229
+    },
+    {
+      "path": "docs/release/RELEASE_NOTES_v2.1.0.md",
+      "sha256": "2a8dd77b3da5aaa3c97390039835db28a0bcabd2c803bea5d654cec27ee78a94",
+      "bytes": 4451
     },
     {
       "path": "docs/social-media-kit/LAUNCH_SEQUENCE.md",
@@ -555,8 +560,8 @@
     },
     {
       "path": "mkdocs.yml",
-      "sha256": "69e749b62476e57219278f02268e9bb4e13fffd20ddfc07608540b1079159d8a",
-      "bytes": 1392
+      "sha256": "042cbb88f4bc339e78f14acd0875d45710d8ca052aa24a8786bb6d5cdf712ac7",
+      "bytes": 1428
     },
     {
       "path": "project.json",
@@ -712,6 +717,11 @@
       "path": "site/docs/differences.md",
       "sha256": "04eb0705c232b1db1e54530e3be25db7c7385376f3f582fb81d6b199cf7f7af8",
       "bytes": 2297
+    },
+    {
+      "path": "site/docs/dual-core.md",
+      "sha256": "e8ffeed19b36a5a45d28f21911b6a233785fee82e5c384e562ce591868dfe4bc",
+      "bytes": 2823
     },
     {
       "path": "site/docs/examples.md",

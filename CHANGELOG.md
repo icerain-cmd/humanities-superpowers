@@ -2,7 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [2.1.0] - 2026-09-15
+
+Version 2.1.0, **Dual-Core**, places a vendored engineering core beside the
+unchanged Humanities/Fricturn research protocol. It is a release promotion of
+already-verified work, not a new research feature: no comparison run was
+executed for this release, so no effectiveness result is recorded.
+
+### Added
+
+- Dual-Core architecture: one router, two cores, and an explicit boundary between scholarship and software.
+- An Engineering core built from selected `obra/superpowers` 6.3.0 skills, vendored byte-identically with recorded provenance, per-skill hashes, and documented exclusions.
+- `RESEARCH`/`CODE`/`HYBRID` domain routing, so a citation review, a spacing fix, and a fix to the citation verifier itself are routed differently.
+- `QUICK`/`STANDARD`/`STRICT` risk calibration for `CODE` and `HYBRID` work, derived from properties (reversibility, blast radius, privilege boundary, persistence, contract surface, environment, failure cost, uncertainty) rather than keywords.
+- An Autonomous Worker state contract (`WORKING`, `WAITING_INPUT`, `WAITING_PRIVILEGE`, `BLOCKED`, `ERROR`, `DONE`) in which a live process is not `WORKING` and a terminated process is not `DONE`.
+- `WORK_PACKAGE`/`EVIDENCE_PACKAGE` handoff schemas and role-based orchestration (`PLANNER`, `IMPLEMENTER`, `REVIEWER`, `ESCALATION_REVIEWER`) with model names kept in a replaceable operating profile.
+- `tests/eval/coding-cases.json` and `scripts/hsp_eval_coding.py`, keeping the coding comparison (`CONTROL_CODING` versus `ENGINEERING_CORE`) separate from the research comparison.
 
 ### Fixed
 
@@ -25,7 +40,22 @@ All notable changes to this project will be documented in this file.
 
 - Public wording now separates design intent from measured effect: the README states that no comparison run has been recorded and that repository validation is not evidence of research benefit.
 - `docs/integration/TEST_COVERAGE.md` documents the gate-contract, installation, and evaluation checks and lists research benefit as an unmeasured target.
-- The installation guide copies the vendored engineering core and the dual-core specification, and the router names both the research and engineering cores. The 14 Humanities skills, their gates, and their validity rules are unchanged, and the release version stays 2.0.0 until a deliberate release decision is made.
+- The installation guide copies the vendored engineering core and the dual-core specification, and the router names both the research and engineering cores. The 14 Humanities skills, their gates, and their validity rules are unchanged. This release therefore ships as v2.1.0; the Fricturn protocol specification itself stays at `Specification Version: 2.0.0`.
+
+### Preserved
+
+- The existing Humanities/Fricturn research core: the 13 core research skills and the router are byte-identical to the audited tip, and no research semantics changed.
+- Gate status, current validity, and progression authorization remain separate properties, and gate invalidation stays bounded by dependency references.
+- Epistemic return, citation verification, productive refusal, and human judgment authority are unchanged.
+- Installation safety: an existing `AGENTS.md` or `CLAUDE.md` is never overwritten, and `skills/skills/` is never created.
+- `vendor/obra-superpowers/**` is byte-identical to the recorded upstream commit.
+
+### Not claimed
+
+- No claim of improved coding quality, reduced defects, or saved tokens. `CODING_EFFECTIVENESS=NOT_MEASURED`, because no `CONTROL_CODING` versus `ENGINEERING_CORE` run has been recorded.
+- No claim of improved research quality. `RESEARCH_EFFECTIVENESS=NOT_MEASURED`, because no `CONTROL` versus `HSP` run has been recorded.
+- No claim of autonomous runtime notification: the worker state contract is a contract, and no notification runtime is implemented.
+- Passing repository, installation, and conformance checks demonstrate internal consistency, not benefit.
 
 ## [2.0.0] - 2026-08-21
 

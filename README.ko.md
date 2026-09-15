@@ -11,7 +11,7 @@ Humanities Superpowers는 유창한 AI 산출물이 가장 위험해지는 순�
 
 13개 핵심 연구 스킬과 그중 필요한 최소 경로를 선택하는 1개의 Level 3 라우터를 제공합니다. AI는 정리하고 비교하며 문제를 표시할 수 있지만, 해석, 출처 확인, 윤리적 판단, 개념적 선택, 최종 저자 책임을 대신하거나 원고의 게재 가능 상태를 보장하지 않습니다.
 
-2.0 **Fricturn**은 해석적 마찰, 추적 가능한 학술 판단, 인식론적 되돌림을 명시적 연구 객체로 다룹니다. “AI는 유창성을 제공하고, 인문학은 마찰을 제공한다”는 설명은 기존 정체성, 곧 **학술적 판단을 포기하지 않고 AI를 사용한다**는 원칙을 보강합니다.
+2.1.0 **Dual-Core**는 소프트웨어 작업을 위한 엔지니어링 코어를 검증된 연구 프로토콜 옆에 추가합니다. 2.0 **Fricturn**은 해석적 마찰, 추적 가능한 학술 판단, 인식론적 되돌림을 명시적 연구 객체로 다루었습니다. “AI는 유창성을 제공하고, 인문학은 마찰을 제공한다”는 설명은 기존 정체성, 곧 **학술적 판단을 포기하지 않고 AI를 사용한다**는 원칙을 보강합니다.
 
 ## 비판적 테스트 참여 요청
 
@@ -117,9 +117,19 @@ Fricturn은 출처 검증과 근거적 지위를 분리하고, AI 추천과 연�
 
 ## Dual-Core: 인문학 코어 + 엔지니어링 코어
 
-아직 릴리스되지 않은 개발 버전에서 연구 프로토콜 옆에 두 번째 코어가 추가되었습니다.
+2.1.0에서 연구 프로토콜 옆에 두 번째 코어가 추가되었습니다.
 
 인문학 코어는 그대로입니다. 13개 연구 스킬과 라우터, 동일한 gate, historical status와 current validity의 분리, 그리고 연구자의 판단 권한이 유지됩니다. 엔지니어링 코어는 [`obra/superpowers`](https://github.com/obra/superpowers) 6.3.0(MIT, Copyright (c) 2025 Jesse Vincent)의 일부를 **수정 없이** vendoring한 것입니다. 14개 중 10개 스킬을 가져왔고, import commit과 스킬별 해시, 제외한 스킬의 이유를 `vendor/obra-superpowers/PROVENANCE.json`에 기록했습니다.
+
+```text
+                  Router
+                     |
+        -----------------------------
+        |             |             |
+     RESEARCH       CODE        HYBRID
+        |             |             |
+   인문학 코어     엔지니어링 코어    두 코어 모두
+```
 
 라우터는 두 축으로 동작합니다.
 
@@ -128,7 +138,18 @@ Fricturn은 출처 검증과 근거적 지위를 분리하고, AI 추천과 연�
 
 무인 작업은 `WORKING`, `WAITING_INPUT`, `WAITING_PRIVILEGE`, `BLOCKED`, `ERROR`, `DONE` 중 하나를 보고합니다. `DONE`은 완료 검증 기록이 있을 때만 가능하고, `WAITING_PRIVILEGE`는 에이전트가 넘을 수 없는 권한 경계를 명시합니다. 역할 기반 `PLANNER`/`IMPLEMENTER`/`REVIEWER`/`ESCALATION_REVIEWER` 사이의 인계는 `WORK_PACKAGE`와 `EVIDENCE_PACKAGE`로 이루어지며, 모델 이름은 교체 가능한 운용 profile에만 등장합니다.
 
-이 추가 기능은 아직 평가되지 않았습니다. 코딩 품질 비교 실험을 수행하지 않았으므로 어느 코어에 대해서도 향상을 주장하지 않습니다. 코딩 비교는 연구 비교와 분리해서 다룹니다. 자세한 내용은 [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md)를 참조하십시오.
+작업자 상태는 계약이며 런타임이 아닙니다. Telegram이나 Hermes 같은 알림 런타임은 아직 구현되지 않았습니다.
+
+### 2.1.0이 주장하지 않는 것
+
+2.1.0은 체계적인 엔지니어링 워크플로를 제공합니다. 이것은 기능에 대한 설명이며 효과에 대한 주장이 아닙니다.
+
+| 트랙 | 비교 | 결과 |
+|---|---|---|
+| 연구 | `CONTROL` 대 `HSP` | **연구 효과: `NOT_MEASURED`** |
+| 코딩 | `CONTROL_CODING` 대 `ENGINEERING_CORE` | **코딩 효과: `NOT_MEASURED`** |
+
+두 하네스 모두 self-test는 통과하지만 실제 비교 실행 기록은 없습니다. 따라서 이 릴리스는 어느 코어에 대해서도 코딩 품질 향상, 결함 감소, 토큰 절감, 연구 품질 향상을 주장하지 않습니다. 코딩 비교는 연구 비교와 분리해서 다룹니다. 자세한 내용은 [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md)를 참조하십시오.
 
 ## 보장하지 않는 것
 
@@ -165,7 +186,7 @@ Level 3 라우터는 현재 연구 상태를 진단하고, 필요한 최소 스�
 
 ## 공개 릴리스 상태
 
-v1.0.0 릴리스 노트와 최종 공개 체크리스트는 [`docs/release/`](docs/release/)에서 확인할 수 있습니다.
+현재 릴리스 노트는 [v2.1.0 — Dual-Core](docs/release/RELEASE_NOTES_v2.1.0.md)입니다. 이전 노트([v2.0.0 — Fricturn](docs/release/RELEASE_NOTES_v2.0.0.md), [v1.0.0](docs/release/RELEASE_NOTES_v1.0.0.md))와 최종 공개 체크리스트는 [`docs/release/`](docs/release/)에서 확인할 수 있습니다.
 
 ## SNS 공개문 모음
 

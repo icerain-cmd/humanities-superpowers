@@ -4,6 +4,8 @@
 
 Humanities Superpowers contains 13 core research skills and 1 Level 3 router. Project-local installation is recommended for a first test because it is isolated, reviewable, and easy to remove. User-level installation makes the skills available across projects but depends on the current conventions of each agent harness.
 
+Current release: **v2.1.0 (Dual-Core)**. Installation is unchanged in shape from v2.0: the installer copies the 14 Humanities skills, the router, and the `templates/`, `schemas/`, `vendor/obra-superpowers/`, and `docs/specification/dual-core/` artifacts the skills reference. The Fricturn research specification stays at `Specification Version: 2.0.0`.
+
 ## Verification status
 
 Tested:

@@ -11,7 +11,7 @@ Humanities Superpowers is designed to slow down the moments where fluent AI outp
 
 It provides 13 core research skills and one Level 3 router that selects the smallest valid route through them. It supports scholarly judgment; it does not replace interpretation, source verification, ethics, or authorship, and it does not promise a publication-ready manuscript.
 
-Version 2.0, **Fricturn**, makes interpretive friction, traceable scholarly judgment, and epistemic return explicit. AI provides fluency; humanities provides friction. This addition does not replace the project's primary identity: **Use AI without surrendering scholarly judgment.**
+Version 2.1.0, **Dual-Core**, adds a vendored engineering core for software work beside the unchanged research protocol. Version 2.0, **Fricturn**, made interpretive friction, traceable scholarly judgment, and epistemic return explicit. AI provides fluency; humanities provides friction. Neither addition replaces the project's primary identity: **Use AI without surrendering scholarly judgment.**
 
 ## Critical testing invited
 
@@ -133,18 +133,40 @@ Fricturn distinguishes source verification from evidential standing, stores agen
 
 ## Dual-Core: Humanities and Engineering
 
-Unreleased development adds a second core beside the research protocol.
+Version 2.1.0 ships a second core beside the research protocol.
 
 The Humanities core is unchanged: 13 research skills plus the router, the same gates, the same separation of historical status from current validity, and the same human authority. The Engineering core is a partial, **unmodified** vendored import of [`obra/superpowers`](https://github.com/obra/superpowers) 6.3.0 (MIT, Copyright (c) 2025 Jesse Vincent). Ten of its fourteen skills are imported; import commit, per-skill hashes, and the reason for every excluded skill are recorded in `vendor/obra-superpowers/PROVENANCE.json`.
+
+```text
+                  Router
+                     |
+        -----------------------------
+        |             |             |
+     RESEARCH       CODE        HYBRID
+        |             |             |
+   Humanities   Engineering    Both cores
+      Core          Core
+```
 
 The router treats these as one entry point with two axes:
 
 - **Domain** — `RESEARCH`, `CODE`, or `HYBRID`. A citation review is research; a spacing fix is code; fixing the citation verifier itself is hybrid, and a code change that alters how research artifacts are produced can invalidate affected gates.
-- **Risk** — `QUICK`, `STANDARD`, or `STRICT` for code and hybrid work, derived from properties (reversibility, blast radius, privilege boundary, persistence, contract surface, environment, failure cost, uncertainty) rather than keywords. A localized edit stays small; a SYSTEM-owned scheduled task is `STRICT`.
+- **Risk** — `QUICK`, `STANDARD`, or `STRICT`, applied to `CODE` and `HYBRID` work, derived from properties (reversibility, blast radius, privilege boundary, persistence, contract surface, environment, failure cost, uncertainty) rather than keywords. A localized edit stays small; a SYSTEM-owned scheduled task is `STRICT`.
 
 Unattended work reports `WORKING`, `WAITING_INPUT`, `WAITING_PRIVILEGE`, `BLOCKED`, `ERROR`, or `DONE`, where `DONE` requires a completion verification record and `WAITING_PRIVILEGE` names an elevation boundary the agent cannot cross. Handoffs use a `WORK_PACKAGE` and an `EVIDENCE_PACKAGE` between role-based `PLANNER`, `IMPLEMENTER`, `REVIEWER`, and `ESCALATION_REVIEWER` assignments; model names live only in a replaceable operating profile.
 
-This addition has not been evaluated. No coding-quality comparison has been run, so no improvement is claimed for either core. The coding comparison is kept separate from the research comparison; see [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md).
+The worker states are a contract, not a runtime: no Telegram, Hermes, or other notification runtime is implemented.
+
+### What v2.1.0 does not claim
+
+v2.1.0 provides systematic engineering workflows. That is a description of function, not of effect.
+
+| Track | Comparison | Result |
+|---|---|---|
+| Research | `CONTROL` versus `HSP` | **Research effectiveness: `NOT_MEASURED`** |
+| Coding | `CONTROL_CODING` versus `ENGINEERING_CORE` | **Coding effectiveness: `NOT_MEASURED`** |
+
+Both harnesses exist and run their own self-tests, but no comparison run has been recorded. This release therefore claims no coding-quality improvement, no defect reduction, no token saving, and no research-quality improvement for either core. The coding comparison is kept separate from the research comparison; see [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md).
 
 ## What this project does not claim
 
@@ -183,7 +205,7 @@ The live documentation is published at [icerain-cmd.github.io/humanities-superpo
 
 ## Public release status
 
-The v1.0.0 release notes and final publication checklist are available in [`docs/release/`](docs/release/).
+The current release notes are [v2.1.0 — Dual-Core](docs/release/RELEASE_NOTES_v2.1.0.md). Earlier notes ([v2.0.0 — Fricturn](docs/release/RELEASE_NOTES_v2.0.0.md), [v1.0.0](docs/release/RELEASE_NOTES_v1.0.0.md)) and the final publication checklist are available in [`docs/release/`](docs/release/).
 
 ## Social media launch kit
 
