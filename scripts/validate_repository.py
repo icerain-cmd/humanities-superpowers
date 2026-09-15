@@ -197,6 +197,15 @@ def validate_public_documentation() -> None:
     release_notes = (ROOT / 'docs/release/RELEASE_NOTES_v1.0.0.md').read_text(encoding='utf-8')
     if '# Humanities Superpowers v1.0.0' not in release_notes:
         error('release notes do not identify v1.0.0')
+    current_notes = ROOT / 'docs/release/RELEASE_NOTES_v2.1.0.md'
+    if not current_notes.exists():
+        error('current release notes missing docs/release/RELEASE_NOTES_v2.1.0.md')
+    else:
+        notes_text = current_notes.read_text(encoding='utf-8')
+        if '# Humanities Superpowers v2.1.0' not in notes_text:
+            error('current release notes do not identify v2.1.0')
+        if 'NOT_MEASURED' not in notes_text:
+            error('current release notes record no unmeasured-effect statement')
 
 def validate_example() -> None:
     base=ROOT/'examples/concept-paper-example'

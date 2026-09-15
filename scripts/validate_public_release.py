@@ -16,6 +16,45 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / 'MANIFEST.json'
 PROJECT_VERSION = json.loads((ROOT / 'project.json').read_text(encoding='utf-8'))['version']
 TEXT_EXTENSIONS = {'.md', '.yml', '.yaml', '.json', '.toml', '.txt', '.py', '.cff', '.mdc', '.sh', '.svg', '.xml', '.html', '.css', '.js'}
+
+# The release contract this validator locks. A release promotion must update
+# these pins deliberately; nothing else in the repository may drift silently.
+RELEASE_VERSION = '2.1.0'
+RELEASE_DATE = '2026-09-15'
+VENDOR_REPOSITORY = 'https://github.com/obra/superpowers'
+VENDOR_VERSION = '6.3.0'
+VENDOR_COMMIT = 'b36e0829c6d0140e93cfef2ca599b1b07d4a7797'
+VENDOR_SKILLS = 10
+HUMANITIES_SKILLS = 14
+WORKER_STATES = ('WORKING', 'WAITING_INPUT', 'WAITING_PRIVILEGE', 'BLOCKED', 'ERROR', 'DONE')
+# Files that state what this release does. Effect claims are checked here.
+CLAIM_FILES = [
+    'README.md', 'README.ko.md', 'CHANGELOG.md',
+    'docs/release/RELEASE_NOTES_v2.1.0.md', 'site/docs/dual-core.md',
+]
+UNMEASURED_CLAIMS = [
+    r'(?i)\bimproves?\s+coding\s+quality\b',
+    r'(?i)\breduces?\s+defects?\b',
+    r'(?i)\bsaves?\s+tokens?\b',
+    r'(?i)\bproven\s+(?:coding|research)\s+quality\b',
+    r'(?i)\bmeasured\s+improvement\b',
+]
+SECRET_PATTERNS = [
+    r'sk-[A-Za-z0-9]{20,}',
+    r'ghp_[A-Za-z0-9]{20,}',
+    r'github_pat_[A-Za-z0-9_]{20,}',
+    r'AKIA[0-9A-Z]{16}',
+    r'-----BEGIN [A-Z ]*PRIVATE KEY-----',
+    r'xox[baprs]-[A-Za-z0-9-]{10,}',
+    r'(?i)(?:api[_-]?key|client_secret|access_token|password)\s*[:=]\s*["\'][A-Za-z0-9/_+.-]{16,}["\']',
+]
+LOCAL_PATH_PATTERNS = [
+    r'/(?:home|Users|mnt|srv|opt)/[^\s`)\]"\']*',
+    r'[A-Za-z]:\\Users\\[^\s`)\]"\']*',
+]
+# Documented, intentional placeholders in INSTALLATION.md and its checker.
+ALLOWED_PATH_LITERALS = ('/EXAMPLE/PATH', '/path/to/')
+
 REQUIRED = [
     'mkdocs.yml', 'site/requirements.txt', 'requirements-validation.txt', '.github/workflows/pages.yml',
     '.github/pull_request_template.md', '.github/ISSUE_TEMPLATE/bug_report.yml',
@@ -25,12 +64,170 @@ REQUIRED = [
     '.github/ISSUE_TEMPLATE/installation_problem.yml',
     'docs/release/RELEASE_NOTES_v1.0.0.md',
     'docs/release/RELEASE_NOTES_v2.0.0.md',
+    'docs/release/RELEASE_NOTES_v2.1.0.md',
     'docs/release/PUBLIC_RELEASE_CHECKLIST.md', 'site/docs/index.md',
     'site/docs/quick-start.md', 'site/docs/skills.md', 'LICENSE',
     'CITATION.cff', 'README.md', 'README.ko.md', 'INSTALLATION.md',
     'MANIFEST.json',
 ]
 ROUTER = 'using-humanities-superpowers'
+
+
+def vendored_tree_hash(directory: Path) -> str:
+    """Recompute one vendored skill tree hash with the documented definition."""
+    digest = hashlib.sha256()
+    for path in sorted(p for p in directory.rglob('*') if p.is_file()):
+        relative = path.relative_to(directory).as_posix()
+        digest.update(f'{relative}\0{hashlib.sha256(path.read_bytes()).hexdigest()}\n'.encode('utf-8'))
+    return digest.hexdigest()
+
+
+def text_release_files() -> list[Path]:
+    return [
+        path for path in release_files()
+        if path.suffix.lower() in TEXT_EXTENSIONS or path.name in {'.gitignore', '.gitattributes'}
+    ]
+
+
+def validate_release_version(errors: list[str]) -> None:
+    """The project release version is a pinned release decision, not a side effect."""
+    if PROJECT_VERSION != RELEASE_VERSION:
+        errors.append(f'project.json version is {PROJECT_VERSION}, expected release {RELEASE_VERSION}')
+    for rel in ['project.json', 'MANIFEST.json', '.codex-plugin/plugin.json',
+                '.claude-plugin/plugin.json', '.cursor-plugin/plugin.json']:
+        try:
+            data = json.loads((ROOT / rel).read_text(encoding='utf-8'))
+        except Exception as exc:
+            errors.append(f'{rel}: unreadable version source: {exc}')
+            continue
+        if data.get('version') != RELEASE_VERSION:
+            errors.append(f'{rel} version is {data.get("version")!r}, expected {RELEASE_VERSION!r}')
+    skill_versions = {
+        path.relative_to(ROOT).as_posix(): match.group(1)
+        for path in sorted((ROOT / 'skills').glob('*/SKILL.md'))
+        if (match := re.search(r'^version:\s*([^\s]+)', path.read_text(encoding='utf-8'), re.MULTILINE))
+    }
+    wrong = {rel: version for rel, version in skill_versions.items() if version != RELEASE_VERSION}
+    if wrong:
+        errors.append(f'skill metadata not at release {RELEASE_VERSION}: {sorted(wrong.items())}')
+    citation = (ROOT / 'CITATION.cff').read_text(encoding='utf-8')
+    if f'version: {RELEASE_VERSION}' not in citation:
+        errors.append(f'CITATION.cff does not declare version: {RELEASE_VERSION}')
+    if f'date-released: {RELEASE_DATE}' not in citation:
+        errors.append(f'CITATION.cff does not declare date-released: {RELEASE_DATE}')
+
+
+def validate_release_documents(errors: list[str]) -> None:
+    changelog = (ROOT / 'CHANGELOG.md').read_text(encoding='utf-8')
+    heading = f'## [{RELEASE_VERSION}] - {RELEASE_DATE}'
+    if heading not in changelog:
+        errors.append(f'CHANGELOG.md is missing the release heading {heading!r}')
+    if '## [Unreleased]' in changelog:
+        errors.append('CHANGELOG.md still carries an [Unreleased] section after the release promotion')
+    notes = (ROOT / 'docs/release/RELEASE_NOTES_v2.1.0.md').read_text(encoding='utf-8')
+    if not notes.startswith(f'# Humanities Superpowers v{RELEASE_VERSION} '):
+        errors.append('v2.1.0 release notes do not open with their release identity')
+    for token in ['NOT_MEASURED', 'RESEARCH', 'CODE', 'HYBRID', 'QUICK', 'STANDARD', 'STRICT']:
+        if token not in notes:
+            errors.append(f'v2.1.0 release notes are missing {token}')
+    for rel in ['README.md', 'README.ko.md']:
+        text = (ROOT / rel).read_text(encoding='utf-8')
+        if RELEASE_VERSION not in text:
+            errors.append(f'{rel} never names the release version {RELEASE_VERSION}')
+        if text.count('NOT_MEASURED') < 2:
+            errors.append(f'{rel} must state both unmeasured tracks as NOT_MEASURED')
+
+
+def validate_vendor_provenance(errors: list[str]) -> None:
+    vendor = ROOT / 'vendor/obra-superpowers'
+    try:
+        provenance = json.loads((vendor / 'PROVENANCE.json').read_text(encoding='utf-8'))
+    except Exception as exc:
+        errors.append(f'vendor/obra-superpowers/PROVENANCE.json: unreadable: {exc}')
+        return
+    upstream = provenance.get('upstream', {})
+    for field, expected in [
+        ('repository', VENDOR_REPOSITORY), ('version', VENDOR_VERSION), ('commit', VENDOR_COMMIT),
+    ]:
+        if upstream.get(field) != expected:
+            errors.append(
+                f'vendored provenance {field} is {upstream.get(field)!r}, expected {expected!r}'
+            )
+    if 'MIT' not in str(upstream.get('license', '')):
+        errors.append('vendored provenance does not record the upstream MIT license')
+    imported = provenance.get('imported', {})
+    if len(imported) != VENDOR_SKILLS:
+        errors.append(f'vendored provenance records {len(imported)} skills, expected {VENDOR_SKILLS}')
+    digest = hashlib.sha256()
+    for name in sorted(imported):
+        directory = vendor / 'skills' / name
+        if not directory.is_dir():
+            errors.append(f'vendored skill directory missing: {name}')
+            continue
+        actual = vendored_tree_hash(directory)
+        if actual != imported[name].get('tree_sha256'):
+            errors.append(f'vendored skill changed since import: {name}')
+        digest.update(f'{name}\0{actual}\n'.encode('utf-8'))
+    if digest.hexdigest() != provenance.get('aggregate_sha256'):
+        errors.append('vendored aggregate hash does not match the recorded import')
+    license_hash = hashlib.sha256((vendor / 'LICENSE').read_bytes()).hexdigest()
+    if license_hash != provenance.get('license_sha256'):
+        errors.append('vendored upstream LICENSE is not byte-identical to the recorded import')
+    for item in provenance.get('excluded', []):
+        if not item.get('reason'):
+            errors.append(f"vendored exclusion without a reason: {item.get('skill')}")
+    notices = (ROOT / 'THIRD_PARTY_NOTICES.md').read_text(encoding='utf-8')
+    for token in [VENDOR_REPOSITORY, VENDOR_VERSION, VENDOR_COMMIT, 'PROVENANCE.json']:
+        if token not in notices:
+            errors.append(f'THIRD_PARTY_NOTICES.md is missing {token}')
+
+
+def validate_release_hygiene(errors: list[str]) -> None:
+    """Local artifacts, secrets, local paths, and unmeasured claims stay out."""
+    for path in release_files():
+        if path.suffix.lower() in {'.orig', '.rej'} or path.name.endswith(('.orig', '.rej')):
+            errors.append(f'local merge artifact tracked in the release: {path.relative_to(ROOT)}')
+    for pattern in LOCAL_PATH_PATTERNS:
+        compiled = re.compile(pattern)
+        for path in text_release_files():
+            for number, line in enumerate(path.read_text(encoding='utf-8', errors='ignore').splitlines(), 1):
+                for found in compiled.finditer(line):
+                    if found.group(0).startswith(ALLOWED_PATH_LITERALS):
+                        continue
+                    errors.append(
+                        f'{path.relative_to(ROOT)}:{number}: absolute local path in public release '
+                        f'({found.group(0)!r})'
+                    )
+    for pattern in SECRET_PATTERNS:
+        compiled = re.compile(pattern)
+        for path in text_release_files():
+            match = compiled.search(path.read_text(encoding='utf-8', errors='ignore'))
+            if match:
+                errors.append(f'{path.relative_to(ROOT)}: possible secret material ({pattern})')
+    for rel in CLAIM_FILES:
+        text = (ROOT / rel).read_text(encoding='utf-8')
+        for pattern in UNMEASURED_CLAIMS:
+            if re.search(pattern, text):
+                errors.append(f'{rel}: claims an effect that was not measured ({pattern})')
+    for rel in ['CHANGELOG.md', 'docs/release/RELEASE_NOTES_v2.1.0.md']:
+        if 'NOT_MEASURED' not in (ROOT / rel).read_text(encoding='utf-8'):
+            errors.append(f'{rel}: records no unmeasured-effect statement')
+
+
+def validate_install_and_contract_inventory(errors: list[str]) -> None:
+    installation = (ROOT / 'INSTALLATION.md').read_text(encoding='utf-8')
+    for token in ['vendor/obra-superpowers', 'docs/specification/dual-core', '14 `SKILL.md` files']:
+        if token not in installation:
+            errors.append(f'INSTALLATION.md does not document {token}')
+    worker = (ROOT / 'docs/specification/dual-core/AUTONOMOUS_WORKER.md').read_text(encoding='utf-8')
+    for state in WORKER_STATES:
+        if f'`{state}`' not in worker:
+            errors.append(f'AUTONOMOUS_WORKER.md does not define the {state} state')
+    for phrase in ['does not implement', 'adds no messaging service']:
+        if phrase not in worker:
+            errors.append(f'AUTONOMOUS_WORKER.md does not separate the contract from a runtime: {phrase}')
+    if len(sorted((ROOT / 'skills').glob('*/SKILL.md'))) != HUMANITIES_SKILLS:
+        errors.append(f'expected {HUMANITIES_SKILLS} Humanities SKILL.md files')
 
 
 def release_files() -> list[Path]:
@@ -100,6 +297,12 @@ def update_manifest() -> int:
 
 def main() -> int:
     errors: list[str] = []
+
+    validate_release_version(errors)
+    validate_release_documents(errors)
+    validate_vendor_provenance(errors)
+    validate_release_hygiene(errors)
+    validate_install_and_contract_inventory(errors)
 
     for rel in REQUIRED:
         if not (ROOT / rel).exists():

@@ -85,8 +85,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "ed1ee66b53af2c523407f123efa1312ef0c6c62afcb5accbc02a241698ad79f4",
-      "bytes": 720
+      "sha256": "a25aaa5c9e145a8819fa50ab2b8a8a9e8974cd325eef61ec173a10f06f59d069",
+      "bytes": 765
     },
     {
       "path": ".gitignore",
@@ -685,13 +685,13 @@
     },
     {
       "path": "scripts/validate_public_release.py",
-      "sha256": "fc222ab27037eeafc245a6cc3503831e06231c7275ce93fdcf90bb9a5b7b64b6",
-      "bytes": 9323
+      "sha256": "92c0918734e3e3e53c30941f0df0dd55726ee738945f578fa4cab48cf6c6423c",
+      "bytes": 19660
     },
     {
       "path": "scripts/validate_repository.py",
-      "sha256": "62837c40285c5c98a5f0e80a853b166ff4b3969a59c11e3f83778397188468cd",
-      "bytes": 26968
+      "sha256": "837e3e9189a09b94e34ce8e5cfede662bb144fb66d9011e53f231a02bc6b9187",
+      "bytes": 27482
     },
     {
       "path": "site/docs/CODE_OF_CONDUCT.md",
