@@ -1,7 +1,7 @@
 ---
 name: conducting-literature-dialogue
 description: Use when a humanities researcher needs to transform verified sources into a structured scholarly conversation rather than a chronological list of summaries.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

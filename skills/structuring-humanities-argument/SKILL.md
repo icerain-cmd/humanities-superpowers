@@ -1,7 +1,7 @@
 ---
 name: structuring-humanities-argument
 description: Use when a researcher has an approved argument map, source-grounded notes, interpretations, and draft passages that need organization and logical repair without delegating the original scholarly contribution to the agent.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

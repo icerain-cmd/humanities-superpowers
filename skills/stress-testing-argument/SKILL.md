@@ -1,7 +1,7 @@
 ---
 name: stress-testing-argument
 description: Use when a thesis, concept, interpretation, or manuscript needs disciplined adversarial testing against counterexamples, rival explanations, category errors, scale violations, false novelty, and unresolved ethical risks.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

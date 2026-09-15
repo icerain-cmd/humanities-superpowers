@@ -1,7 +1,7 @@
 ---
 name: reviewing-manuscript
 description: Use when a humanities manuscript needs an evidence-based, whole-document review of research question, scope, concepts, argument, interpretation, citations, structure, and contribution.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

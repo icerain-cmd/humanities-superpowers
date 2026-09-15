@@ -1,7 +1,7 @@
 ---
 name: checking-terminology-consistency
 description: Use when a manuscript contains recurring concepts, translations, abbreviations, proper names, or near-synonyms whose meanings and forms must remain stable across the argument.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

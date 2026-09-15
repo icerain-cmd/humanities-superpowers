@@ -1,7 +1,7 @@
 ---
 name: auditing-citations
 description: Use when citations, quotations, page numbers, bibliography entries, or source-supported claims must be checked for existence, metadata accuracy, textual fidelity, and claim–source fit.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

@@ -1,6 +1,6 @@
 # Autonomous Worker Protocol
 
-**Status: implemented, unreleased.**
+**Status: implemented and released in v2.1.0. The research core it routes to is unchanged.**
 
 This contract exists for unattended work: DeepSeek-style implementers, Codex
 workers, schedulers, and any run whose human supervisor is not watching. It

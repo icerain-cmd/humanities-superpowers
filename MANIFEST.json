@@ -1,16 +1,16 @@
 {
   "name": "humanities-superpowers",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "file_count": 223,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
-      "sha256": "c33a71efb301c05fcb4865516d63412423f6c554819943f4033f2ab8f92839bf",
+      "sha256": "f36fe8c9787ee08c74dcb30c0c7df6c8995f3f7a2afdbae130e232b3c8e74094",
       "bytes": 484
     },
     {
       "path": ".codex-plugin/plugin.json",
-      "sha256": "2a11347fb5d4193140ec4d295d40b286cbc83c9a4d3ca652a0cebb491c4c16c9",
+      "sha256": "89f1e56c8684bc6def7341f346710a3d4be4390afdba87f1660ba373c1b331b2",
       "bytes": 1286
     },
     {
@@ -20,7 +20,7 @@
     },
     {
       "path": ".cursor-plugin/plugin.json",
-      "sha256": "1dfab9f59d0d7b15220696097fef998ce8d9bb3df23d0ab0f00fbecc4dd0031b",
+      "sha256": "6b0ac7abcfdde4314be4edb140cd79be10d242311bbd5d299acaae9c4ecadf20",
       "bytes": 552
     },
     {
@@ -110,7 +110,7 @@
     },
     {
       "path": "CITATION.cff",
-      "sha256": "2d03b701332021f1cae17e83ffa37b08bbfc1d472052071c66072884d6c7455d",
+      "sha256": "68d58c7a8fc3506537c83c19484996d37f38c47f579eecec5735689b7c10da27",
       "bytes": 694
     },
     {
@@ -365,23 +365,23 @@
     },
     {
       "path": "docs/specification/dual-core/AGENT_ORCHESTRATION.md",
-      "sha256": "b769433280db3e1e06b96ea8117abef3572210f58089218a28640835b3633d5b",
-      "bytes": 3670
+      "sha256": "4c67e7837744c7ebae2781eb52ccb4c22a08a4766ef1edf709cdc7803e77e5eb",
+      "bytes": 3726
     },
     {
       "path": "docs/specification/dual-core/AUTONOMOUS_WORKER.md",
-      "sha256": "915df9ef4dadfbc5bd32ad01a0234427ab58ec62b8ab1e2bd19a7e653687cc64",
-      "bytes": 4625
+      "sha256": "a988858592f823ff4bac42e976b2e6a959e4096a3d92d0240c76af46a56b527a",
+      "bytes": 4681
     },
     {
       "path": "docs/specification/dual-core/DUAL_CORE_ROUTER.md",
-      "sha256": "3ed051a4799b13b0b4540624d0253bc2473d81d9ae81bef745bfd2fcb9d89eb8",
-      "bytes": 4843
+      "sha256": "8bb7853f5e0f4af39537d5cb7bb90a3c2a1b8a45e4df0625ab44bdefedcebe5f",
+      "bytes": 4899
     },
     {
       "path": "docs/specification/dual-core/RISK_ROUTER.md",
-      "sha256": "06e2d77a4a19c39bd1cee803be40de8dda5e930391d326e3558ff78b6cc94f91",
-      "bytes": 4519
+      "sha256": "24493e90338ecc3d6706b02b7643ed8116a32ce7d2605fc70582ebdaa4bbc8cf",
+      "bytes": 4575
     },
     {
       "path": "docs/specification/v2/CORE_SPECIFICATION.md",
@@ -560,7 +560,7 @@
     },
     {
       "path": "project.json",
-      "sha256": "b08c6e4df52928bf1df0501fc971b82c7f55d9468f60c236df749d87c8e74e47",
+      "sha256": "e8388a2bf388348bb5b511cada8bd525f719578810b99b3a29b21bdd89f96067",
       "bytes": 372
     },
     {
@@ -790,72 +790,72 @@
     },
     {
       "path": "skills/auditing-citations/SKILL.md",
-      "sha256": "86e282efecf89952a6f0ed09a47f12d961524d54128a402527d9c4575dbfac19",
+      "sha256": "cab074dc57242277e6d887b442503458d3d351e5a4283f9a1463e5fd414b3624",
       "bytes": 12228
     },
     {
       "path": "skills/checking-terminology-consistency/SKILL.md",
-      "sha256": "8b9aa211b016210ea57a6a64f357fc5c9ff0f815389157be2b9a1be0cd280f01",
+      "sha256": "820922f135fc0b8c3e880502bdb2826c1f2bc061744fa9c5baccf0b2044be698",
       "bytes": 11462
     },
     {
       "path": "skills/conducting-literature-dialogue/SKILL.md",
-      "sha256": "dadf4885c16a40013fe57eebf2a012a45379de8edaa70d341c5a05e81bddcff0",
+      "sha256": "a5bfed33afc557bee8f8b9723350a8f5b09a8a89f8a9ad72d68c2147b161945a",
       "bytes": 10721
     },
     {
       "path": "skills/formulating-research-question/SKILL.md",
-      "sha256": "896dd18c72b8f2359034f2511a6eb405cb170afa4cf5fddc474b51a992507480",
+      "sha256": "35099c8453de45eba9c28535a5f0fec1e9d9f37faaf8b267bc92ba5b328fa499",
       "bytes": 12230
     },
     {
       "path": "skills/mapping-concept-lineage/SKILL.md",
-      "sha256": "bdac9b31c23cc704fc0b5ba69adec2789429c089fd9d4c08a095356c8c074801",
+      "sha256": "3933d3ffcd970344897cb60045c15c1c44d54d0a26e01d1117109935d9791eda",
       "bytes": 10928
     },
     {
       "path": "skills/performing-close-reading/SKILL.md",
-      "sha256": "cc8cf069c13c95cf53ca08387c1cd4b1430266673c1588c173910e8bf179433c",
+      "sha256": "5e0c8a8907e78ee159ba9aac005fb8b32272549a0d9e333810f400b9cbeac6e4",
       "bytes": 12122
     },
     {
       "path": "skills/planning-humanities-argument/SKILL.md",
-      "sha256": "556ccd4f08b3d6538b2f861053388a72e1335e368d0518c517ec311a09fc6605",
+      "sha256": "c00adbcd2ff0e42e2becba0e051e0028bf9172dadee99d0bd8cf0e09340bc5ce",
       "bytes": 10833
     },
     {
       "path": "skills/responding-to-peer-review/SKILL.md",
-      "sha256": "6b91236348a210163840c5bcec4a45f68284ba4606f2730d5831ad804a267410",
+      "sha256": "c09981afac5fe87016584fb7ab4d851afa5ba5933cf81ea797922b31ffc99557",
       "bytes": 11286
     },
     {
       "path": "skills/reviewing-manuscript/SKILL.md",
-      "sha256": "aaeb63a9a7a557aa8d322a0bfcd52c1087230078f76a33e523c72a7e2ce71cea",
+      "sha256": "fb2560b91170ceec7aae1555e470f7d722af2eb5bce9c82f91481a0c38bdbb89",
       "bytes": 11613
     },
     {
       "path": "skills/scoping-argument-boundary/SKILL.md",
-      "sha256": "3e7cb5120c8a4a1887ef05d67874d5958031fc567ec8f5c0b9b156a69884c733",
+      "sha256": "15406e5e0ef311b57943812458dde3cc27d19167cda6a8108f749ee94f12d16d",
       "bytes": 10087
     },
     {
       "path": "skills/stress-testing-argument/SKILL.md",
-      "sha256": "6947fbc3b65cef96269135985bc8ba5ea47a84e14dbc5e41b033c2408682c666",
+      "sha256": "57da47678f692bc81ceefcd3ced9bfa5d49ebedd7774e8c6cbaf6ad1516098da",
       "bytes": 11407
     },
     {
       "path": "skills/structuring-humanities-argument/SKILL.md",
-      "sha256": "23d927e6226c7f26c2ddbf0f8c4855b2aa544a696cf0791020fbf2bdc1cf5527",
+      "sha256": "71f1d9e5fc4ffa96302e0644f0f121cd4dc7a82c280668e856cef0262c18110e",
       "bytes": 10304
     },
     {
       "path": "skills/using-humanities-superpowers/SKILL.md",
-      "sha256": "d29eb4135b4a4841c6998c60d8e41153cdbd80bec0caa83608d4125bc3575a78",
+      "sha256": "f331ef34758feb0f39e70faf2cb88eb2e701bb96c866af2e977f729feb2d66c0",
       "bytes": 29759
     },
     {
       "path": "skills/verifying-before-submission/SKILL.md",
-      "sha256": "f011b27522a425dbd16bf47b564896eb0469881e0fe77b355afec1589cc6584c",
+      "sha256": "ccd6b4f6200620285ec480cc638149562cda2cdc57fd5cc186565b61ccec63d5",
       "bytes": 12588
     },
     {

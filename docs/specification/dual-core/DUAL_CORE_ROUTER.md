@@ -1,6 +1,6 @@
 # Dual-Core Router
 
-**Status: implemented, unreleased.**
+**Status: implemented and released in v2.1.0. The research core it routes to is unchanged.**
 
 Humanities Superpowers keeps its research protocol intact and adds a second,
 vendored engineering core. One router decides which core a request needs, in

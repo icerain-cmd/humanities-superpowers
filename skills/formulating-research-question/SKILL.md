@@ -1,7 +1,7 @@
 ---
 name: formulating-research-question
 description: Use when a humanities researcher has a broad topic, intuition, corpus, or problem but does not yet have a precise, contestable, and researchable question.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

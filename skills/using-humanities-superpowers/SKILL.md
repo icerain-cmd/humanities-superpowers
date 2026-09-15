@@ -1,7 +1,7 @@
 ---
 name: using-humanities-superpowers
 description: Use when an agent must classify a task as research, code, or hybrid, calibrate process depth, select the smallest sufficient route across the Humanities and Engineering cores, handle failed gates, and preserve a resumable workflow.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

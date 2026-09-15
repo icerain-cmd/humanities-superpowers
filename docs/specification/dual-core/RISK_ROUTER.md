@@ -1,6 +1,6 @@
 # Risk Calibration Router
 
-**Status: implemented, unreleased.**
+**Status: implemented and released in v2.1.0. The research core it routes to is unchanged.**
 
 The second routing axis applies to `CODE` and `HYBRID` requests only. It decides
 how much process the change justifies, so that a harmless edit is not buried in

@@ -1,7 +1,7 @@
 ---
 name: responding-to-peer-review
 description: Use when authors must interpret real reviewer comments, decide how to revise a humanities manuscript, and produce a transparent point-by-point response grounded in actual changes.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

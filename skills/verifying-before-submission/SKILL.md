@@ -1,7 +1,7 @@
 ---
 name: verifying-before-submission
 description: Use when a humanities manuscript is about to be submitted or resubmitted and requires a final evidence-based gate covering argument, citations, terminology, files, author information, venue requirements, and disclosure.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

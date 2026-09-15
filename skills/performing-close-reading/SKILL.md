@@ -1,7 +1,7 @@
 ---
 name: performing-close-reading
 description: Use when an interpretation must be grounded in specific textual, visual, rhetorical, formal, interface, archival, performative, or material features rather than thematic summary or theoretical labeling.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

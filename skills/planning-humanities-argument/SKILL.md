@@ -1,7 +1,7 @@
 ---
 name: planning-humanities-argument
 description: Use when a research question, scope boundary, and source base exist but the manuscript still needs a defensible sequence of claims, warrants, evidence, objections, and section functions.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

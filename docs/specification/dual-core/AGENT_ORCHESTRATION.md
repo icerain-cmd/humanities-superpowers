@@ -1,6 +1,6 @@
 # Agent Orchestration Contract
 
-**Status: implemented, unreleased.**
+**Status: implemented and released in v2.1.0. The research core it routes to is unchanged.**
 
 Work is described by role, never by model name. A profile maps roles onto
 models; the contracts below stay valid when that mapping changes.

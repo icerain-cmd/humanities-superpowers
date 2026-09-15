@@ -1,7 +1,7 @@
 ---
 name: mapping-concept-lineage
 description: Use when a humanities argument depends on a concept whose history, competing definitions, translations, or boundaries must be reconstructed before the concept can support new claims.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---

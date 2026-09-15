@@ -1,7 +1,7 @@
 ---
 name: scoping-argument-boundary
 description: Use when a research question is promising but its corpus, period, comparison, concepts, or claim size remain too broad or unstable for a defensible humanities argument.
-version: 2.0.0
+version: 2.1.0
 language: en
 license: MIT
 ---
