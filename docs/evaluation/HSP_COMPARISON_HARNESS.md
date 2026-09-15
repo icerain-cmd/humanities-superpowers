@@ -87,3 +87,7 @@ A scored run may be described only as: what was measured, on which fixtures,
 with which model and reasoning level, at which sample size, and what remained
 unmeasured. Effectiveness claims that go beyond a recorded run are not
 supported by this repository.
+
+For the dispatch form of this comparison — the mandatory unattended preflight
+header, the unattended execution rules, and the separate coding track — see
+[UNATTENDED_AB_WORK_ORDER.md](UNATTENDED_AB_WORK_ORDER.md).

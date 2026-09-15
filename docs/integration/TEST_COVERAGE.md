@@ -12,7 +12,8 @@ Gate-validity contract cases live in `tests/regression/gate-validity-cases.json`
 |---|---|
 | Gate-validity contract cases | Helper output validates against both gate-report profiles, and progression authorization follows the recorded status together with current validity |
 | `scripts/check_installation.py` | The published install commands produce a project where every referenced template, schema, link, and router path exists, and where pre-existing instruction files survive |
-| `scripts/hsp_eval.py self-test` | The comparison scorer discriminates labelled responses and reports absent data as `NOT_MEASURED` |
+| `scripts/hsp_eval.py self-test` | The research comparison scorer discriminates labelled responses and reports absent data as `NOT_MEASURED` |
+| `scripts/hsp_eval_coding.py self-test` | The separate coding comparison scorer discriminates labelled runs on risk level, defect recall, completion accuracy, false blocks, and privilege-boundary state |
 
 ## Scope
 
@@ -58,6 +59,7 @@ All 14 `SKILL.md` files—13 core research skills and 1 Level 3 router—are exe
 The suite verifies declared behavior and artifact consistency. It does not yet measure:
 
 - research benefit: the CONTROL-versus-HSP comparison harness records no run, so effect sizes remain unmeasured;
+- coding benefit: the CONTROL_CODING-versus-ENGINEERING_CORE harness records no run either;
 - inter-model agreement;
 - discipline-specific validity;
 - citation retrieval accuracy in live environments;

@@ -1,7 +1,7 @@
 {
   "name": "humanities-superpowers",
   "version": "2.0.0",
-  "file_count": 220,
+  "file_count": 223,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -85,8 +85,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "54be90696eac924e96660a64fc2991a057340571590ff42c5b18af9ea9f83fc3",
-      "bytes": 662
+      "sha256": "ed1ee66b53af2c523407f123efa1312ef0c6c62afcb5accbc02a241698ad79f4",
+      "bytes": 720
     },
     {
       "path": ".gitignore",
@@ -105,8 +105,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "3a07a687ddf1e455095c7f344cb24f8b5971df9ae417280937d6fed5f1564c6e",
-      "bytes": 6483
+      "sha256": "c3a80b77ac6a3944dbbd346ec74a707e497a391e3fc531ec194e828c997f2018",
+      "bytes": 7217
     },
     {
       "path": "CITATION.cff",
@@ -235,8 +235,13 @@
     },
     {
       "path": "docs/evaluation/HSP_COMPARISON_HARNESS.md",
-      "sha256": "3e4415d2d970c53432320df9637427b2cc579a8fb568f531630b86e7d2a0ad9c",
-      "bytes": 4587
+      "sha256": "bdb417a87ce7387e30f95f94da3dc7e922be2ebe5e86b57c2425c8221a777fef",
+      "bytes": 4806
+    },
+    {
+      "path": "docs/evaluation/UNATTENDED_AB_WORK_ORDER.md",
+      "sha256": "1c7cdb0f99d5e71517045684ac69d592776fff8efdeacccc46157dd1aa243667",
+      "bytes": 8570
     },
     {
       "path": "docs/integration/INTEGRATED_CONFORMANCE.md",
@@ -250,8 +255,8 @@
     },
     {
       "path": "docs/integration/TEST_COVERAGE.md",
-      "sha256": "f0ea4d0522142e4579cf608ffa2a973f604f17d315a84f74f44aef8c3d6382e4",
-      "bytes": 3277
+      "sha256": "1f7e4a8d2d66df20c2d66dc77dde7fa994a794f771991147e145ea8c615f77c1",
+      "bytes": 3583
     },
     {
       "path": "docs/methodology/HUMANITIES_ENGINEERING.md",
@@ -644,6 +649,11 @@
       "bytes": 15803
     },
     {
+      "path": "scripts/hsp_eval_coding.py",
+      "sha256": "640f5a50473affe71aa01739736d157551999ac7d7643316684b653536efea96",
+      "bytes": 16630
+    },
+    {
       "path": "scripts/prepare_release.py",
       "sha256": "f281f66eea84e589164c4594b148d68d71c639f206805a4da7a5fdd81d828956",
       "bytes": 809
@@ -922,6 +932,11 @@
       "path": "tests/eval/cases.json",
       "sha256": "86de956a0be6be7838c4aa132bd37289b63e370ccb095183f06b898735320f97",
       "bytes": 5779
+    },
+    {
+      "path": "tests/eval/coding-cases.json",
+      "sha256": "7cd65e518fe3a3ea41e345e10be80d8c34cc3047b824e3c37bb23f5a42aae4e4",
+      "bytes": 4247
     },
     {
       "path": "tests/friction/cases.json",
