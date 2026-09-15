@@ -1,7 +1,7 @@
 {
   "name": "humanities-superpowers",
   "version": "2.0.0",
-  "file_count": 184,
+  "file_count": 210,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -175,8 +175,8 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "sha256": "50c0549c92432e9b4d6edef6ceb1ebf434705e1365e14d5dec09c383654a7767",
-      "bytes": 756
+      "sha256": "4a41ab0ff89a031d64467485620960fa55a9a417b7839e7074e4eaf68eb6c0dd",
+      "bytes": 1613
     },
     {
       "path": "assets/human-ai-collaboration.svg",
@@ -907,6 +907,136 @@
       "path": "tests/return/cases.json",
       "sha256": "3797b357045a3e14a6e24c5e282aa1d22964c2ca07e31ea3e9c0b78709554800",
       "bytes": 1153
+    },
+    {
+      "path": "vendor/obra-superpowers/LICENSE",
+      "sha256": "a37e0e9697144819e1d965176ac4ae5bc3fa02d11e7812036bbcadf6dafe2400",
+      "bytes": 1070
+    },
+    {
+      "path": "vendor/obra-superpowers/PROVENANCE.json",
+      "sha256": "bfc311987306ec8ac1e1b26fe345de63d7b513b3671ca5fc2daa6fdd19d842b5",
+      "bytes": 4247
+    },
+    {
+      "path": "vendor/obra-superpowers/PROVENANCE.md",
+      "sha256": "788b6737610a9161cdc48eaf7ef80a71492836f686f7ab97aa68241935b34553",
+      "bytes": 3895
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/dispatching-parallel-agents/SKILL.md",
+      "sha256": "1968923066f3b707eb01d1992cdf4c42284c3855f70253b9cd5000ff45fca13c",
+      "bytes": 6078
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/executing-plans/SKILL.md",
+      "sha256": "c4c3d8b628c51114cd165fb8246fe02744cd8be180032328391252e653028d9b",
+      "bytes": 2305
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/finishing-a-development-branch/SKILL.md",
+      "sha256": "8db5a922b242dd4e1bf824cb91c13b3e8d8e8a86d6ceaf7f0774eb9cce909d65",
+      "bytes": 7781
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/receiving-code-review/SKILL.md",
+      "sha256": "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438",
+      "bytes": 6203
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/requesting-code-review/SKILL.md",
+      "sha256": "d71cc01ba56d2325cf8af5f7c11837819b63ecd57de0bfdb812f7f3ff7751df8",
+      "bytes": 2956
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/requesting-code-review/code-reviewer.md",
+      "sha256": "5eca5fcfd48a50e0a526ce5ffd64bf625d6b81bb46d11795274dae451fe6ffd4",
+      "bytes": 5669
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/CREATION-LOG.md",
+      "sha256": "c24733a5b1821bd6bed1fc950261f0b9f4e90097e0bbb96459d8179713730789",
+      "bytes": 4257
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/SKILL.md",
+      "sha256": "808fc5717aa88ad65efff312b11c186294d3e6ee301afb584e2f86599b137787",
+      "bytes": 9465
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/condition-based-waiting-example.ts",
+      "sha256": "40ae5ebe497fdf310200e43fe986552546d0a22837c0d39e855db1cfd33eb88e",
+      "bytes": 5054
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/condition-based-waiting.md",
+      "sha256": "e89fec8400d6cd50f43407cec9fab50976ba4d55d0ec2eb51c0bd68036b54c26",
+      "bytes": 3516
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/defense-in-depth.md",
+      "sha256": "1e175fb86fc357e58c6aebf5441e481e1b7868b4380c0456b63a17eefbd18ba7",
+      "bytes": 3650
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/find-polluter.sh",
+      "sha256": "dd7b8f13c4cc2a24b33ff87b18da9248f3e1c80a085c3316224f69ff0fa5c43c",
+      "bytes": 1986
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/root-cause-tracing.md",
+      "sha256": "6b0622269e098ca1399e123e553fd385f0b6412d88ef0e9c4f5a8ea9cf1cec7b",
+      "bytes": 5316
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/test-academic.md",
+      "sha256": "fe2ba480d78ac0d686dc025f41c2a32a43d642bf533f91b0c6053a04d35d6486",
+      "bytes": 653
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/test-pressure-1.md",
+      "sha256": "0b6a915db0054577819834c79be9eb614e97bddba10d73768e1fbe91cfed048a",
+      "bytes": 1900
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/test-pressure-2.md",
+      "sha256": "b2030aeffba07050e8ad573ddf87486457c4a016a786bb326235bebd856f2016",
+      "bytes": 2283
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/systematic-debugging/test-pressure-3.md",
+      "sha256": "96b50a52e2c7989c9cf20fb752c47c1e9a3a70dc362f8f7989f8f5b64dac7708",
+      "bytes": 2692
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/test-driven-development/SKILL.md",
+      "sha256": "bf1b8216e523851a411e91d429a7c1c2a173e79d88957bc78e348218d50edd54",
+      "bytes": 9015
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/test-driven-development/writing-good-tests.md",
+      "sha256": "51471c853306ff92ca8bb41dcaea05f31c0e46b03651f8f3c99754b7172f4ae1",
+      "bytes": 8268
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/using-git-worktrees/SKILL.md",
+      "sha256": "8cfb86f121269e8f7f12361e6795c4f6738828340e28964c9229d365666c9edd",
+      "bytes": 6813
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/verification-before-completion/SKILL.md",
+      "sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
+      "bytes": 3646
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/writing-plans/SKILL.md",
+      "sha256": "48508f44bbfd7d24b029fbf3a314f3cd14c9615599059366e922f47b8dc08cf2",
+      "bytes": 7053
+    },
+    {
+      "path": "vendor/obra-superpowers/skills/writing-plans/plan-document-reviewer-prompt.md",
+      "sha256": "aa728b96aad603c8be28875a4305637f6c984aa81ffcadcb13e743202fa2a0c7",
+      "bytes": 1713
     },
     {
       "path": "workflows/respond-to-reviewers.md",

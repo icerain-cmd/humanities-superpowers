@@ -1,0 +1,52 @@
+{
+  "upstream": {
+    "repository": "https://github.com/obra/superpowers",
+    "version": "6.3.0",
+    "commit": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+    "commit_date": "2026-08-12",
+    "release_subject": "Release v6.3.0: Devin CLI and Hermes Agent support, brainstorming three-path router, SDD/Codex efficiency fixes",
+    "license": "MIT",
+    "copyright": "Copyright (c) 2025 Jesse Vincent",
+    "imported_at": "2026-09-15",
+    "import_method": "git archive <commit> -- <selected skill directories> LICENSE | tar -x",
+    "upstream_skill_count": 14,
+    "upstream_skills": [
+      "brainstorming",
+      "dispatching-parallel-agents",
+      "executing-plans",
+      "finishing-a-development-branch",
+      "receiving-code-review",
+      "requesting-code-review",
+      "subagent-driven-development",
+      "systematic-debugging",
+      "test-driven-development",
+      "using-git-worktrees",
+      "using-superpowers",
+      "verification-before-completion",
+      "writing-plans",
+      "writing-skills"
+    ]
+  },
+  "imported": {
+    "dispatching-parallel-agents": {"files": 1, "tree_sha256": "a07f1c35d25cb21d078a48f42073d2da0df25d49ba034879f807ef5e686ff955"},
+    "executing-plans": {"files": 1, "tree_sha256": "9e7dcd84bea29a5c4982f38a2353b619fafbff135077130e837a358daba0248b"},
+    "finishing-a-development-branch": {"files": 1, "tree_sha256": "02db5c2ad9d5c3c3345dfbf04dc85b256fca6aa67a5af1dcd615483888cd2ab1"},
+    "receiving-code-review": {"files": 1, "tree_sha256": "9f9b9bf6d2d5c93c20c0fbda1b43b0c667ee7f628f7aaaa94bbc100bb9dcfd95"},
+    "requesting-code-review": {"files": 2, "tree_sha256": "745ec7b1168e94227331f69d4562668bc70ea54694a16d1a1d012c89230c7b73"},
+    "systematic-debugging": {"files": 11, "tree_sha256": "fc677b2c51cf9f73b8a3b701810b6cd081f816c1dba107a874771036087ba9a7"},
+    "test-driven-development": {"files": 2, "tree_sha256": "7e2b6b75cbd5e5c19cb723fb0ab30dd60c591096485823023e8daaf576499b32"},
+    "using-git-worktrees": {"files": 1, "tree_sha256": "97b924d20b46b90bb1bd3735c405f9228390553693f112caf3cfa055a5bb334b"},
+    "verification-before-completion": {"files": 1, "tree_sha256": "29d4bd654fdc57679501bf73b2821abf4ce035c536054a3e8e90ed7ed38644c7"},
+    "writing-plans": {"files": 2, "tree_sha256": "b0694834c81013b4e30a0d650e08cfe2366d434b12dc57b2e59de06a19cc1216"}
+  },
+  "excluded": [
+    {"skill": "using-superpowers", "reason": "Upstream's own router. This repository ships its own dual-core router; importing a second router would create competing entry points and a load-everything failure."},
+    {"skill": "brainstorming", "reason": "Ships a Node HTTP server and browser visual companion (scripts/server.cjs, start-server.sh, stop-server.sh, frame-template.html) and an upstream three-path router. Adds a runtime dependency outside this repository's Python/shell footprint and duplicates the domain/risk routing defined here."},
+    {"skill": "writing-skills", "reason": "Skill-authoring methodology. This repository already owns its skill contract (docs/SKILL_SCHEMA.md, docs/specification/SKILL_CONTRACT.md); importing a second authoring contract would duplicate it."},
+    {"skill": "subagent-driven-development", "reason": "Ships a second orchestration contract (bash scripts plus a .superpowers/sdd workspace) parallel to the role-based WORK_PACKAGE/EVIDENCE_PACKAGE handoff defined in docs/specification/dual-core/AGENT_ORCHESTRATION.md. Two competing orchestration contracts violate the minimum-sufficient-record rule; dispatching-parallel-agents covers the parallelism need."}
+  ],
+  "aggregate_sha256": "15c52701a2c2f4483d0276e1982d6278113a0264c445f7e47339a652fb39bf71",
+  "license_sha256": "a37e0e9697144819e1d965176ac4ae5bc3fa02d11e7812036bbcadf6dafe2400",
+  "hash_definition": "tree_sha256 = sha256 over the concatenation of '<relative-posix-path>\\0<sha256-of-file-bytes>\\n' for every file under the skill directory, sorted by relative path. aggregate_sha256 = sha256 over the concatenation of '<skill-name>\\0<tree_sha256>\\n' for every imported skill, sorted by skill name.",
+  "integrity_note": "The vendored files are byte-identical to the upstream commit; no file was edited. scripts/run_dual_core_tests.py recomputes these hashes and fails if a vendored file changes."
+}
