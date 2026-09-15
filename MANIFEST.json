@@ -1,7 +1,7 @@
 {
   "name": "humanities-superpowers",
   "version": "2.0.0",
-  "file_count": 179,
+  "file_count": 180,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -105,8 +105,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "e764830d1c72d3acf83980b6345050444287aa455a4eaa1db84cc802fec94335",
-      "bytes": 3869
+      "sha256": "33f00f3c921cdfcc351122b10a93fdb464a69b4aae6f554da7ac2fd7da7b8a96",
+      "bytes": 4213
     },
     {
       "path": "CITATION.cff",
@@ -877,6 +877,11 @@
       "path": "tests/regression/cases.json",
       "sha256": "f38aea493db7dc377d35172e9eed53a1a0ffd7d53c30da1945a0363f0398aed7",
       "bytes": 2202
+    },
+    {
+      "path": "tests/regression/gate-validity-cases.json",
+      "sha256": "70ead427b7b910b0d4594042d128f11ceb605bba41633c405a7597bc05bc889d",
+      "bytes": 7414
     },
     {
       "path": "tests/return/cases.json",

@@ -2,12 +2,15 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
 from fricturn_protocol import (
+    gate_validity_restoration_allowed,
     invalidate_dependent_gates,
+    progression_authorized,
     should_propose_epistemic_return,
     trusted_authorization,
     trusted_verification,
@@ -36,6 +39,96 @@ def validate(schema_name: str, instance: dict, errors: list[str], label: str) ->
         key=lambda item: list(item.path),
     )
     errors.extend(f"{label}: {issue.message}" for issue in issues)
+
+
+GATE_REPORT_PROFILES = ("gate-report.schema.json", "gate-report-v2.schema.json")
+
+
+def check_gate_validity_contract(errors: list[str]) -> None:
+    """Drive gate invalidation output into the official schemas and progression rule.
+
+    Function-level and schema-level checks can both pass while the seam between them
+    is broken. Each case therefore feeds the helper output into both gate-report
+    profiles, then applies the progression-authorization rule to the same artifact.
+    """
+    data = load("tests/regression/gate-validity-cases.json")
+    for case in data["cases"]:
+        label = case["id"]
+        gates_in = case["gates"]
+        snapshot = deepcopy(gates_in)
+        expect = case["expect"]
+        updated, invalidated, recheck, preserved = invalidate_dependent_gates(
+            gates_in, set(case["changed_refs"]), material_change=case["material_change"]
+        )
+        if gates_in != snapshot:
+            errors.append(f"{label}: invalidation must not mutate the historical gate records")
+        for field, produced in (
+            ("invalidated", invalidated),
+            ("recheck", recheck),
+            ("preserved", preserved),
+        ):
+            if produced != expect[field]:
+                errors.append(f"{label}: {field} {produced} != {expect[field]}")
+        originals = {item["gate"]: item for item in snapshot}
+        for gate in updated:
+            name = gate["gate"]
+            if gate.get("validity") != expect["validity"][name]:
+                errors.append(
+                    f"{label}: {name} validity {gate.get('validity')} != {expect['validity'][name]}"
+                )
+            if gate.get("status") != expect["historical_status"][name]:
+                errors.append(f"{label}: {name} historical status did not survive invalidation")
+            if originals[name].get("status") != gate.get("status"):
+                errors.append(f"{label}: {name} historical status was rewritten in place")
+            if name in expect.get("dependency_refs", {}):
+                if gate.get("dependency_refs") != expect["dependency_refs"][name]:
+                    errors.append(
+                        f"{label}: {name} dependency_refs {gate.get('dependency_refs')} "
+                        f"!= {expect['dependency_refs'][name]}"
+                    )
+            report = {"schema_version": "2.0"}
+            report.update(gate)
+            for profile in GATE_REPORT_PROFILES:
+                validate(profile, report, errors, f"{label}/{name}/{profile}")
+            authorized = progression_authorized(gate)
+            if authorized is not expect["progression"][name]:
+                errors.append(
+                    f"{label}: {name} progression {authorized} != {expect['progression'][name]}"
+                )
+            if authorized and gate.get("validity") != "VALID":
+                errors.append(f"{label}: {name} authorized progression without VALID validity")
+            if authorized and gate.get("status") not in {"PASS", "CONDITIONAL PASS"}:
+                errors.append(f"{label}: {name} authorized progression from a failed gate")
+            if gate.get("validity") == "VALID" and gate.get("status") in {"PASS", "CONDITIONAL PASS"}:
+                if not authorized:
+                    errors.append(f"{label}: {name} pass-class VALID gate must authorize progression")
+
+        if "recheck" in case:
+            spec = case["recheck"]
+            name = spec["gate"]
+            invalidated_record = {gate["gate"]: gate for gate in updated}[name]
+            retained = deepcopy(invalidated_record)
+            if invalidated_record.get("validity") != "INVALIDATED":
+                errors.append(f"{label}: recheck case requires an INVALIDATED gate first")
+            if gate_validity_restoration_allowed("INVALIDATED", "VALID", recheck_performed=False):
+                errors.append(f"{label}: VALID must not be restored without an explicit recheck")
+            if not gate_validity_restoration_allowed("INVALIDATED", "VALID", recheck_performed=True):
+                errors.append(f"{label}: an explicit recheck must permit restored VALID validity")
+            rerun = {"schema_version": "2.0"}
+            rerun.update(deepcopy(spec["report"]))
+            for profile in GATE_REPORT_PROFILES:
+                validate(profile, rerun, errors, f"{label}/rerun/{profile}")
+            after = expect["after_recheck"]
+            if rerun.get("validity") != after["validity"]:
+                errors.append(f"{label}: rerun validity {rerun.get('validity')} != {after['validity']}")
+            if progression_authorized(rerun) is not after["progression"]:
+                errors.append(f"{label}: rerun progression authorization does not match expectation")
+            if not rerun.get("evidence_checked"):
+                errors.append(f"{label}: rerun must record the evidence it checked")
+            if invalidated_record != retained:
+                errors.append(f"{label}: rerun must not overwrite the invalidated historical record")
+            if retained.get("validity") != "INVALIDATED" or retained.get("status") != "PASS":
+                errors.append(f"{label}: invalidated PASS record must remain inspectable")
 
 
 def main() -> int:
@@ -256,12 +349,18 @@ def main() -> int:
     for record in load("examples/rival-interpretation-example/interpretations.json"):
         validate("interpretation-history.schema.json", record, errors, f"interpretation-example-{record['interpretation_id']}")
 
+    check_gate_validity_contract(errors)
+
     if errors:
         for error in errors:
             print(f"ERROR: {error}")
         print(f"FAIL: {len(errors)} v2 conformance error(s)")
         return 1
-    print("PASS: 12 Fricturn cases plus negative boundaries; schemas, judgment authority, bounded gate invalidation, verification transitions, and epistemic return")
+    print(
+        "PASS: 12 Fricturn cases plus negative boundaries; schemas, judgment authority, "
+        "bounded gate invalidation, gate status/validity/progression separation through both "
+        "gate-report profiles, verification transitions, and epistemic return"
+    )
     return 0
 
 

@@ -10,6 +10,10 @@ All notable changes to this project will be documented in this file.
 - Required an `invalidation_reason` for `INVALIDATED` and `REQUIRES_RECHECK` gates, and allowed an explicitly empty `dependency_refs` list only for `REQUIRES_RECHECK`, where dependency metadata is absent and invalidation cannot be bounded.
 - Recorded `invalidation_reason` in `invalidate_dependent_gates()` output and added `progression_authorized()` and `gate_validity_restoration_allowed()` so progression authorization is derived rather than stored.
 
+### Added
+
+- `tests/regression/gate-validity-cases.json` and an end-to-end contract check in `scripts/run_v2_tests.py` that feed invalidation output into both gate-report profiles and then into the progression rule, covering normal PASS, material dependency change, absent dependency metadata, formatting-only change, and recheck restoration.
+
 ## [2.0.0] - 2026-08-21
 
 ### Added

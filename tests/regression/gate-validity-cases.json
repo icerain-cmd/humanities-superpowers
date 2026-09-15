@@ -1,0 +1,200 @@
+{
+  "schema_version": "2.0",
+  "note": "End-to-end gate contract cases. Each case feeds the protocol helper output into the official gate-report schemas and then into the progression-authorization rule. Historical status must survive invalidation unchanged.",
+  "cases": [
+    {
+      "id": "A-pass-valid",
+      "title": "A recorded PASS with VALID validity validates and authorizes progression",
+      "material_change": false,
+      "changed_refs": [],
+      "gates": [
+        {
+          "gate": "Argument gate",
+          "status": "PASS",
+          "validity": "VALID",
+          "dependency_refs": ["claim:C7"],
+          "evidence_checked": ["ledger:L7"],
+          "blocking_issues": [],
+          "non_blocking_risks": [],
+          "researcher_decisions_required": [],
+          "required_next_action": "Proceed to review.",
+          "next_skill": "reviewing-manuscript"
+        }
+      ],
+      "expect": {
+        "invalidated": [],
+        "recheck": [],
+        "preserved": ["Argument gate"],
+        "validity": {"Argument gate": "VALID"},
+        "historical_status": {"Argument gate": "PASS"},
+        "progression": {"Argument gate": true}
+      }
+    },
+    {
+      "id": "B-material-dependency-change",
+      "title": "A material dependency change preserves the historical PASS and blocks progression",
+      "material_change": true,
+      "changed_refs": ["claim:C7"],
+      "gates": [
+        {
+          "gate": "Argument gate",
+          "status": "PASS",
+          "validity": "VALID",
+          "dependency_refs": ["claim:C7"],
+          "evidence_checked": ["ledger:L7"],
+          "blocking_issues": [],
+          "non_blocking_risks": [],
+          "researcher_decisions_required": [],
+          "required_next_action": "Proceed to review.",
+          "next_skill": "reviewing-manuscript"
+        },
+        {
+          "gate": "Terminology gate",
+          "status": "PASS",
+          "validity": "VALID",
+          "dependency_refs": ["concept:C8"],
+          "evidence_checked": ["ledger:L8"],
+          "blocking_issues": [],
+          "non_blocking_risks": [],
+          "researcher_decisions_required": [],
+          "required_next_action": "Proceed to review.",
+          "next_skill": "reviewing-manuscript"
+        }
+      ],
+      "expect": {
+        "invalidated": ["Argument gate"],
+        "recheck": [],
+        "preserved": ["Terminology gate"],
+        "validity": {"Argument gate": "INVALIDATED", "Terminology gate": "VALID"},
+        "historical_status": {"Argument gate": "PASS", "Terminology gate": "PASS"},
+        "progression": {"Argument gate": false, "Terminology gate": true}
+      }
+    },
+    {
+      "id": "C-missing-dependency-metadata",
+      "title": "A material change with absent dependency metadata fails closed as REQUIRES_RECHECK",
+      "material_change": true,
+      "changed_refs": ["claim:C7"],
+      "gates": [
+        {
+          "gate": "Legacy submission gate",
+          "status": "PASS",
+          "evidence_checked": ["legacy:brief"],
+          "blocking_issues": [],
+          "non_blocking_risks": [],
+          "researcher_decisions_required": [],
+          "required_next_action": "Recheck against current dependencies.",
+          "next_skill": "verifying-before-submission"
+        }
+      ],
+      "expect": {
+        "invalidated": [],
+        "recheck": ["Legacy submission gate"],
+        "preserved": [],
+        "validity": {"Legacy submission gate": "REQUIRES_RECHECK"},
+        "dependency_refs": {"Legacy submission gate": []},
+        "historical_status": {"Legacy submission gate": "PASS"},
+        "progression": {"Legacy submission gate": false}
+      }
+    },
+    {
+      "id": "D-formatting-only-change",
+      "title": "A formatting-only change invalidates nothing and keeps progression authorized",
+      "material_change": false,
+      "changed_refs": ["claim:C7"],
+      "gates": [
+        {
+          "gate": "Argument gate",
+          "status": "PASS",
+          "validity": "VALID",
+          "dependency_refs": ["claim:C7"],
+          "evidence_checked": ["ledger:L7"],
+          "blocking_issues": [],
+          "non_blocking_risks": [],
+          "researcher_decisions_required": [],
+          "required_next_action": "Proceed to review.",
+          "next_skill": "reviewing-manuscript"
+        },
+        {
+          "gate": "Interpretation gate",
+          "status": "CONDITIONAL PASS",
+          "validity": "VALID",
+          "dependency_refs": ["concept:C3"],
+          "evidence_checked": ["ledger:L3"],
+          "blocking_issues": [],
+          "non_blocking_risks": ["single passage"],
+          "researcher_decisions_required": ["accept the single-passage risk"],
+          "required_next_action": "Proceed to review.",
+          "next_skill": "reviewing-manuscript"
+        }
+      ],
+      "expect": {
+        "invalidated": [],
+        "recheck": [],
+        "preserved": ["Argument gate", "Interpretation gate"],
+        "validity": {"Argument gate": "VALID", "Interpretation gate": "VALID"},
+        "historical_status": {"Argument gate": "PASS", "Interpretation gate": "CONDITIONAL PASS"},
+        "progression": {"Argument gate": true, "Interpretation gate": true}
+      }
+    },
+    {
+      "id": "E-recheck-restores-validity",
+      "title": "A rerun restores VALID and authorizes progression while the invalidated record is retained",
+      "material_change": true,
+      "changed_refs": ["claim:C7"],
+      "gates": [
+        {
+          "gate": "Argument gate",
+          "status": "PASS",
+          "validity": "VALID",
+          "dependency_refs": ["claim:C7"],
+          "evidence_checked": ["ledger:L7"],
+          "blocking_issues": [],
+          "non_blocking_risks": [],
+          "researcher_decisions_required": [],
+          "required_next_action": "Proceed to review.",
+          "next_skill": "reviewing-manuscript"
+        },
+        {
+          "gate": "Terminology gate",
+          "status": "PASS",
+          "validity": "VALID",
+          "dependency_refs": ["concept:C8"],
+          "evidence_checked": ["ledger:L8"],
+          "blocking_issues": [],
+          "non_blocking_risks": [],
+          "researcher_decisions_required": [],
+          "required_next_action": "Proceed to review.",
+          "next_skill": "reviewing-manuscript"
+        }
+      ],
+      "recheck": {
+        "gate": "Argument gate",
+        "performed": true,
+        "report": {
+          "gate": "Argument gate",
+          "status": "PASS",
+          "validity": "VALID",
+          "dependency_refs": ["claim:C7"],
+          "evidence_checked": ["ledger:L9"],
+          "blocking_issues": [],
+          "non_blocking_risks": [],
+          "researcher_decisions_required": [],
+          "required_next_action": "Proceed to review.",
+          "next_skill": "reviewing-manuscript"
+        }
+      },
+      "expect": {
+        "invalidated": ["Argument gate"],
+        "recheck": [],
+        "preserved": ["Terminology gate"],
+        "validity": {"Argument gate": "INVALIDATED", "Terminology gate": "VALID"},
+        "historical_status": {"Argument gate": "PASS", "Terminology gate": "PASS"},
+        "progression": {"Argument gate": false, "Terminology gate": true},
+        "restoration_allowed_with_recheck": true,
+        "restoration_allowed_without_recheck": false,
+        "after_recheck": {"validity": "VALID", "progression": true, "history_preserved": true}
+      }
+    }
+  ]
+}
