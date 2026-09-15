@@ -9,10 +9,12 @@ All notable changes to this project will be documented in this file.
 - Reconciled the gate contract: `schemas/gate-report-v2.schema.json` and `schemas/gate-report.schema.json` no longer force `status: PASS` to imply `validity: VALID`, so the official invalidation helper output validates. Historical status, current validity, and progression authorization are now separate and explicitly documented.
 - Required an `invalidation_reason` for `INVALIDATED` and `REQUIRES_RECHECK` gates, and allowed an explicitly empty `dependency_refs` list only for `REQUIRES_RECHECK`, where dependency metadata is absent and invalidation cannot be bounded.
 - Recorded `invalidation_reason` in `invalidate_dependent_gates()` output and added `progression_authorized()` and `gate_validity_restoration_allowed()` so progression authorization is derived rather than stored.
+- Made the documented project-local installs coherent: `templates/` and `schemas/` are now copied alongside the skills, the instruction files name every documented router path, and an existing `AGENTS.md` or `CLAUDE.md` is never overwritten.
 
 ### Added
 
 - `tests/regression/gate-validity-cases.json` and an end-to-end contract check in `scripts/run_v2_tests.py` that feed invalidation output into both gate-report profiles and then into the progression rule, covering normal PASS, material dependency change, absent dependency metadata, formatting-only change, and recheck restoration.
+- `scripts/check_installation.py`, which executes the documented install commands in throwaway Codex, Claude Code, and Cursor projects and fails when an installed skill or instruction file refers to a path the procedure never copies. It is part of the validation workflow.
 
 ## [2.0.0] - 2026-08-21
 

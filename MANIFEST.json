@@ -1,7 +1,7 @@
 {
   "name": "humanities-superpowers",
   "version": "2.0.0",
-  "file_count": 180,
+  "file_count": 181,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -85,8 +85,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "c7b5aa4dada7c6ba9116df7a9a44f0f1daadc47ee5aca8f0213e159de7567f51",
-      "bytes": 508
+      "sha256": "cf3c249db212952b6f211acdd469fe3fa645c6c5b603162be1e5791f6bd35b08",
+      "bytes": 559
     },
     {
       "path": ".gitignore",
@@ -105,8 +105,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "33f00f3c921cdfcc351122b10a93fdb464a69b4aae6f554da7ac2fd7da7b8a96",
-      "bytes": 4213
+      "sha256": "099fad340fb2a9e2cf8128b924f8ba9e8a253f30c696db8dc84904358e96c93a",
+      "bytes": 4728
     },
     {
       "path": "CITATION.cff",
@@ -582,6 +582,11 @@
       "path": "schemas/research-session.schema.json",
       "sha256": "bd04d229f21b220028def420abdfe955ccdfec759a8077265fcdde90475a186c",
       "bytes": 3574
+    },
+    {
+      "path": "scripts/check_installation.py",
+      "sha256": "86c4427858cadfb4d37019e3cfff79d9b55c1409078b2c35ac28ededccf12423",
+      "bytes": 8017
     },
     {
       "path": "scripts/fricturn_protocol.py",
