@@ -135,8 +135,8 @@
     },
     {
       "path": "INSTALLATION.md",
-      "sha256": "988ef61f4e73cbe16f89b11199d80c4ed4073960e044ebc6f7584e7d3fab6384",
-      "bytes": 8942
+      "sha256": "9086df52bbac3d62ca4d02beee71f1201320936a5aad88302c49d3a26ee26c31",
+      "bytes": 9284
     },
     {
       "path": "LICENSE",
@@ -590,8 +590,8 @@
     },
     {
       "path": "scripts/check_installation.py",
-      "sha256": "86c4427858cadfb4d37019e3cfff79d9b55c1409078b2c35ac28ededccf12423",
-      "bytes": 8017
+      "sha256": "37d4ec1c260f0cc7faa355973f5c54f70e7a4203dac608e1580b7c9fb3b2b353",
+      "bytes": 8006
     },
     {
       "path": "scripts/fricturn_protocol.py",
@@ -600,8 +600,8 @@
     },
     {
       "path": "scripts/hsp_eval.py",
-      "sha256": "5833d0b089e4adedc39fc26a141288f029793c229a91310433aebbaa29480f89",
-      "bytes": 15832
+      "sha256": "797c43916b126e980dbd2bfd89da4633baceb37eb62725623a56f3cf297b357f",
+      "bytes": 15803
     },
     {
       "path": "scripts/prepare_release.py",

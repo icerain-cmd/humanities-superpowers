@@ -159,6 +159,8 @@ grep -rho '`\(templates\|schemas\)/[A-Za-z0-9._/-]*`' .agents/skills | tr -d '`'
 
 Substitute `.claude/skills` or `skills` for `.agents/skills` when you installed one of the other layouts.
 
+These verification commands, like the install commands above, need a POSIX shell (Linux, macOS, WSL, or Git Bash on Windows). On native Windows PowerShell, compare the names the skills reference against the files in `templates/` and `schemas/`, or run `python3 scripts/check_installation.py` from the framework clone inside WSL or Git Bash.
+
 PowerShell users can count them with:
 
 ```powershell
