@@ -1,7 +1,7 @@
 {
   "name": "humanities-superpowers",
   "version": "2.0.0",
-  "file_count": 181,
+  "file_count": 184,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -85,8 +85,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "cf3c249db212952b6f211acdd469fe3fa645c6c5b603162be1e5791f6bd35b08",
-      "bytes": 559
+      "sha256": "ae7afcca5bd6faa36d26f7ee38e733f1d5f60c13fcf13f923079bbb0592ec5dc",
+      "bytes": 610
     },
     {
       "path": ".gitignore",
@@ -105,8 +105,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "099fad340fb2a9e2cf8128b924f8ba9e8a253f30c696db8dc84904358e96c93a",
-      "bytes": 4728
+      "sha256": "42fe038fbccbeafe48c838036bfef15a3e62bc8aef283d004ce57b147c11401f",
+      "bytes": 5108
     },
     {
       "path": "CITATION.cff",
@@ -232,6 +232,11 @@
       "path": "docs/SKILL_SCHEMA.md",
       "sha256": "878352f811f379e9a96575373afd232888dbe404062da13a263eb34fcae4ace8",
       "bytes": 1010
+    },
+    {
+      "path": "docs/evaluation/HSP_COMPARISON_HARNESS.md",
+      "sha256": "3e4415d2d970c53432320df9637427b2cc579a8fb568f531630b86e7d2a0ad9c",
+      "bytes": 4587
     },
     {
       "path": "docs/integration/INTEGRATED_CONFORMANCE.md",
@@ -594,6 +599,11 @@
       "bytes": 5390
     },
     {
+      "path": "scripts/hsp_eval.py",
+      "sha256": "5833d0b089e4adedc39fc26a141288f029793c229a91310433aebbaa29480f89",
+      "bytes": 15832
+    },
+    {
       "path": "scripts/prepare_release.py",
       "sha256": "f281f66eea84e589164c4594b148d68d71c639f206805a4da7a5fdd81d828956",
       "bytes": 809
@@ -857,6 +867,11 @@
       "path": "tests/conformance/skills.yaml",
       "sha256": "9e719d47dfec98a85b7fa2012adf52aff3b24ab9dec6641f848dddbf6e166fa2",
       "bytes": 1254
+    },
+    {
+      "path": "tests/eval/cases.json",
+      "sha256": "86de956a0be6be7838c4aa132bd37289b63e370ccb095183f06b898735320f97",
+      "bytes": 5779
     },
     {
       "path": "tests/friction/cases.json",

@@ -17,4 +17,5 @@ jobs:
       - run: python3 scripts/run_integrated_tests.py
       - run: python3 scripts/validate_public_release.py
       - run: python3 scripts/check_installation.py
+      - run: python3 scripts/hsp_eval.py self-test
       - run: mkdocs build --strict

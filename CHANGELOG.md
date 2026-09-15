@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 
 - `tests/regression/gate-validity-cases.json` and an end-to-end contract check in `scripts/run_v2_tests.py` that feed invalidation output into both gate-report profiles and then into the progression rule, covering normal PASS, material dependency change, absent dependency metadata, formatting-only change, and recheck restoration.
 - `scripts/check_installation.py`, which executes the documented install commands in throwaway Codex, Claude Code, and Cursor projects and fails when an installed skill or instruction file refers to a path the procedure never copies. It is part of the validation workflow.
+- `tests/eval/cases.json`, `scripts/hsp_eval.py`, and [the comparison harness guide](docs/evaluation/HSP_COMPARISON_HARNESS.md) for a reproducible CONTROL-versus-HSP comparison on six task types, with deterministic scoring, a clean case for false blocks, and `NOT_MEASURED` for any metric the response record does not contain. No effectiveness result is recorded by this release.
 
 ## [2.0.0] - 2026-08-21
 

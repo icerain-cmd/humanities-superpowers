@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "note": "Controlled comparison fixtures for CONTROL versus HSP. Every condition receives the same materials and the same answer contract; only the condition preamble differs. Labels are author-declared ground truth and must be confirmed by the researcher before results are interpreted.",
+  "answer_contract": "Reply with one JSON object inside a ```json fenced block: {\"case_id\": str, \"items\": [{\"id\": str, \"label\": str}], \"decision_required\": bool, \"flags\": [str]}. Use only the labels listed for the case.",
+  "cases": [
+    {
+      "id": "T1-citation-existence",
+      "type": "citation_existence",
+      "labels": ["EXISTS", "FABRICATED", "METADATA_MISMATCH"],
+      "defect_labels": ["FABRICATED", "METADATA_MISMATCH"],
+      "material": "Reference list submitted by a researcher.\nR1: Foucault, M. (1975). Discipline and Punish: The Birth of the Prison.\nR2: Kittler, F. (2011). Interface Hermeneutics: Essays on Platform Aesthetics. Cambridge, MA: MIT Press.\nR3: Benjamin, W. (1935). The Work of Art in the Age of Its Technological Reproducibility. New York: Verso.",
+      "ground_truth": [
+        {"id": "R1", "label": "EXISTS"},
+        {"id": "R2", "label": "FABRICATED"},
+        {"id": "R3", "label": "METADATA_MISMATCH"}
+      ],
+      "ground_truth_note": "R2 is invented. R3 names a real essay but the imprint and year are wrong. R1 is real as given. Confirm in a catalogue before interpreting scores."
+    },
+    {
+      "id": "T2-claim-source-fit",
+      "type": "claim_source_fit",
+      "labels": ["SUPPORTS", "QUALIFIES", "CONTEXT_ONLY", "CONTRADICTS", "INSUFFICIENT"],
+      "defect_labels": ["CONTRADICTS", "INSUFFICIENT"],
+      "material": "Claim: interface design has made sustained reading measurably harder.\nS1: reports a controlled trial in which reading time on the interface condition increased and comprehension decreased.\nS2: reports a controlled trial with a small effect that the authors describe as inconclusive.\nS3: reviews the history of reading practices and does not measure interface effects.\nS4: finds no difference in comprehension across conditions.\nS5: abstract only; full text not available to the researcher.",
+      "ground_truth": [
+        {"id": "S1", "label": "SUPPORTS"},
+        {"id": "S2", "label": "QUALIFIES"},
+        {"id": "S3", "label": "CONTEXT_ONLY"},
+        {"id": "S4", "label": "CONTRADICTS"},
+        {"id": "S5", "label": "INSUFFICIENT"}
+      ]
+    },
+    {
+      "id": "T3-rival-interpretation",
+      "type": "rival_interpretation",
+      "labels": ["PRESERVED", "COLLAPSED"],
+      "defect_labels": ["COLLAPSED"],
+      "material": "Passage: 'The photograph repeats the street, and the street no longer repeats itself.'\nReading A: repetition names mechanical reproduction; the second clause marks the loss of the unique.\nReading B: repetition names habitual use; the second clause marks the loss of habit under mediation.\nBoth readings are defensible from the sentence alone, and the researcher has not yet chosen.",
+      "ground_truth": [
+        {"id": "READING_A", "label": "PRESERVED"},
+        {"id": "READING_B", "label": "PRESERVED"}
+      ],
+      "expected_decision_required": true
+    },
+    {
+      "id": "T4-concept-drift",
+      "type": "concept_drift",
+      "labels": ["DRIFT", "STABLE"],
+      "defect_labels": ["DRIFT"],
+      "material": "Core concept: mediation.\nC1: mediation is defined as the transformation of a signal by the apparatus that carries it.\nC2: the definition is restated without change.\nC3: mediation is redefined as any cultural circulation of meaning.\nC4: the new definition is used to attribute a causal effect to the apparatus itself.\nC5: an unrelated term is defined.\nC6: the original definition is restated.",
+      "ground_truth": [
+        {"id": "C1", "label": "STABLE"},
+        {"id": "C2", "label": "STABLE"},
+        {"id": "C3", "label": "DRIFT"},
+        {"id": "C4", "label": "DRIFT"},
+        {"id": "C5", "label": "STABLE"},
+        {"id": "C6", "label": "STABLE"}
+      ]
+    },
+    {
+      "id": "T5-new-evidence",
+      "type": "epistemic_return",
+      "labels": ["INVALIDATED", "VALID"],
+      "defect_labels": ["INVALIDATED"],
+      "material": "Recorded gates: Terminology gate (depends on concept:C3), Argument gate (depends on claim:C7), Citation-fit gate (depends on claim:C7 and source:S2), Unrelated source gate (depends on source:S9).\nNew evidence: the chronology behind claim:C7 is shown to be wrong; concept:C3, source:S2, and source:S9 are unaffected.",
+      "ground_truth": [
+        {"id": "Terminology gate", "label": "VALID"},
+        {"id": "Argument gate", "label": "INVALIDATED"},
+        {"id": "Citation-fit gate", "label": "INVALIDATED"},
+        {"id": "Unrelated source gate", "label": "VALID"},
+        {"id": "Source identity gate", "label": "VALID"}
+      ],
+      "expected_classification": "EPISTEMIC_RETURN",
+      "note": "Defect repair is ROLLBACK; changed knowledge that reopens an earlier premise is EPISTEMIC_RETURN."
+    },
+    {
+      "id": "T6-clean-case",
+      "type": "clean_case",
+      "labels": ["OK", "DEFECT"],
+      "defect_labels": ["DEFECT"],
+      "material": "Reference list: Foucault, M. (1977). Discipline and Punish. Pantheon. | Claim: the essay argues that reproduction changes the audience for art. | Support: the quoted passage states that reproduction changes audience. | Concept: mediation, defined once and used consistently. | No unresolved evidence conflicts are recorded.",
+      "ground_truth": [
+        {"id": "CLEAN_1", "label": "OK"},
+        {"id": "CLEAN_2", "label": "OK"},
+        {"id": "CLEAN_3", "label": "OK"}
+      ],
+      "expected_decision_required": false,
+      "expected_flags_empty": true
+    }
+  ]
+}
