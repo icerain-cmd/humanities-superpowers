@@ -105,8 +105,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "42fe038fbccbeafe48c838036bfef15a3e62bc8aef283d004ce57b147c11401f",
-      "bytes": 5108
+      "sha256": "a13b1583ee1e36143dea98f380afa4a67f005536d3a55231fa95cd2e628a8363",
+      "bytes": 5471
     },
     {
       "path": "CITATION.cff",
@@ -155,13 +155,13 @@
     },
     {
       "path": "README.ko.md",
-      "sha256": "b1efcd51a67e27540242b7bcb4e2b8f88b44c1a033094c961b851386b449e66a",
-      "bytes": 10063
+      "sha256": "7bf15c4b8ea39dfad9a457bf32156c5c7a1ace797eb89afcca08220383f75415",
+      "bytes": 10589
     },
     {
       "path": "README.md",
-      "sha256": "1310243a325ae4d6f454b1b65f23fc6c51501839e1cb9f54ff2eb1b565d1c9cd",
-      "bytes": 10727
+      "sha256": "b9154addb2ba085573e04cf4fefc660101fd4d13c16d3069e8e5be0e32fcb139",
+      "bytes": 11166
     },
     {
       "path": "ROADMAP.md",
@@ -250,8 +250,8 @@
     },
     {
       "path": "docs/integration/TEST_COVERAGE.md",
-      "sha256": "2939b0b5042583ac6ea88829ea731c36efab46c6e1c9a93f60dcd73b1522d204",
-      "bytes": 2278
+      "sha256": "f0ea4d0522142e4579cf608ffa2a973f604f17d315a84f74f44aef8c3d6382e4",
+      "bytes": 3277
     },
     {
       "path": "docs/methodology/HUMANITIES_ENGINEERING.md",

@@ -17,6 +17,11 @@ All notable changes to this project will be documented in this file.
 - `scripts/check_installation.py`, which executes the documented install commands in throwaway Codex, Claude Code, and Cursor projects and fails when an installed skill or instruction file refers to a path the procedure never copies. It is part of the validation workflow.
 - `tests/eval/cases.json`, `scripts/hsp_eval.py`, and [the comparison harness guide](docs/evaluation/HSP_COMPARISON_HARNESS.md) for a reproducible CONTROL-versus-HSP comparison on six task types, with deterministic scoring, a clean case for false blocks, and `NOT_MEASURED` for any metric the response record does not contain. No effectiveness result is recorded by this release.
 
+### Changed
+
+- Public wording now separates design intent from measured effect: the README states that no comparison run has been recorded and that repository validation is not evidence of research benefit.
+- `docs/integration/TEST_COVERAGE.md` documents the gate-contract, installation, and evaluation checks and lists research benefit as an unmeasured target.
+
 ## [2.0.0] - 2026-08-21
 
 ### Added

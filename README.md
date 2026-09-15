@@ -7,7 +7,7 @@
 > **Use AI without surrendering scholarly judgment.**  
 > Not an AI paper writer. A scholarly judgment scaffold.
 
-Humanities Superpowers helps researchers slow down the moments where fluent AI output is most dangerous: framing a question, defining concepts, connecting claims to evidence, testing objections, checking citations, revising judgments, and deciding whether a manuscript is ready to submit.
+Humanities Superpowers is designed to slow down the moments where fluent AI output is most dangerous: framing a question, defining concepts, connecting claims to evidence, testing objections, checking citations, revising judgments, and deciding whether a manuscript is ready to submit.
 
 It provides 13 core research skills and one Level 3 router that selects the smallest valid route through them. It supports scholarly judgment; it does not replace interpretation, source verification, ethics, or authorship, and it does not promise a publication-ready manuscript.
 
@@ -133,7 +133,9 @@ Fricturn distinguishes source verification from evidential standing, stores agen
 
 ## What this project does not claim
 
-Humanities Superpowers does not guarantee truth, originality, acceptance, or citation accuracy. It does not turn an AI agent into an autonomous scholar. It reduces avoidable risk by making assumptions, evidence, unresolved verification, and researcher decisions visible.
+Humanities Superpowers does not guarantee truth, originality, acceptance, or citation accuracy. It does not turn an AI agent into an autonomous scholar. Its design intent is to reduce avoidable risk by making assumptions, evidence, unresolved verification, and researcher decisions visible.
+
+That intent is not a measured result. The repository ships a controlled comparison harness at [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md) that can test the claim, and it currently records none: metrics that were not measured are reported as `NOT_MEASURED`. A passing repository validation and a passing installation check demonstrate internal consistency, not research benefit.
 
 See [ANTI_PATTERNS.md](docs/ANTI_PATTERNS.md) for common failure modes.
 

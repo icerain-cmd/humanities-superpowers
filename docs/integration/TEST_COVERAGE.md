@@ -4,6 +4,16 @@
 
 The v2 deterministic suite contains twelve cases across `tests/friction`, `tests/judgment`, `tests/return`, and `tests/regression`. The existing eight integrated scenarios and all v1 conformance fixtures remain active.
 
+Gate-validity contract cases live in `tests/regression/gate-validity-cases.json` and are driven by `scripts/run_v2_tests.py`. They connect the pieces that used to be tested in isolation: the invalidation helper, both gate-report profiles, and the progression rule.
+
+## Contract, installation, and evaluation checks
+
+| Check | What it establishes |
+|---|---|
+| Gate-validity contract cases | Helper output validates against both gate-report profiles, and progression authorization follows the recorded status together with current validity |
+| `scripts/check_installation.py` | The published install commands produce a project where every referenced template, schema, link, and router path exists, and where pre-existing instruction files survive |
+| `scripts/hsp_eval.py self-test` | The comparison scorer discriminates labelled responses and reports absent data as `NOT_MEASURED` |
+
 ## Scope
 
 The repository contains three layers of deterministic tests.
@@ -47,6 +57,7 @@ All 14 `SKILL.md` files—13 core research skills and 1 Level 3 router—are exe
 
 The suite verifies declared behavior and artifact consistency. It does not yet measure:
 
+- research benefit: the CONTROL-versus-HSP comparison harness records no run, so effect sizes remain unmeasured;
 - inter-model agreement;
 - discipline-specific validity;
 - citation retrieval accuracy in live environments;
@@ -54,4 +65,4 @@ The suite verifies declared behavior and artifact consistency. It does not yet m
 - user learning outcomes;
 - publication outcomes.
 
-These are empirical evaluation targets for the post-v1.0 roadmap.
+These are empirical evaluation targets, not established properties.
