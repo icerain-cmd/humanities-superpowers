@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0",
+  "note": "Routing and contract cases for the Dual-Core router. Each task is described by properties, never by keywords, so the reference router must derive the domain, the risk level, and the smallest sufficient route from those properties.",
+  "cases": [
+    {
+      "id": "A-research-routing",
+      "expect": {"domain": "RESEARCH", "risk_level": null, "engineering_skills": [], "humanities_skills": ["auditing-citations"]},
+      "task": {
+        "id": "A-research-routing",
+        "produces": "scholarly",
+        "scholarly_dependency": false,
+        "software_dependency": false,
+        "research_checks": ["auditing-citations"]
+      }
+    },
+    {
+      "id": "B-code-routing",
+      "expect": {"domain": "CODE", "risk_level": "QUICK", "engineering_skills": [], "humanities_skills": []},
+      "task": {
+        "id": "B-code-routing",
+        "produces": "software",
+        "scholarly_dependency": false,
+        "reversible": true,
+        "blast_radius": "single_file",
+        "persistence": "none",
+        "contract_surface": "none",
+        "environment": "local",
+        "uncertainty": "low",
+        "failure_cost": "visible"
+      }
+    },
+    {
+      "id": "C-hybrid-routing",
+      "expect": {"domain": "HYBRID", "risk_level": "STANDARD", "engineering_skills": ["test-driven-development", "verification-before-completion"], "humanities_skills": ["auditing-citations"]},
+      "task": {
+        "id": "C-hybrid-routing",
+        "produces": "software",
+        "scholarly_dependency": true,
+        "research_checks": ["auditing-citations"],
+        "reversible": true,
+        "blast_radius": "single_module",
+        "persistence": "none",
+        "contract_surface": "none",
+        "environment": "local",
+        "uncertainty": "low",
+        "failure_cost": "visible"
+      }
+    },
+    {
+      "id": "D-quick-routing",
+      "expect": {"domain": "CODE", "risk_level": "QUICK", "engineering_skills": [], "humanities_skills": []},
+      "task": {
+        "id": "D-quick-routing",
+        "produces": "software",
+        "reversible": true,
+        "blast_radius": "single_file",
+        "persistence": "none",
+        "contract_surface": "none",
+        "environment": "development",
+        "uncertainty": "low",
+        "failure_cost": "visible"
+      }
+    },
+    {
+      "id": "E-standard-routing",
+      "expect": {"domain": "CODE", "risk_level": "STANDARD", "engineering_skills": ["test-driven-development", "verification-before-completion"], "humanities_skills": []},
+      "task": {
+        "id": "E-standard-routing",
+        "produces": "software",
+        "reversible": true,
+        "blast_radius": "single_module",
+        "persistence": "none",
+        "contract_surface": "internal_only",
+        "environment": "local",
+        "uncertainty": "low",
+        "failure_cost": "visible"
+      }
+    },
+    {
+      "id": "F-strict-routing",
+      "expect": {"domain": "CODE", "risk_level": "STRICT", "engineering_skills": ["writing-plans", "test-driven-development", "requesting-code-review", "verification-before-completion"], "humanities_skills": []},
+      "task": {
+        "id": "F-strict-routing",
+        "produces": "software",
+        "reversible": true,
+        "blast_radius": "multi_component",
+        "persistence": "none",
+        "contract_surface": "schema",
+        "environment": "local",
+        "uncertainty": "medium",
+        "failure_cost": "silent"
+      }
+    },
+    {
+      "id": "G-system-task-is-strict",
+      "expect": {"domain": "CODE", "risk_level": "STRICT", "engineering_skills": ["writing-plans", "test-driven-development", "requesting-code-review", "verification-before-completion"], "humanities_skills": []},
+      "task": {
+        "id": "G-system-task-is-strict",
+        "produces": "software",
+        "reversible": true,
+        "blast_radius": "single_file",
+        "persistence": "infrastructure",
+        "contract_surface": "none",
+        "environment": "local",
+        "privilege_boundary": "SYSTEM",
+        "strict_triggers": ["privilege_boundary", "persistent_infrastructure"],
+        "uncertainty": "low",
+        "failure_cost": "visible"
+      }
+    },
+    {
+      "id": "H-trivial-ui-is-quick",
+      "expect": {"domain": "CODE", "risk_level": "QUICK", "engineering_skills": [], "humanities_skills": []},
+      "task": {
+        "id": "H-trivial-ui-is-quick",
+        "produces": "software",
+        "reversible": true,
+        "blast_radius": "single_file",
+        "persistence": "none",
+        "contract_surface": "none",
+        "environment": "development",
+        "strict_triggers": [],
+        "uncertainty": "low",
+        "failure_cost": "visible"
+      }
+    },
+    {
+      "id": "K-smallest-sufficient-route",
+      "expect": {"domain": "CODE", "risk_level": "STANDARD", "engineering_skills": ["writing-plans", "systematic-debugging", "test-driven-development", "verification-before-completion"], "humanities_skills": []},
+      "task": {
+        "id": "K-smallest-sufficient-route",
+        "produces": "software",
+        "reversible": true,
+        "blast_radius": "single_module",
+        "persistence": "none",
+        "contract_surface": "none",
+        "environment": "local",
+        "uncertainty": "high",
+        "unknown_cause": true,
+        "multi_step": true,
+        "failure_cost": "visible"
+      }
+    }
+  ]
+}

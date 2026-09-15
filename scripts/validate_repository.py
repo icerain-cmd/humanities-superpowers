@@ -379,6 +379,67 @@ def validate_integration() -> None:
     except Exception as exc:
         error(f'end-to-end session JSON invalid: {exc}')
 
+def validate_dual_core() -> None:
+    """Dual-Core artifacts must exist, stay traceable, and pass their own suite."""
+    dual_core_docs = [
+        'DUAL_CORE_ROUTER.md', 'RISK_ROUTER.md', 'AUTONOMOUS_WORKER.md', 'AGENT_ORCHESTRATION.md'
+    ]
+    for name in dual_core_docs:
+        path = ROOT / 'docs/specification/dual-core' / name
+        if not path.exists():
+            error(f'dual-core specification artifact missing {path.relative_to(ROOT)}')
+    for name in ['work-package.schema.json', 'evidence-package.schema.json', 'worker-state.schema.json']:
+        path = ROOT / 'schemas' / name
+        if not path.exists():
+            error(f'dual-core schema missing schemas/{name}')
+        else:
+            try:
+                data = json.loads(path.read_text(encoding='utf-8'))
+                if data.get('$schema') != 'https://json-schema.org/draft/2020-12/schema':
+                    error(f'{path.relative_to(ROOT)}: unexpected JSON Schema version')
+                if not data.get('$id'):
+                    error(f'{path.relative_to(ROOT)}: missing schema id')
+            except Exception as exc:
+                error(f'{path.relative_to(ROOT)}: invalid schema JSON: {exc}')
+    vendor = ROOT / 'vendor/obra-superpowers'
+    for name in ['PROVENANCE.json', 'PROVENANCE.md', 'LICENSE']:
+        if not (vendor / name).exists():
+            error(f'vendored provenance artifact missing vendor/obra-superpowers/{name}')
+    try:
+        provenance = json.loads((vendor / 'PROVENANCE.json').read_text(encoding='utf-8'))
+        upstream = provenance.get('upstream', {})
+        for field in ['repository', 'version', 'commit', 'license', 'copyright', 'imported_at']:
+            if not upstream.get(field):
+                error(f'vendored provenance missing upstream.{field}')
+        imported = provenance.get('imported', {})
+        if len(imported) < 1:
+            error('vendored provenance records no imported skills')
+        for item in provenance.get('excluded', []):
+            if not item.get('reason'):
+                error(f"vendored exclusion without a reason: {item.get('skill')}")
+        if not provenance.get('excluded'):
+            error('vendored provenance records no excluded skills')
+    except Exception as exc:
+        error(f'vendor/obra-superpowers/PROVENANCE.json: invalid JSON: {exc}')
+    if not (ROOT / 'tests/dual-core/cases.json').exists():
+        error('dual-core routing cases missing')
+    router = (ROOT / 'skills/using-humanities-superpowers/SKILL.md').read_text(encoding='utf-8')
+    for domain in ['RESEARCH', 'CODE', 'HYBRID']:
+        if domain not in router:
+            error(f'router does not define the {domain} domain')
+    for level in ['QUICK', 'STANDARD', 'STRICT']:
+        if level not in router:
+            error(f'router does not define the {level} risk level')
+    for state in ['WAITING_PRIVILEGE', 'BLOCKED', 'DONE']:
+        if state not in router:
+            error(f'router does not define the {state} worker state')
+    result = subprocess.run(
+        [sys.executable, str(ROOT / 'scripts/run_dual_core_tests.py')],
+        cwd=ROOT, capture_output=True, text=True,
+    )
+    if result.returncode:
+        error('dual-core conformance runner failed: ' + (result.stdout + result.stderr).strip())
+
 def validate_placeholders() -> None:
     allowed={'project.json','CITATION.cff','LICENSE','CODE_OF_CONDUCT.md','SECURITY.md','plugin.json','README.md','README.ko.md'}
     token=re.compile(r'AUTHOR_[A-Z_]+|GITHUB_USERNAME|CONTACT_EMAIL')
@@ -389,7 +450,7 @@ def validate_placeholders() -> None:
                 error(f"{path.relative_to(ROOT)}: unexpected publication placeholder(s): {sorted(set(matches))}")
 
 def main() -> int:
-    validate_skills(); validate_json(); validate_links(); validate_public_documentation(); validate_example(); validate_methodology(); validate_specification(); validate_integration(); validate_placeholders()
+    validate_skills(); validate_json(); validate_links(); validate_public_documentation(); validate_example(); validate_methodology(); validate_specification(); validate_integration(); validate_dual_core(); validate_placeholders()
     for msg in WARNINGS: print(f"WARNING: {msg}")
     for msg in ERRORS: print(f"ERROR: {msg}")
     if ERRORS:

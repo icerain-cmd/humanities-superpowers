@@ -1,7 +1,7 @@
 {
   "name": "humanities-superpowers",
   "version": "2.0.0",
-  "file_count": 217,
+  "file_count": 220,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -85,8 +85,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "ae7afcca5bd6faa36d26f7ee38e733f1d5f60c13fcf13f923079bbb0592ec5dc",
-      "bytes": 610
+      "sha256": "54be90696eac924e96660a64fc2991a057340571590ff42c5b18af9ea9f83fc3",
+      "bytes": 662
     },
     {
       "path": ".gitignore",
@@ -629,6 +629,11 @@
       "bytes": 8006
     },
     {
+      "path": "scripts/dual_core_router.py",
+      "sha256": "e34db01aa40f4ca0f043310d11a98eeeaf1c876f06bcac57529afa42c1478ca6",
+      "bytes": 6522
+    },
+    {
       "path": "scripts/fricturn_protocol.py",
       "sha256": "177eec146921bf9afdd600363086f90fc66fbfba60531ad25b42c650f7ac476d",
       "bytes": 5390
@@ -642,6 +647,11 @@
       "path": "scripts/prepare_release.py",
       "sha256": "f281f66eea84e589164c4594b148d68d71c639f206805a4da7a5fdd81d828956",
       "bytes": 809
+    },
+    {
+      "path": "scripts/run_dual_core_tests.py",
+      "sha256": "f22d9ad640e53ee4b35b92f8c903ea900bf29f2efe8efa09bd3716ca6e52ece3",
+      "bytes": 16499
     },
     {
       "path": "scripts/run_integrated_tests.py",
@@ -665,8 +675,8 @@
     },
     {
       "path": "scripts/validate_repository.py",
-      "sha256": "491a5cece051578ed2dc1d119e9476e2f455f56abf2a9c491df715a5cbd5c36b",
-      "bytes": 23663
+      "sha256": "62837c40285c5c98a5f0e80a853b166ff4b3969a59c11e3f83778397188468cd",
+      "bytes": 26968
     },
     {
       "path": "site/docs/CODE_OF_CONDUCT.md",
@@ -902,6 +912,11 @@
       "path": "tests/conformance/skills.yaml",
       "sha256": "9e719d47dfec98a85b7fa2012adf52aff3b24ab9dec6641f848dddbf6e166fa2",
       "bytes": 1254
+    },
+    {
+      "path": "tests/dual-core/cases.json",
+      "sha256": "8b764b0a2137c641491607ee562b25c1918132f0c3971ca0e7362c405cf1f6ad",
+      "bytes": 5372
     },
     {
       "path": "tests/eval/cases.json",
