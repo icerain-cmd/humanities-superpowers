@@ -140,22 +140,27 @@ Fricturn은 출처 검증과 근거적 지위를 분리하고, AI 추천과 연�
 
 작업자 상태는 계약이며 런타임이 아닙니다. Telegram이나 Hermes 같은 알림 런타임은 아직 구현되지 않았습니다.
 
-### 2.1.0이 주장하지 않는 것
+### 2.1.0이 주장하지 않는 것, 그리고 실측 결과
 
 2.1.0은 체계적인 엔지니어링 워크플로를 제공합니다. 이것은 기능에 대한 설명이며 효과에 대한 주장이 아닙니다.
 
-| 트랙 | 비교 | 결과 |
-|---|---|---|
-| 연구 | `CONTROL` 대 `HSP` | **연구 효과: `NOT_MEASURED`** |
-| 코딩 | `CONTROL_CODING` 대 `ENGINEERING_CORE` | **코딩 효과: `NOT_MEASURED`** |
+효과 평가를 수행했습니다 — 단일 모델, 저자가 라벨링한 6개 픽스처, 조건당 2회 반복, 3개 트랙 분리. **이 결과는 HSP-v2를 기본값으로 켜는 것을 지지하지 않습니다.**
 
-두 하네스 모두 self-test는 통과하지만 실제 비교 실행 기록은 없습니다. 따라서 이 릴리스는 어느 코어에 대해서도 코딩 품질 향상, 결함 감소, 토큰 절감, 연구 품질 향상을 주장하지 않습니다. 코딩 비교는 연구 비교와 분리해서 다룹니다. 자세한 내용은 [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md)를 참조하십시오.
+| 코어 | 평가 후 상태 |
+|---|---|
+| 연구 코어 | `EXPERIMENTAL_ONLY` — 대조군과의 차이는 픽스처 1개·반복 1회에서만 나타났고 재현되지 않았으며 토큰 비용도 동일했습니다 |
+| 엔지니어링 코어(단일 응답 계약) | `REJECT_CURRENT_DESIGN` — 1회 응답으로 작업·증거 패키지를 요구하는 계약이 제대로 산출되지 않았고, 실행하지 않은 검증을 수행했다고 서술하는 결과를 낳았습니다 |
+| 엔지니어링 코어(도구 사용 형태) | `EXPERIMENTAL_ONLY` — 두 조건 모두 검증 주장이 실제 도구 증거에 연결되었으나 이점은 좁았고 토큰이 약 4분의 1 더 들었습니다 |
+
+**기본 정책: `OFF`.** 외부 근거가 결론을 좌우하는 작업 — 인용·출처 검증, 파일·설정 검증, 테스트 실행 검증, 근거가 없을 때 결론을 보류하는 것이 결론을 내는 것보다 중요한 작업 — 에서만 선택적으로 켭니다. 일반 글쓰기, 일반 코딩, 단순 질의의 기본값으로는 정당화되지 않습니다.
+
+이 릴리스는 어느 코어에 대해서도 코딩 품질 향상, 결함 감소, 토큰 절감, 연구 품질 향상을 주장하지 않습니다. 세 트랙은 의도적으로 분리해 다룹니다. 실측 수치, 반복 안정성 분석, 과거 벤치마크와 현재 하네스 벤치마크의 구분, evidence-before-claim 원칙은 [docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md](docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md)에 기록했습니다. 하네스 설명은 [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md)와 [docs/evaluation/TOOL_USE_BENCHMARK.md](docs/evaluation/TOOL_USE_BENCHMARK.md)를 참조하십시오.
 
 ## 보장하지 않는 것
 
 이 프로젝트는 진실, 독창성, 게재, 인용 정확성을 보장하지 않습니다. AI를 자율적인 학자로 만들지도 않습니다. 설계 의도는 근거와 해석, 추론과 가설, 확인과 미확인을 분리하여 연구자가 검토해야 할 위험을 드러내는 것입니다.
 
-이 의도는 아직 측정된 결과가 아닙니다. 이 저장소에는 그 주장을 시험할 통제 비교 하네스가 [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md)에 포함되어 있으나, 현재 기록된 결과는 없습니다. 측정하지 않은 지표는 `NOT_MEASURED`로 보고됩니다. 저장소 검증과 설치 검증의 통과는 내부 정합성을 보여 줄 뿐, 연구 성과의 향상을 입증하지 않습니다.
+이 의도는 아직 측정된 결과가 아닙니다. 이 저장소에는 그 주장을 시험할 통제 비교 하네스가 포함되어 있고, 수행한 평가는 [docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md](docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md)에 기록했습니다. 측정하지 않은 지표는 `NOT_MEASURED`로 남습니다. 저장소 검증과 설치 검증의 통과는 내부 정합성을 보여 줄 뿐, 연구 성과의 향상을 입증하지 않습니다.
 
 ## 기원과 독립성
 

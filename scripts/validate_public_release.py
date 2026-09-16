@@ -31,6 +31,8 @@ WORKER_STATES = ('WORKING', 'WAITING_INPUT', 'WAITING_PRIVILEGE', 'BLOCKED', 'ER
 CLAIM_FILES = [
     'README.md', 'README.ko.md', 'CHANGELOG.md',
     'docs/release/RELEASE_NOTES_v2.1.0.md', 'site/docs/dual-core.md',
+    'docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md',
+    'docs/evaluation/TOOL_USE_BENCHMARK.md',
 ]
 UNMEASURED_CLAIMS = [
     r'(?i)\bimproves?\s+coding\s+quality\b',
@@ -134,8 +136,15 @@ def validate_release_documents(errors: list[str]) -> None:
         text = (ROOT / rel).read_text(encoding='utf-8')
         if RELEASE_VERSION not in text:
             errors.append(f'{rel} never names the release version {RELEASE_VERSION}')
-        if text.count('NOT_MEASURED') < 2:
-            errors.append(f'{rel} must state both unmeasured tracks as NOT_MEASURED')
+        # The public statement is no longer "nothing was measured": an
+        # evaluation exists. The README must therefore carry its conclusion and
+        # the default policy, and must link the document that records both.
+        if 'EXPERIMENTAL_ONLY' not in text:
+            errors.append(f'{rel} does not state the evaluated status of the research core')
+        if 'OFF' not in text:
+            errors.append(f'{rel} does not state the default policy')
+        if 'docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md' not in text:
+            errors.append(f'{rel} does not link the effectiveness and operating policy')
 
 
 def validate_vendor_provenance(errors: list[str]) -> None:

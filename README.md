@@ -157,22 +157,27 @@ Unattended work reports `WORKING`, `WAITING_INPUT`, `WAITING_PRIVILEGE`, `BLOCKE
 
 The worker states are a contract, not a runtime: no Telegram, Hermes, or other notification runtime is implemented.
 
-### What v2.1.0 does not claim
+### What v2.1.0 does not claim, and what the evaluation found
 
 v2.1.0 provides systematic engineering workflows. That is a description of function, not of effect.
 
-| Track | Comparison | Result |
-|---|---|---|
-| Research | `CONTROL` versus `HSP` | **Research effectiveness: `NOT_MEASURED`** |
-| Coding | `CONTROL_CODING` versus `ENGINEERING_CORE` | **Coding effectiveness: `NOT_MEASURED`** |
+An effectiveness evaluation has been conducted — one model, six author-labelled fixtures, two repetitions per condition, in three separate tracks. **It does not support enabling HSP-v2 by default.**
 
-Both harnesses exist and run their own self-tests, but no comparison run has been recorded. This release therefore claims no coding-quality improvement, no defect reduction, no token saving, and no research-quality improvement for either core. The coding comparison is kept separate from the research comparison; see [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md).
+| Core | Status after the evaluation |
+|---|---|
+| Research core | `EXPERIMENTAL_ONLY` — the difference over control appeared on one fixture and one repetition, did not reproduce, and cost the same in tokens |
+| Engineering core, single-response contract | `REJECT_CURRENT_DESIGN` — the one-shot work/evidence contract was not produced correctly and invited verification narration that no tool run supported |
+| Engineering core, tool-use form | `EXPERIMENTAL_ONLY` — verification claims were grounded in real tool evidence in both conditions, but the advantage was narrow and cost roughly a quarter more tokens |
+
+**Default policy: `OFF`.** Enable the framework selectively, where external evidence decides the answer — citation and source verification, file or configuration verification, test-execution verification, and work where withholding a conclusion when evidence is missing matters more than producing one. It is not justified as a default for general writing, general coding, or simple questions.
+
+This release claims no coding-quality improvement, no defect reduction, no token saving, and no research-quality improvement for either core. The three tracks are kept apart on purpose. The measured numbers, the stability analysis, the historical-versus-current benchmark distinction, and the evidence-before-claim rule are recorded in [docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md](docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md); the harnesses are described in [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md) and [docs/evaluation/TOOL_USE_BENCHMARK.md](docs/evaluation/TOOL_USE_BENCHMARK.md).
 
 ## What this project does not claim
 
 Humanities Superpowers does not guarantee truth, originality, acceptance, or citation accuracy. It does not turn an AI agent into an autonomous scholar. Its design intent is to reduce avoidable risk by making assumptions, evidence, unresolved verification, and researcher decisions visible.
 
-That intent is not a measured result. The repository ships a controlled comparison harness at [docs/evaluation/HSP_COMPARISON_HARNESS.md](docs/evaluation/HSP_COMPARISON_HARNESS.md) that can test the claim, and it currently records none: metrics that were not measured are reported as `NOT_MEASURED`. A passing repository validation and a passing installation check demonstrate internal consistency, not research benefit.
+That intent is not a measured result. The repository ships controlled comparison harnesses that can test it, and the recorded evaluation is reported in [docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md](docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md); metrics that were not measured stay `NOT_MEASURED`. A passing repository validation and a passing installation check demonstrate internal consistency, not research benefit.
 
 See [ANTI_PATTERNS.md](docs/ANTI_PATTERNS.md) for common failure modes.
 

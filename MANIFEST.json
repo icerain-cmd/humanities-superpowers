@@ -1,7 +1,7 @@
 {
   "name": "humanities-superpowers",
   "version": "2.1.0",
-  "file_count": 225,
+  "file_count": 229,
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
@@ -85,8 +85,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "a25aaa5c9e145a8819fa50ab2b8a8a9e8974cd325eef61ec173a10f06f59d069",
-      "bytes": 765
+      "sha256": "3d78eb115db47d6f3dda9b6ce55dd149f3e7c6b78a0ec8570b710bb52773ef9e",
+      "bytes": 822
     },
     {
       "path": ".gitignore",
@@ -105,8 +105,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "215eae87e0f2cf5a9591370dfd58ec6c263c77caf971ace2f56cae5ae0bc4097",
-      "bytes": 10054
+      "sha256": "521273fc4805cc791d467997a8f963a7e03295a297bdb68779c927999fbdf9be",
+      "bytes": 12564
     },
     {
       "path": "CITATION.cff",
@@ -155,13 +155,13 @@
     },
     {
       "path": "README.ko.md",
-      "sha256": "7b6bdef4a2f2a9ab0239f72ab831b51bfe0bf4a81037c9c23439643596c20e8d",
-      "bytes": 14083
+      "sha256": "7daf36a813b0d8b6191ac8533c6af1e593a5b40837f21a64604e0a0a206e02a1",
+      "bytes": 15478
     },
     {
       "path": "README.md",
-      "sha256": "79533c5d77c223ce605fd373c9ea95bef40951fd4bec911efcd3c0b52dba3d96",
-      "bytes": 14357
+      "sha256": "7a12ca21fcfd7d25ec98578e7933843c0f07144bf13359fbe0564793984a8f2a",
+      "bytes": 15640
     },
     {
       "path": "ROADMAP.md",
@@ -234,9 +234,19 @@
       "bytes": 1010
     },
     {
+      "path": "docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md",
+      "sha256": "ea3fd849f811554608c88f121576333a54d610b2d29d7bb36139e717fe4bc3b8",
+      "bytes": 7449
+    },
+    {
       "path": "docs/evaluation/HSP_COMPARISON_HARNESS.md",
-      "sha256": "bdb417a87ce7387e30f95f94da3dc7e922be2ebe5e86b57c2425c8221a777fef",
-      "bytes": 4806
+      "sha256": "6ec8cb572b7839b1808bcb5809ddcf713a2b06c9a6aea91e8c5bc12f15636fd9",
+      "bytes": 5512
+    },
+    {
+      "path": "docs/evaluation/TOOL_USE_BENCHMARK.md",
+      "sha256": "53c8f12a4f4081aedb64457734da8b11face500d22199c77b646a9cc15beab75",
+      "bytes": 5395
     },
     {
       "path": "docs/evaluation/UNATTENDED_AB_WORK_ORDER.md",
@@ -255,8 +265,8 @@
     },
     {
       "path": "docs/integration/TEST_COVERAGE.md",
-      "sha256": "1f7e4a8d2d66df20c2d66dc77dde7fa994a794f771991147e145ea8c615f77c1",
-      "bytes": 3583
+      "sha256": "cbd739b56c9b87b79c5cd7d2c610aaf109df95bf759e5fc795a98122959d3ffb",
+      "bytes": 4346
     },
     {
       "path": "docs/methodology/HUMANITIES_ENGINEERING.md",
@@ -659,6 +669,11 @@
       "bytes": 22726
     },
     {
+      "path": "scripts/hsp_eval_tools.py",
+      "sha256": "adc120ae6e97363eb6aad00b983a691fe90ae958cfdaaa70fcb3d3d483971586",
+      "bytes": 30174
+    },
+    {
       "path": "scripts/prepare_release.py",
       "sha256": "f281f66eea84e589164c4594b148d68d71c639f206805a4da7a5fdd81d828956",
       "bytes": 809
@@ -685,8 +700,8 @@
     },
     {
       "path": "scripts/validate_public_release.py",
-      "sha256": "92c0918734e3e3e53c30941f0df0dd55726ee738945f578fa4cab48cf6c6423c",
-      "bytes": 19660
+      "sha256": "6c6afe5453aa15caf4f74889320c06b463f4f9c7e7b9f439f5319eb774e56700",
+      "bytes": 20270
     },
     {
       "path": "scripts/validate_repository.py",
@@ -720,8 +735,8 @@
     },
     {
       "path": "site/docs/dual-core.md",
-      "sha256": "e8ffeed19b36a5a45d28f21911b6a233785fee82e5c384e562ce591868dfe4bc",
-      "bytes": 2823
+      "sha256": "187ff47d08a86e9217004c620b301e41f8e4adc425ac802dff90996d4e12c5c0",
+      "bytes": 3611
     },
     {
       "path": "site/docs/examples.md",
@@ -947,6 +962,11 @@
       "path": "tests/eval/coding-cases.json",
       "sha256": "c8b176ab5f2cabf55aa9ddb49d366eb69dd85962b26647d634c49fddfc75c5e4",
       "bytes": 4696
+    },
+    {
+      "path": "tests/eval/tool-cases.json",
+      "sha256": "f2f301456f506206d050c5318b6ae061bedc06972315746096bca7905bd6940c",
+      "bytes": 6565
     },
     {
       "path": "tests/friction/cases.json",

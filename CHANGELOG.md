@@ -2,6 +2,58 @@
 
 All notable changes to this project will be documented in this file.
 
+## Effectiveness evaluation — 2026-09-16
+
+Not a release. This entry records the first completed effectiveness evaluation
+and the operating policy that follows from it.
+
+### Measured
+
+- All three comparison tracks were run with one model
+  (`deepseek/deepseek-v4-flash`), temperature 0, six author-labelled fixtures,
+  and two repetitions per condition: research (`CONTROL` vs `HSP`), coding
+  (`CONTROL_CODING` vs `ENGINEERING_CORE`), and tool use (`CONTROL_TOOL` vs
+  `HSP_TOOL`).
+- Research track (`n = 12` per condition): defect recall 0.750 / 0.500 / 0.8125
+  for `CONTROL` / `HSP-v1` (archived tag `v1.0.1`) / `HSP-v2`, false blocks 0
+  in every condition, total tokens 7,996 / 9,451 / 7,999. The `HSP-v2` advantage
+  appears on one fixture and one repetition and does not reproduce.
+- Coding track (`n = 12`): risk-level accuracy 0.167 / 0.333, defect recall 0.500
+  in both conditions, 175 / 140 schema-violating artifacts, and a blind quality
+  score of 16.67 / 11.33 out of 25. The single-response
+  `WORK_PACKAGE`/`EVIDENCE_PACKAGE` contract is not produced correctly.
+- Tool-use track (`n = 12`): both conditions grounded every observation claim in
+  a tool call that actually ran (0 unfounded verification claims each), status
+  accuracy 0.727 / 0.917, and cost 94,292 / 116,352 tokens.
+
+### Decided
+
+- Research core: `EXPERIMENTAL_ONLY`.
+- Engineering core, single-response contract: `REJECT_CURRENT_DESIGN`.
+- Engineering core, tool-use form: `EXPERIMENTAL_ONLY`.
+- Default policy: `OFF`. Enable selectively where external evidence decides the
+  answer.
+- The earlier +90.3% token comparison stays recorded as
+  `HISTORICAL / NON-REPRODUCIBLE BENCHMARK`; its raw runs, prompt corpus, model
+  parameters, and token accounting are not preserved, and it is not merged with
+  the current numbers.
+
+### Added
+
+- `docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md`: the public conclusion,
+  the operating policy, the benchmark distinction, and the evidence-before-claim
+  rule.
+- `docs/evaluation/TOOL_USE_BENCHMARK.md` and `scripts/hsp_eval_tools.py` with
+  `tests/eval/tool-cases.json`: a reproducible tool-use comparison, its dataset,
+  its deterministic scorer, and a self-test.
+
+### Fixed
+
+- The comparison scorers no longer mis-score a correct answer: identifiers are
+  compared by content, an answer without the fenced wrapper is still read, an
+  unreadable answer is counted as a miss and still charged, and a defect report
+  written in a fixture-declared wording counts as that defect.
+
 ## [2.1.0] - 2026-09-15
 
 Version 2.1.0, **Dual-Core**, places a vendored engineering core beside the

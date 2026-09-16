@@ -14,6 +14,14 @@ Gate-validity contract cases live in `tests/regression/gate-validity-cases.json`
 | `scripts/check_installation.py` | The published install commands produce a project where every referenced template, schema, link, and router path exists, and where pre-existing instruction files survive |
 | `scripts/hsp_eval.py self-test` | The research comparison scorer discriminates labelled responses and reports absent data as `NOT_MEASURED` |
 | `scripts/hsp_eval_coding.py self-test` | The separate coding comparison scorer discriminates labelled runs on risk level, defect recall, completion accuracy, false blocks, and privilege-boundary state |
+| `scripts/hsp_eval_tools.py self-test` | The tool-use scorer separates grounded claims from unfounded ones, refuses to treat a missing record as a refutation, counts an unreadable answer as a miss instead of dropping it, still charges its tokens, and reads the legacy `VERIFIED` status as `SUPPORTED` |
+
+The three comparison tracks stay separate. The research and coding harnesses
+measure a single answer with no tools; `scripts/hsp_eval_tools.py` measures the
+same question when the agent can inspect files, run commands, and look a source
+up. Their reported results are not merged, and the recorded outcome of the first
+evaluation is documented in
+[`docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md`](../evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md).
 
 ## Scope
 

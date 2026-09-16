@@ -1,11 +1,16 @@
 # Controlled comparison harness: CONTROL versus HSP
 
-**Status: the harness exists; no effectiveness result exists.**
+**Status: the harness exists and has been run.** A controlled comparison was
+recorded on 2026-09-16 with one model, six fixtures, and two repetitions per
+condition. The measured result does not support enabling the framework by
+default: the difference over the control appeared on one fixture and one
+repetition, did not reproduce, and cost the same in tokens. The numbers, the
+stability analysis, and the resulting operating policy are recorded in
+[EFFECTIVENESS_AND_OPERATING_POLICY.md](EFFECTIVENESS_AND_OPERATING_POLICY.md).
 
 Repository validation passes, and that says nothing about whether the framework
 helps a scholar find more real defects. This harness exists so that claim can be
-tested instead of assumed. Nothing in this repository reports a measured
-research benefit, because no comparison run has been recorded yet.
+tested instead of assumed.
 
 ## What is compared
 
@@ -86,8 +91,14 @@ Anything absent is printed as `NOT_MEASURED`; missing runs are listed as
 A scored run may be described only as: what was measured, on which fixtures,
 with which model and reasoning level, at which sample size, and what remained
 unmeasured. Effectiveness claims that go beyond a recorded run are not
-supported by this repository.
+supported by this repository. With six fixtures and two repetitions, describe
+differences as observed, unstable, or insufficient evidence — never as proven,
+superior, or production ready.
 
 For the dispatch form of this comparison — the mandatory unattended preflight
 header, the unattended execution rules, and the separate coding track — see
 [UNATTENDED_AB_WORK_ORDER.md](UNATTENDED_AB_WORK_ORDER.md).
+
+For the tool-use comparison, which measures the same question when the agent can
+actually inspect files, run commands, and look a source up, see
+[TOOL_USE_BENCHMARK.md](TOOL_USE_BENCHMARK.md).

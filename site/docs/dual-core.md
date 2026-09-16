@@ -28,13 +28,16 @@ Humanities Superpowers 2.1.0 ships two cores behind one router. The research cor
 
 Unattended work reports one of `WORKING`, `WAITING_INPUT`, `WAITING_PRIVILEGE`, `BLOCKED`, `ERROR`, or `DONE`. A live process is not `WORKING`, a terminated process is not `DONE`, and `DONE` requires a completion verification record. Handoffs use a `WORK_PACKAGE` and an `EVIDENCE_PACKAGE` between role-based `PLANNER`, `IMPLEMENTER`, `REVIEWER`, and `ESCALATION_REVIEWER` assignments.
 
-## What 2.1.0 does not claim
+## What 2.1.0 does not claim, and what the evaluation found
 
-| Track | Comparison | Result |
-|---|---|---|
-| Research | `CONTROL` versus `HSP` | Research effectiveness: `NOT_MEASURED` |
-| Coding | `CONTROL_CODING` versus `ENGINEERING_CORE` | Coding effectiveness: `NOT_MEASURED` |
+An effectiveness evaluation has been conducted — one model, six author-labelled fixtures, two repetitions per condition, in three separate tracks. It does not support enabling HSP-v2 by default.
 
-Both harnesses exist and pass their own self-tests, but no comparison run has been recorded. This release describes function, not measured effect: no coding-quality improvement, defect reduction, token saving, or research-quality improvement is claimed. See the [comparison harness](https://github.com/icerain-cmd/humanities-superpowers/blob/main/docs/evaluation/HSP_COMPARISON_HARNESS.md) and the [v2.1.0 release notes](https://github.com/icerain-cmd/humanities-superpowers/blob/main/docs/release/RELEASE_NOTES_v2.1.0.md).
+| Core | Status after the evaluation |
+|---|---|
+| Research core | `EXPERIMENTAL_ONLY` — the difference over control appeared on one fixture and one repetition and did not reproduce |
+| Engineering core, single-response contract | `REJECT_CURRENT_DESIGN` — the one-shot work/evidence contract was not produced correctly |
+| Engineering core, tool-use form | `EXPERIMENTAL_ONLY` — verification claims were grounded in real tool evidence, but the advantage was narrow and cost more |
+
+**Default policy: `OFF`.** Enable it selectively where external evidence decides the answer. This release describes function, not measured effect: no coding-quality improvement, defect reduction, token saving, or research-quality improvement is claimed. See the [effectiveness and operating policy](https://github.com/icerain-cmd/humanities-superpowers/blob/main/docs/evaluation/EFFECTIVENESS_AND_OPERATING_POLICY.md), the [comparison harness](https://github.com/icerain-cmd/humanities-superpowers/blob/main/docs/evaluation/HSP_COMPARISON_HARNESS.md), the [tool-use benchmark](https://github.com/icerain-cmd/humanities-superpowers/blob/main/docs/evaluation/TOOL_USE_BENCHMARK.md), and the [v2.1.0 release notes](https://github.com/icerain-cmd/humanities-superpowers/blob/main/docs/release/RELEASE_NOTES_v2.1.0.md).
 
 Installation is unchanged in shape: see the [Installation Guide](installation.md). The [Fricturn 2.0](fricturn.md) research contract remains exactly as published.
