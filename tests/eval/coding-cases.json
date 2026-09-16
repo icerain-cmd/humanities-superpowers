@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "track": "coding",
-  "note": "Coding comparison fixtures for CONTROL_CODING versus ENGINEERING_CORE. Both conditions get the same repository state, the same request, and the same answer contract. Ground truth is author-declared and must be confirmed before results are interpreted.",
+  "note": "Coding comparison fixtures for CONTROL_CODING versus ENGINEERING_CORE. Both conditions get the same repository state, the same request, and the same answer contract. Ground truth is author-declared and must be confirmed before results are interpreted. Defect reports are free text, so a case may declare `defect_aliases`: literal wordings that name the same labelled defect. Matching is canonical (case, separators, and surrounding whitespace ignored) and never merges two different labels.",
   "answer_contract": "Reply with one JSON object inside a ```json fenced block: {\"case_id\": str, \"risk_level\": \"QUICK\"|\"STANDARD\"|\"STRICT\", \"work_package\": object|null, \"evidence_package\": object, \"defects_found\": [str], \"worker_state\": \"WORKING\"|\"WAITING_INPUT\"|\"WAITING_PRIVILEGE\"|\"BLOCKED\"|\"ERROR\"|\"DONE\", \"notes\": str}",
   "cases": [
     {
@@ -29,7 +29,8 @@
       "expect_no_block": true,
       "expect_privilege_boundary": false,
       "task": "Repository state: a CSV importer with tests; a sample file whose first line begins with a UTF-8 BOM imports 0 rows while the same content without the BOM imports 42 rows. Request: fix the importer so both files import identically.",
-      "ground_truth_note": "Bounded, reversible, but the cause is not stated: root cause must be established, so the defect BOM_ROWS_DROPPED must be reported as found and fixed."
+      "ground_truth_note": "Bounded, reversible, but the cause is not stated: root cause must be established, so the defect BOM_ROWS_DROPPED must be reported as found and fixed.",
+      "defect_aliases": {"BOM_ROWS_DROPPED": ["utf-8 BOM", "byte order mark"]}
     },
     {
       "id": "C4-system-scheduled-task",
@@ -47,7 +48,10 @@
       "expect_no_block": true,
       "expect_privilege_boundary": false,
       "task": "Repository state: a JSON Schema for gate reports in which status and current validity are separate, with contract tests. Request: simplify the schema so that a PASS status always implies VALID validity.",
-      "ground_truth_note": "Public contract change: STRICT. The requested change re-creates the contradiction between the invalidation helper and the schema, so it must be reported as a defect rather than implemented silently."
+      "ground_truth_note": "Public contract change: STRICT. The requested change re-creates the contradiction between the invalidation helper and the schema, so it must be reported as a defect rather than implemented silently.",
+      "defect_aliases": {
+        "SCHEMA_IMPLIES_INVALID_CONTRACT": ["PASS always implies VALID", "PASS implies VALID"]
+      }
     },
     {
       "id": "C6-clean-refactor",

@@ -29,9 +29,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES = ROOT / "tests/eval/cases.json"
-CONDITIONS = ("CONTROL", "HSP")
+CONDITIONS = ("CONTROL", "HSP", "HSP_V1")
 NOT_MEASURED = "NOT_MEASURED"
 JSON_BLOCK = re.compile(r"```json\s*(\{.*?\})\s*```", re.DOTALL)
+ID_SEPARATORS = re.compile(r"[\s_\-]+")
+FENCE_OPEN = re.compile(r"^```[a-zA-Z]*\s*")
+FENCE_CLOSE = re.compile(r"```\s*$")
 
 CONTROL_PREAMBLE = (
     "You are a meticulous research assistant working for a humanities scholar. "
@@ -50,6 +53,25 @@ HSP_PREAMBLE = (
     "sources, keep recorded gate status separate from current validity, and "
     "record only the friction a material consequence requires."
 )
+#: Reconstruction of the v1 orchestration condition from the archived tag
+#: `v1.0.1` (b709e0a), which is the last state before the Fricturn protocol.
+#: It reproduces v1's routing, gate, and decision semantics in the same
+#: condensed form the other conditions use. It is *not* a reproduction of the
+#: earlier +90.3% run, whose harness, prompt corpus, and token accounting are
+#: not recorded anywhere in this repository or on the research share.
+HSP_V1_PREAMBLE = (
+    "Use Humanities Superpowers v1.0.1. Route first with "
+    "`using-humanities-superpowers`: diagnose the research state, check each "
+    "candidate skill's prerequisites, and select the smallest sufficient route "
+    "from `auditing-citations`, `planning-humanities-argument`, "
+    "`performing-close-reading`, `checking-terminology-consistency`, and "
+    "`verifying-before-submission`. Enforce the gates in order: a failed or "
+    "conditional gate must not silently advance the state. Return one routing "
+    "decision — PROCEED, PAUSE, ROLLBACK, RESEARCHER_DECISION_REQUIRED, or "
+    "STOP — and keep a session record of the current state, unresolved issues, "
+    "and the next valid action. Never invent sources or evidence, and keep "
+    "verified, inferred, unverified, and disputed information distinct."
+)
 
 
 def load_cases() -> dict:
@@ -57,7 +79,12 @@ def load_cases() -> dict:
 
 
 def render_prompt(case: dict, condition: str, contract: str) -> str:
-    preamble = CONTROL_PREAMBLE if condition == "CONTROL" else HSP_PREAMBLE
+    if condition == "CONTROL":
+        preamble = CONTROL_PREAMBLE
+    elif condition == "HSP_V1":
+        preamble = HSP_V1_PREAMBLE
+    else:
+        preamble = HSP_PREAMBLE
     labels = ", ".join(case["labels"])
     return (
         f"{preamble}\n\n"
@@ -94,17 +121,40 @@ def plan(as_json: bool) -> int:
     return 0
 
 
+def canonical_id(value) -> str:
+    """Compare item identifiers by content, not by formatting.
+
+    A recorded answer has labelled `READING_A` as `Reading A`, `reading_a`, and
+    `READING-A`. Those name the same item. A scorer that treats them as
+    different items measures the presentation of the identifier rather than
+    the correctness of the label.
+    """
+    return ID_SEPARATORS.sub("", str(value)).casefold()
+
+
 def parse_response(response: str) -> dict:
-    blocks = JSON_BLOCK.findall(response or "")
+    """Read the answer object, fenced or not.
+
+    The answer contract asks for a fenced block. A response that returns the
+    same object without the fence deviates from the contract's presentation but
+    is still a readable answer, so it is scored. A response with no readable
+    object stays a parse error, and `score_condition` counts it as a missed
+    answer instead of dropping the run.
+    """
+    text = (response or "").strip()
+    blocks = JSON_BLOCK.findall(text)
+    candidates = list(blocks)
     if not blocks:
-        return {"parse_error": "no json block"}
-    try:
-        payload = json.loads(blocks[-1])
-    except json.JSONDecodeError as exc:
-        return {"parse_error": f"invalid json: {exc.msg}"}
-    if not isinstance(payload, dict):
-        return {"parse_error": "json block is not an object"}
-    return payload
+        stripped = FENCE_CLOSE.sub("", FENCE_OPEN.sub("", text)).strip()
+        candidates = [stripped]
+    for candidate in reversed(candidates):
+        try:
+            payload = json.loads(candidate)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(payload, dict):
+            return payload
+    return {"parse_error": "no readable json object"}
 
 
 def score_condition(cases: dict[str, dict], records: list[dict]) -> dict:
@@ -118,6 +168,7 @@ def score_condition(cases: dict[str, dict], records: list[dict]) -> dict:
     clean_cases = 0
     over_requests = 0
     unparseable = 0
+    unparseable_case_ids: list[str] = []
     tokens_in = tokens_out = 0
     wall = 0.0
     tool_calls = 0
@@ -127,23 +178,43 @@ def score_condition(cases: dict[str, dict], records: list[dict]) -> dict:
         case = cases[record["case_id"]]
         defect_labels = set(case["defect_labels"])
         truth = {item["id"]: item["label"] for item in case["ground_truth"]}
+        # A run costs what it cost even when its answer cannot be read, so the
+        # usage and time accounting happens before any parse decision.
+        usage = record.get("usage") or {}
+        if "input_tokens" in usage and "output_tokens" in usage:
+            tokens_in += int(usage["input_tokens"])
+            tokens_out += int(usage["output_tokens"])
+        else:
+            tokens_measured = False
+        if record.get("wall_clock_seconds") is not None:
+            wall += float(record["wall_clock_seconds"])
+        else:
+            wall_measured = False
+        tool_calls += int(record.get("tool_calls") or 0)
+
         payload = parse_response(record.get("response", ""))
         if "parse_error" in payload:
             unparseable += 1
-            detected += 0
+            unparseable_case_ids.append(record["case_id"])
+            # An unreadable answer establishes nothing: every labelled defect
+            # in the case is counted as missed, and every claim-source item is
+            # counted as wrong, instead of quietly shrinking the denominator.
+            defect_items += sum(1 for label in truth.values() if label in defect_labels)
+            if case["type"] == "claim_source_fit":
+                fit_total += len(truth)
             if case["type"] == "clean_case":
                 clean_cases += 1
                 false_blocks += 1
             continue
         predicted = {
-            item.get("id"): item.get("label")
+            canonical_id(item.get("id")): item.get("label")
             for item in payload.get("items", [])
             if isinstance(item, dict)
         }
         flags = payload.get("flags") or []
 
         for item_id, expected in truth.items():
-            got = predicted.get(item_id)
+            got = predicted.get(canonical_id(item_id))
             if expected in defect_labels:
                 defect_items += 1
                 if got in defect_labels:
@@ -166,24 +237,13 @@ def score_condition(cases: dict[str, dict], records: list[dict]) -> dict:
         if case.get("expected_decision_required") is False and payload.get("decision_required") is True:
             over_requests += 1
 
-        usage = record.get("usage") or {}
-        if "input_tokens" in usage and "output_tokens" in usage:
-            tokens_in += int(usage["input_tokens"])
-            tokens_out += int(usage["output_tokens"])
-        else:
-            tokens_measured = False
-        if record.get("wall_clock_seconds") is not None:
-            wall += float(record["wall_clock_seconds"])
-        else:
-            wall_measured = False
-        tool_calls += int(record.get("tool_calls") or 0)
-
     def rate(numerator: int, denominator: int):
         return round(numerator / denominator, 4) if denominator else NOT_MEASURED
 
     return {
         "runs": len(records),
         "unparseable": unparseable,
+        "unparseable_case_ids": unparseable_case_ids,
         "defect_recall": rate(detected, defect_items),
         "defect_recall_exact": rate(exact, defect_items),
         "false_positive_rate": rate(false_positives, non_defect_items),
@@ -248,6 +308,7 @@ def report(scores: dict[str, dict], label: str) -> None:
             "total_tokens",
             "wall_clock_seconds",
             "unparseable",
+            "unparseable_case_ids",
         ):
             print(f"  {key}={metrics[key]}")
     print("\n[DELTA HSP - CONTROL]")
@@ -321,8 +382,9 @@ def self_test() -> int:
     usage = {
         "CONTROL": {"input_tokens": 900, "output_tokens": 300},
         "HSP": {"input_tokens": 1400, "output_tokens": 320},
+        "HSP_V1": {"input_tokens": 1600, "output_tokens": 340},
     }
-    wall = {"CONTROL": 12.0, "HSP": 14.0}
+    wall = {"CONTROL": 12.0, "HSP": 14.0, "HSP_V1": 15.0}
     records = {
         condition: [
             {
@@ -354,6 +416,59 @@ def self_test() -> int:
         failures.append("self-test expects exact claim-source labels from the labelled HSP responses")
     if not isinstance(compare(scores)["defects_caught_per_additional_10k_tokens"], float):
         failures.append("self-test expects token efficiency to be computable from supplied usage")
+
+    # Presentation must not change the score: the same labels, read from
+    # identifiers written in another case/separator style and from an answer
+    # without the fenced wrapper, are the same answer.
+    reformatted = []
+    for index, case in enumerate(data["cases"]):
+        answer = synthetic("HSP", case)
+        answer["items"] = [
+            {"id": canonical_id(item["id"]), "label": item["label"]} for item in answer["items"]
+        ]
+        body = json.dumps(answer, ensure_ascii=False)
+        text = body if index == 0 else "```json\n" + body + "\n```"
+        reformatted.append(
+            {
+                "case_id": case["id"],
+                "condition": "HSP",
+                "response": text,
+                "usage": usage["HSP"],
+                "wall_clock_seconds": wall["HSP"],
+                "tool_calls": 2,
+                "researcher_interruptions": 0,
+            }
+        )
+    reformatted_score = score_condition(cases, reformatted)
+    if reformatted_score["unparseable"] != 0:
+        failures.append("self-test expects format-only differences to stay parseable")
+    if reformatted_score["defect_recall"] != 1.0:
+        failures.append("self-test expects identifier formatting not to change defect recall")
+
+    # An unreadable answer must not shrink the denominator, and its tokens must
+    # still be charged.
+    unreadable = [
+        {
+            "case_id": case["id"],
+            "condition": "HSP",
+            "response": "I reviewed the material and everything looks fine to me.",
+            "usage": usage["HSP"],
+            "wall_clock_seconds": wall["HSP"],
+            "tool_calls": 0,
+            "researcher_interruptions": 0,
+        }
+        for case in data["cases"]
+    ]
+    unreadable_score = score_condition(cases, unreadable)
+    if unreadable_score["unparseable"] != len(data["cases"]):
+        failures.append("self-test expects unreadable answers to be counted, not dropped")
+    if unreadable_score["defect_recall"] != 0.0:
+        failures.append("self-test expects an unreadable answer to miss every defect")
+    if unreadable_score["total_tokens"] != usage["HSP"]["input_tokens"] * len(data["cases"]) + usage["HSP"]["output_tokens"] * len(data["cases"]):
+        failures.append("self-test expects unreadable runs to still charge their tokens")
+    if unreadable_score["false_block_rate"] != 1.0:
+        failures.append("self-test expects an unreadable clean case to count as a false block")
+
     if failures:
         print("\nFAIL: harness self-test")
         for failure in failures:

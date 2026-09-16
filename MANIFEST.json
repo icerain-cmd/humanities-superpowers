@@ -650,13 +650,13 @@
     },
     {
       "path": "scripts/hsp_eval.py",
-      "sha256": "797c43916b126e980dbd2bfd89da4633baceb37eb62725623a56f3cf297b357f",
-      "bytes": 15803
+      "sha256": "83d06634900d2d9e3d46b54b8a1f253f942673aae2d19d3ec6f730c927ba9485",
+      "bytes": 21602
     },
     {
       "path": "scripts/hsp_eval_coding.py",
-      "sha256": "640f5a50473affe71aa01739736d157551999ac7d7643316684b653536efea96",
-      "bytes": 16630
+      "sha256": "aa0e094e5cbaf96993b1b0419b6d63ee4b8d462501d5fbb26c3ef7d786ecaca8",
+      "bytes": 22726
     },
     {
       "path": "scripts/prepare_release.py",
@@ -945,8 +945,8 @@
     },
     {
       "path": "tests/eval/coding-cases.json",
-      "sha256": "7cd65e518fe3a3ea41e345e10be80d8c34cc3047b824e3c37bb23f5a42aae4e4",
-      "bytes": 4247
+      "sha256": "c8b176ab5f2cabf55aa9ddb49d366eb69dd85962b26647d634c49fddfc75c5e4",
+      "bytes": 4696
     },
     {
       "path": "tests/friction/cases.json",

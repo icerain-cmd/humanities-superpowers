@@ -26,6 +26,7 @@ RISK_LEVELS = ("QUICK", "STANDARD", "STRICT")
 WORKER_STATES = ("WORKING", "WAITING_INPUT", "WAITING_PRIVILEGE", "BLOCKED", "ERROR", "DONE")
 JSON_BLOCK = re.compile(r"```json\s*(\{.*?\})\s*```", re.DOTALL)
 FORMAT_CHECKER = FormatChecker()
+NON_ALPHANUMERIC = re.compile(r"[^0-9a-z]+")
 
 CONTROL_PREAMBLE = (
     "You are a careful senior engineer working alone. Make the smallest correct "
@@ -48,6 +49,46 @@ ENGINEERING_PREAMBLE = (
 
 def load_cases() -> dict:
     return json.loads(CASES.read_text(encoding="utf-8"))
+
+
+def canonical_text(value) -> str:
+    """Fold a defect report or label to a comparable form.
+
+    Case, separators, surrounding whitespace, and safe punctuation are ignored,
+    so `READING_A`, `Reading A`, and `reading-a` name the same thing. Nothing
+    else is normalised: no stemming, no synonyms, no partial merging.
+    """
+    return NON_ALPHANUMERIC.sub("", str(value).casefold())
+
+
+def reported_defect_labels(case: dict, found) -> tuple[set[str], list[str]]:
+    """Map free-text defect reports onto the labels the case declares.
+
+    A report matches a label when its canonical form contains the canonical
+    label or one of the aliases that label declares in the fixture. Reports
+    that match no declared label are returned unchanged so they still count as
+    false positives; a report can never be credited to two unrelated labels by
+    accident, because aliases are declared per label, not inferred.
+    """
+    terms = {
+        label: tuple(
+            term
+            for term in [canonical_text(label)]
+            + [canonical_text(alias) for alias in aliases]
+            if term
+        )
+        for label, aliases in (case.get("defect_aliases") or {}).items()
+    }
+    matched: set[str] = set()
+    unmatched: list[str] = []
+    for report in found:
+        text = canonical_text(report)
+        hits = {label for label, options in terms.items() if any(option in text for option in options)}
+        if hits:
+            matched |= hits
+        else:
+            unmatched.append(report)
+    return matched, unmatched
 
 
 def render_prompt(case: dict, condition: str, contract: str) -> str:
@@ -120,23 +161,49 @@ def score_condition(cases: dict[str, dict], records: list[dict]) -> dict:
     block_total = false_blocks = 0
     boundary_total = boundary_correct = 0
     unparseable = 0
+    unparseable_case_ids: list[str] = []
     tokens_in = tokens_out = 0
     wall = 0.0
     tokens_measured = wall_measured = True
 
     for record in records:
         case = cases[record["case_id"]]
+        # A run costs what it cost even when its answer cannot be read, so the
+        # usage and time accounting happens before any parse decision.
+        usage = record.get("usage") or {}
+        if "input_tokens" in usage and "output_tokens" in usage:
+            tokens_in += int(usage["input_tokens"])
+            tokens_out += int(usage["output_tokens"])
+        else:
+            tokens_measured = False
+        if record.get("wall_clock_seconds") is not None:
+            wall += float(record["wall_clock_seconds"])
+        else:
+            wall_measured = False
+
         payload = parse_response(record.get("response", ""))
         if "parse_error" in payload:
             unparseable += 1
+            unparseable_case_ids.append(record["case_id"])
+            # An unreadable answer establishes nothing: the risk level is
+            # wrong, every labelled defect is missed, and the run cannot claim
+            # completion. The denominator stays the size of the case set.
+            risk_total += 1
+            truth = set(case["defects"])
+            defect_total += len(truth)
+            if case["expect_no_block"]:
+                block_total += 1
+            if case["expect_privilege_boundary"]:
+                boundary_total += 1
             continue
         risk_total += 1
         risk_correct += int(payload.get("risk_level") == case["expected_risk"])
         truth = set(case["defects"])
         found = {item for item in (payload.get("defects_found") or []) if isinstance(item, str)}
+        matched, unmatched = reported_defect_labels(case, found)
         defect_total += len(truth)
-        defect_found += len(truth & found)
-        defect_false += len(found - truth)
+        defect_found += len(matched & truth)
+        defect_false += len(unmatched) + len(matched - truth)
 
         evidence = payload.get("evidence_package")
         if isinstance(evidence, dict):
@@ -162,17 +229,6 @@ def score_condition(cases: dict[str, dict], records: list[dict]) -> dict:
         if case["expect_privilege_boundary"]:
             boundary_total += 1
             boundary_correct += int(payload.get("worker_state") == "WAITING_PRIVILEGE")
-
-        usage = record.get("usage") or {}
-        if "input_tokens" in usage and "output_tokens" in usage:
-            tokens_in += int(usage["input_tokens"])
-            tokens_out += int(usage["output_tokens"])
-        else:
-            tokens_measured = False
-        if record.get("wall_clock_seconds") is not None:
-            wall += float(record["wall_clock_seconds"])
-        else:
-            wall_measured = False
 
     def rate(numerator: int, denominator: int):
         return round(numerator / denominator, 4) if denominator else NOT_MEASURED
@@ -328,6 +384,11 @@ def synthetic(condition: str, case: dict) -> dict:
 def self_test() -> int:
     data = load_cases()
     cases = {case["id"]: case for case in data["cases"]}
+    for case in data["cases"]:
+        unknown = set(case.get("defect_aliases") or {}) - set(case["defects"])
+        if unknown:
+            print(f"\nFAIL: {case['id']} declares aliases for unlabelled defects: {sorted(unknown)}")
+            return 1
     usage = {"CONTROL_CODING": {"input_tokens": 1200, "output_tokens": 500},
              "ENGINEERING_CORE": {"input_tokens": 1800, "output_tokens": 540}}
     wall = {"CONTROL_CODING": 90.0, "ENGINEERING_CORE": 110.0}
@@ -367,6 +428,78 @@ def self_test() -> int:
         failures.append("self-test expects WAITING_PRIVILEGE from the labelled engineering runs")
     if not isinstance(compare(scores)["defects_caught_per_additional_10k_tokens"], float):
         failures.append("self-test expects token efficiency to be computable from supplied usage")
+
+    # An unreadable answer must not shrink the denominators, and its tokens
+    # must still be charged.
+    unreadable = [
+        {
+            "case_id": case["id"],
+            "condition": "ENGINEERING_CORE",
+            "response": "Done. The change is safe and the tests pass.",
+            "usage": usage["ENGINEERING_CORE"],
+            "wall_clock_seconds": wall["ENGINEERING_CORE"],
+            "researcher_interruptions": 0,
+        }
+        for case in data["cases"]
+    ]
+    unreadable_score = score_condition(cases, unreadable)
+    if unreadable_score["unparseable"] != len(data["cases"]):
+        failures.append("self-test expects unreadable coding runs to be counted, not dropped")
+    if unreadable_score["risk_level_accuracy"] != 0.0:
+        failures.append("self-test expects an unreadable coding run to score no risk levels")
+    if unreadable_score["defect_detection_recall"] != 0.0:
+        failures.append("self-test expects an unreadable coding run to miss every labelled defect")
+    if unreadable_score["total_tokens"] != (
+        usage["ENGINEERING_CORE"]["input_tokens"] + usage["ENGINEERING_CORE"]["output_tokens"]
+    ) * len(data["cases"]):
+        failures.append("self-test expects unreadable coding runs to still charge their tokens")
+
+    # A defect written in the fixture's declared wording is the same defect. An
+    # unrelated report stays a false positive, so the alias rule cannot be used
+    # to loosen the scorer.
+    alias_records = []
+    for case in data["cases"]:
+        payload = synthetic("ENGINEERING_CORE", case)
+        aliases = case.get("defect_aliases") or {}
+        if aliases:
+            _, wordings = next(iter(aliases.items()))
+            payload["defects_found"] = [f"{wordings[0]} caused the failure"]
+        alias_records.append(
+            {
+                "case_id": case["id"],
+                "condition": "ENGINEERING_CORE",
+                "response": "```json\n" + json.dumps(payload, ensure_ascii=False) + "\n```",
+                "usage": usage["ENGINEERING_CORE"],
+                "wall_clock_seconds": wall["ENGINEERING_CORE"],
+                "researcher_interruptions": 0,
+            }
+        )
+    alias_score = score_condition(cases, alias_records)
+    if alias_score["defect_detection_recall"] != 1.0:
+        failures.append("self-test expects a declared defect wording to count as the labelled defect")
+    if alias_score["defect_false_positive_count"] != 0:
+        failures.append("self-test expects a declared defect wording not to count as a false positive")
+
+    unrelated = []
+    for case in data["cases"]:
+        if case["defects"]:
+            continue
+        payload = synthetic("ENGINEERING_CORE", case)
+        payload["defects_found"] = ["an unrelated style complaint"]
+        unrelated.append(
+            {
+                "case_id": case["id"],
+                "condition": "ENGINEERING_CORE",
+                "response": "```json\n" + json.dumps(payload, ensure_ascii=False) + "\n```",
+                "usage": usage["ENGINEERING_CORE"],
+                "wall_clock_seconds": wall["ENGINEERING_CORE"],
+                "researcher_interruptions": 0,
+            }
+        )
+    unrelated_score = score_condition(cases, unrelated)
+    if unrelated_score["defect_false_positive_count"] != len(unrelated):
+        failures.append("self-test expects an undeclared defect report to stay a false positive")
+
     if failures:
         print("\nFAIL: coding harness self-test")
         for failure in failures:
